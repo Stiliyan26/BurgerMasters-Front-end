@@ -1,0 +1,81 @@
+#footer {
+    min-height: 50px;
+    width: 100%;
+    background-color: #003554;
+    position: sticky;
+    left: 0px;
+    bottom: 0px;
+    z-index: 2;
+    position: relative;
+}
+
+#footer .follow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+#footer .follow--title {
+    color: #f2e8cf;
+    text-shadow: 2px 2px #29431b;
+    padding-top: 10px;
+}
+
+#footer .social-media {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: unset;
+    padding-left: 0px;
+}
+
+#footer .social-media .social {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+    text-shadow: 2px 2px #29431b;
+}
+
+#footer .social-media .social p {
+    color: #f2e8cf;
+    margin-bottom: 10px;
+}
+
+#footer .social-media .social i {
+    padding: 5px;
+}
+
+#footer .social-media .social .fa-twitter {
+    color: #1DA1F2;
+}
+
+#footer .social-media .social .fa-facebook {
+    color: #4267B2
+}
+
+#footer .social-media .social .fa-instagram {
+    color: #405DE6;
+}
+
+#footer .social-media .social .fa-youtube {
+    color: #FF0000;
+}
+
+#footer .info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    text-shadow: 2px 2px #29431b;
+    color: #f2e8cf;
+    padding-left: 10px;
+    position: absolute;
+    bottom: 10px;
+}
+
+#footer .info .row {
+    display: flex;
+    gap: 10px;
+}

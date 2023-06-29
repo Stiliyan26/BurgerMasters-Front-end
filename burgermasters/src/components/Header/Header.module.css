@@ -1,0 +1,92 @@
+#header {
+    background-color: #003554;
+    max-height: 100px;
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    position: relative;
+}
+
+#header .nav {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 5%;
+}
+
+#header .nav .logo {
+    width: 7.5%;
+    max-height: 160px;
+    max-width: 160px;
+    padding-left: 5%;
+    display: flex;
+}
+
+#header .nav .list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    gap: 40px;
+}
+
+.nav .list .list-item a, .nav .menu {
+    text-decoration: none;
+    color: #d5d9de;
+}
+
+.nav .list .list-item a:hover, .nav .menu:hover{
+    color: #fff;
+}
+
+/* Menu */
+.nav .menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px
+}
+
+.nav .menu-dropdown,
+.create-dropdown {
+    list-style: none;
+    background-color: #003554;
+}
+.nav .menu-dropdown .menu-item,
+.create-dropdown .create-item {
+    display: block;
+}
+
+.nav .menu-dropdown,
+.create-dropdown {
+    background-color: #003554;
+    position: absolute; 
+    z-index: 999;
+    display: none;
+    text-align: center;
+    padding-right: 10px;
+    padding-left: 10px;
+    gap: 10px;
+}
+
+.nav .list-item:hover .menu-dropdown,
+.list-item:hover .create-dropdown {
+    display: block;
+    border-radius: 10px;
+    padding-top: 20px;
+}
+
+.nav .list-item:hover .menu-dropdown .menu-item,
+.list-item:hover .create-dropdown .create-item {
+    padding-bottom: 15px;
+}
+
+.nav .menu p {
+    margin: 0px;
+}
+
+.create-dropdown {
+    text-align: left;
+}
+

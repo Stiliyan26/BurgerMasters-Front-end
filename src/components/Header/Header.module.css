@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Pacifico&display=swap');
+
+
 #header {
     background-color: #003554;
     max-height: 100px;
@@ -5,6 +8,7 @@
     align-items: center;
     font-size: 1.5rem;
     position: relative;
+    font-family: 'Indie Flower', cursive;
 }
 
 #header .nav {
@@ -82,7 +86,7 @@
     padding-bottom: 15px;
 }
 
-.nav .menu p {
+.nav .menu .menu-title {
     margin: 0px;
 }
 

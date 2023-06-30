@@ -40,25 +40,25 @@ const Header = () => {
 
                     <li className={styles['list-item']}>
                         <div className={styles.menu}>
-                            <p>Menu</p>
+                            <p className={styles['menu-title']}>Menu</p>
                             <i className="fa-solid fa-bars"></i>
                         </div>
 
                         <ul className={styles['menu-dropdown']}>
                             <li className={styles['menu-item']}>
                                 <Link to="/">
-                                    Burgers <i className="fa-solid fa-burger fa-flip" style={{color: "#995900",}}></i>
+                                    Burgers <i className="fa-solid fa-burger fa-beat" style={{color: "#995900",}}></i>
                                 </Link>
                             </li>
 
                             <li className={styles['menu-item']}>
                                 <Link to="/">
-                                    Drinks <i className="fa-solid fa-cup-straw-swoosh fa-flip" style={{color: "#9d0101",}}></i>
+                                    Drinks <i className="fa-solid fa-cup-straw-swoosh fa-beat" style={{color: "#9d0101",}}></i>
                                 </Link>
                             </li>
 
                             <li className={styles['menu-item']}>
-                                <Link to="/">Fries <i className="fa-solid fa-french-fries fa-flip" style={{color: "#b8b100",}}></i></Link>
+                                <Link to="/">Fries <i className="fa-solid fa-french-fries fa-beat" style={{color: "#b8b100",}}></i></Link>
                             </li>
                         </ul>
                     </li>

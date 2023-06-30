@@ -1,43 +1,40 @@
-import './Footer.css'
+import styles from './Footer.module.css'
 
 const Footer = () => {
     return (
-        <footer id="footer">
-    <div class="info">
-        <div class="phone row">
-            <i class="fa-solid fa-phone"></i>
-            <p>0700-1-2525</p>
-        </div>
+        <footer id={styles['footer']}>
+            <div className={styles['waves']}>
+                <div className={styles['wave']} id={styles['wave1']}></div>
+                <div className={styles['wave']} id={styles['wave2']}></div>
+                <div className={styles['wave']} id={styles['wave4']}></div>
+                <div className={styles['wave']} id={styles['wave4']}></div>
+            </div>
 
-        <div class="address row">
-            <i class="fa-solid fa-location-dot"></i>
-            <p>Sofia, Kostenski vodopad 58</p>
-        </div>
-    </div>
+            <ul className={styles['social-icons']}>
+                <li className={styles['icon']}>
+                    <a><ion-icon name="logo-facebook"></ion-icon></a>
+                </li>
+                <li className={styles['icon']}>
+                    <a><ion-icon name="logo-twitter"></ion-icon></a>
+                </li>
+                <li className={styles['icon']}>
+                    <a href="https://www.linkedin.com/in/stiliyan-nikolov-36a0a8270/"><ion-icon name="logo-linkedin"></ion-icon></a>
+                </li>
+                <li className={styles['icon']}>
+                    <a><ion-icon name="logo-instagram"></ion-icon></a>
+                </li>
+            </ul>
 
-    <div class="follow">
-        <h3 class="follow--title">Follow us on</h3>
+            <ul className={styles['menu']}>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Team</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
 
-        <ul class="social-media" role="list">
-            <li class="social">
-                <i class="fa-brands fa-twitter"></i>
-                <p class="social-name">Tweeter</p>
-            </li>
-            <li class="social">
-                <i class="fa-brands fa-facebook"></i>
-                <p class="social-name">Facebook</p>
-            </li>
-            <li class="social">
-                <i class="fa-brands fa-instagram"></i>
-                <p class="social-name">Instagram</p>
-            </li>
-            <li class="social">
-                <i class="fa-brands fa-youtube"></i>
-                <p class="social-name">Youtube</p>
-            </li>
-        </ul>
-    </div>
-</footer>
+            <p>@{(new Date).getFullYear()} BurgerMasters project | All Rights Reserved</p>
+        </footer>
     )
 }
 

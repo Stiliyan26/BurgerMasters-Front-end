@@ -14,7 +14,9 @@ const Header = () => {
     return (
         <header id={styles['header']}>
             <nav className={styles['nav']}>
-                <img className={styles['logo']} src="/images/logo/logo2.png" alt="Burger logo"></img>
+                <Link to="/">
+                    <img className={styles['logo']} src="/images/logo/logo.png" alt="Burger logo"></img>
+                </Link>    
                 
                 <ul className={styles['list']}>
 
@@ -47,18 +49,18 @@ const Header = () => {
                         <ul className={styles['menu-dropdown']}>
                             <li className={styles['menu-item']}>
                                 <Link to="/">
-                                    Burgers <i className="fa-solid fa-burger fa-beat" style={{color: "#995900",}}></i>
+                                    Burgers <i className="fa-solid fa-burger fa-flip" style={{color: "#995900",}}></i>
                                 </Link>
                             </li>
 
                             <li className={styles['menu-item']}>
                                 <Link to="/">
-                                    Drinks <i className="fa-solid fa-cup-straw-swoosh fa-beat" style={{color: "#9d0101",}}></i>
+                                    Drinks <i className="fa-solid fa-cup-straw-swoosh fa-flip" style={{color: "#9d0101",}}></i>
                                 </Link>
                             </li>
 
                             <li className={styles['menu-item']}>
-                                <Link to="/">Fries <i className="fa-solid fa-french-fries fa-beat" style={{color: "#b8b100",}}></i></Link>
+                                <Link to="/">Fries <i className="fa-solid fa-french-fries fa-flip" style={{color: "#b8b100",}}></i></Link>
                             </li>
                         </ul>
                     </li>
@@ -80,11 +82,11 @@ const Header = () => {
                     </li>
                     
                     <li className={styles['list-item']}>
-                        <Link to="/">Register <i className="fa-sharp fa-solid fa-right-to-bracket"></i></Link>
+                        <Link to="/Register">Register <i className="fa-sharp fa-solid fa-right-to-bracket"></i></Link>
                     </li>
 
                     <li className={styles['list-item']}>
-                        <Link to="/">Login <i className="fa-solid fa-right-to-bracket"></i></Link>
+                        <Link to="/Login">Login <i className="fa-solid fa-right-to-bracket"></i></Link>
                     </li>
                 </ul>
             </nav>

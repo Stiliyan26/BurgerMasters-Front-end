@@ -8,7 +8,6 @@ const Login = () => {
     const [inputValues, setInputValues] = useState({
         email: "",
         password: "",
-        confirmPassword: ""
     });
 
     const inputs = [
@@ -32,23 +31,29 @@ const Login = () => {
             label: 'Password',
             required: true
         },
-        {
-            id: 3,
-            name: 'confirmPassword',
-            type: 'password',
-            placeholder: 'Confirm Password',
-            errorMessage: "Passwords don't match!",
-            pattern: inputValues.password,
-            label: 'Confirm Password',
-            required: true
-        }
     ];
 
     const loginSubmitHandler = (e) => {
         e.preventDefault();
 
-        const data = new FormData(e.target);
-        const inputVal = Object.fromEntries(data);
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData);
+
+        console.log("data: ");
+        console.log(data);
+
+        fetch("https://localhost:7129/api/Account/Login", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(resData => resData.json())
+            .then(result => {
+                console.log("result login");
+                console.log(result);
+            });
     }
 
     const onChange = (e) => {
@@ -57,8 +62,6 @@ const Login = () => {
             [e.target.name]: e.target.value
         });
     }
-
-    console.log(inputValues);
 
     return (
         <div id={styles['login']}>

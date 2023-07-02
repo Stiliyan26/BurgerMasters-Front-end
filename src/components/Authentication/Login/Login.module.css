@@ -36,9 +36,15 @@
     color: #d5d9de;
     border-radius: 20px;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 22px;
     cursor: pointer;
     margin-top: 20px;
     margin-bottom: 30px;
     font-family: 'Lobster', cursive;
+}
+
+#login .login-form .submit-btn:hover {
+    background-color: #004268;
+    color: #d5d9de;
+    transform: scale(1.02);
 }

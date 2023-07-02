@@ -1,7 +1,9 @@
 import styles from './Register.module.css';
 import FormInput from '../FormInput/FormInput';
 
-import { useRef, useState } from 'react';
+import { useState } from 'react';
+
+const BURGER_ENDPOINT = "https://localhost:7129/api/Account";
 
 const Register = () => {
     const [inputValues, setInputValues] = useState({
@@ -19,7 +21,7 @@ const Register = () => {
             type: 'text',
             placeholder: 'Username',
             errorMessage: "Username should be 5-16 characters and shouldn't include any special character!",
-            pattern: `^[A-Za-z0-9]{3,16}$`,
+            pattern: `^[A-Za-z0-9]{5,16}$`,
             label: 'Username',
             required: true
         },
@@ -65,8 +67,24 @@ const Register = () => {
     const registerSubmitHandler = (e) => {
         e.preventDefault();
 
-        const data = new FormData(e.target);
-        const inputVal = Object.fromEntries(data);
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData);
+
+        console.log("data: ");
+        console.log(data);
+
+        fetch("https://localhost:7129/api/Account/Register", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(resData => resData.json())
+            .then(result => {
+                console.log("result");
+                console.log(result);
+            });
     }
 
     const onChange = (e) => {
@@ -75,8 +93,6 @@ const Register = () => {
             [e.target.name]: e.target.value
         });
     }
-
-    console.log(inputValues);
 
     return (
         <div id={styles['register']}>

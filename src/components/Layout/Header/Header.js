@@ -27,15 +27,15 @@ const Header = () => {
 
                         <ul className={styles['create-dropdown']}>
                             <li className={styles['create-item']}>
-                                <Link to="/"><i className="fa-solid fa-plus"></i> Burger</Link>
+                                <Link to="/"><i className="fa-solid fa-plus fa-beat-fade"></i> Burger</Link>
                             </li>
 
                             <li className={styles['create-item']}>
-                                <Link to="/"><i className="fa-solid fa-plus"></i> Drink</Link>
+                                <Link to="/"><i className="fa-solid fa-plus fa-beat-fade"></i> Drink</Link>
                             </li>
 
                             <li className={styles['create-item']}>
-                                <Link to="/"><i className="fa-solid fa-plus"></i> Fries</Link>
+                                <Link to="/"><i className="fa-solid fa-plus fa-beat-fade"></i> Fries</Link>
                             </li>
                         </ul>
                     </li>

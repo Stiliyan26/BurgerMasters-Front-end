@@ -1,14 +1,24 @@
 import styles from './Login.module.css';
 import FormInput from '../FormInput/FormInput';
 
-import { useRef, useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useAuthContext } from '../../../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
+import * as authService from '../../../services/authService'
 
 const Login = () => {
     const [inputValues, setInputValues] = useState({
         email: "",
         password: "",
     });
+
+    useEffect(() => {
+        document.title = 'Login';
+    }, []);
+
+    const { login } = useAuthContext();
+    const navigate = useNavigate();
 
     const inputs = [
         {
@@ -39,20 +49,14 @@ const Login = () => {
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData);
 
-        console.log("data: ");
-        console.log(data);
-
-        fetch("https://localhost:7129/api/Account/Login", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
+        authService.login(data)
+            .then(res => {
+                console.log(res);
+                login(res);
+                navigate('/');
             })
-            .then(resData => resData.json())
-            .then(result => {
-                console.log("result login");
-                console.log(result);
+            .catch(err => {
+                console.log(err.message);
             });
     }
 

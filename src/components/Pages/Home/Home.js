@@ -1,6 +1,12 @@
 import styles from './Home.module.css';
 
+import { useEffect } from 'react';
+
 const Home = () => {
+    useEffect(() => {
+        document.title = 'Home';
+    }, []);
+
     return (
         <div className={styles['slider-frame']}>
             <div className={styles['wrapper']}>

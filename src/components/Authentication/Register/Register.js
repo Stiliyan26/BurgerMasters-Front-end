@@ -1,9 +1,12 @@
 import styles from './Register.module.css';
+
 import FormInput from '../FormInput/FormInput';
 
-import { useState } from 'react';
+import { useAuthContext } from '../../../contexts/AuthContext'
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const BURGER_ENDPOINT = "https://localhost:7129/api/Account";
+import * as authService from '../../../services/authService'
 
 const Register = () => {
     const [inputValues, setInputValues] = useState({
@@ -13,6 +16,13 @@ const Register = () => {
         password: "",
         confirmPassword: ""
     });
+
+    useEffect(() => {
+        document.title = 'Register';
+    }, []);
+
+    const { login } = useAuthContext();
+    const navigate = useNavigate();
 
     const inputs = [
         {
@@ -69,21 +79,15 @@ const Register = () => {
 
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData);
-
-        console.log("data: ");
-        console.log(data);
-
-        fetch("https://localhost:7129/api/Account/Register", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
+        
+        authService.register(data)
+            .then(res => {
+                console.log(res);
+                login(res);
+                navigate('/');
             })
-            .then(resData => resData.json())
-            .then(result => {
-                console.log("result");
-                console.log(result);
+            .catch(err => {
+                console.log(err.message);
             });
     }
 

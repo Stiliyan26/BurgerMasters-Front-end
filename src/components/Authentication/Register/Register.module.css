@@ -48,3 +48,9 @@
     color: #d5d9de;
     transform: scale(1.02);
 }
+
+#register .err-msg {
+    color: rgb(217, 2, 2);
+    text-align: center;
+    font-size: 20px;
+}

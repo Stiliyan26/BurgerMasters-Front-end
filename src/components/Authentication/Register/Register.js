@@ -51,7 +51,9 @@ const Register = () => {
             name: 'birthday',
             type: 'date',
             placeholder: 'Birthday',
+            errorMessage: "Birthday is required!",
             label: 'Birthday',
+            required: true
         },
         {
             id: 4,
@@ -109,9 +111,11 @@ const Register = () => {
                 <form className={styles['register-form']} onSubmit={registerSubmitHandler} method='POST'>
                     <h1 className={styles['title']}>Register</h1>
 
-                    {responeseErrors && responeseErrors.map((err) => (
-                        <p key={err.code}>{err.description}</p>
-                    ))}
+                    { responeseErrors && responeseErrors.map((err) => (
+                        <p key={err.code} className={styles['err-msg']}>
+                            {err.description}
+                        </p>))
+                    }
 
                     {inputs.map(input => {
                         return <FormInput 

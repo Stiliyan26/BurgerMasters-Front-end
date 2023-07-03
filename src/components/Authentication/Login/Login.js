@@ -13,6 +13,8 @@ const Login = () => {
         password: "",
     });
 
+    const [responeseErrorMsg, setResponseErrorMsg] = useState('');
+
     useEffect(() => {
         document.title = 'Login';
     }, []);
@@ -51,9 +53,13 @@ const Login = () => {
 
         authService.login(data)
             .then(res => {
-                console.log(res);
-                login(res);
-                navigate('/');
+                if (res.status === 401){
+                    setResponseErrorMsg(res.errorMessage);
+                } else if (res.status === 200){
+                    login(res.userInfo);
+                    setResponseErrorMsg('');
+                    navigate('/');
+                }
             })
             .catch(err => {
                 console.log(err.message);
@@ -72,6 +78,13 @@ const Login = () => {
             <div className={styles['center']}> 
                 <form className={styles['login-form']} onSubmit={loginSubmitHandler} method='POST'>
                     <h1 className={styles['title']}>Login</h1>
+
+                    { responeseErrorMsg && 
+                        <p className={styles['err-msg']}>
+                            {responeseErrorMsg}
+                        </p> 
+                    }
+
                     {inputs.map(input => {
                         return <FormInput 
                             key={input.id}

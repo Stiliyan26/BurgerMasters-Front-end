@@ -16,6 +16,7 @@ const Register = () => {
         password: "",
         confirmPassword: ""
     });
+    const [responeseErrors, setResponseErrors] = useState([]);
 
     useEffect(() => {
         document.title = 'Register';
@@ -82,9 +83,13 @@ const Register = () => {
         
         authService.register(data)
             .then(res => {
-                console.log(res);
-                login(res);
-                navigate('/');
+                if (res.status === 409){
+                    setResponseErrors(res.errors);
+                } else if (res.status === 200) {
+                    login(res.userInfo);
+                    setResponseErrors([]);
+                    navigate('/');
+                }
             })
             .catch(err => {
                 console.log(err.message);
@@ -103,6 +108,11 @@ const Register = () => {
             <div className={styles['center']}> 
                 <form className={styles['register-form']} onSubmit={registerSubmitHandler} method='POST'>
                     <h1 className={styles['title']}>Register</h1>
+
+                    {responeseErrors && responeseErrors.map((err) => (
+                        <p key={err.code}>{err.description}</p>
+                    ))}
+
                     {inputs.map(input => {
                         return <FormInput 
                             key={input.id}

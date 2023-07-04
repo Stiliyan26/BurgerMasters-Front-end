@@ -82,15 +82,19 @@ const Register = () => {
 
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData);
-        
+
         authService.register(data)
             .then(res => {
-                if (res.status === 409){
-                    setResponseErrors(res.errors);
-                } else if (res.status === 200) {
+                if (res.status === 200) {
                     login(res.userInfo);
                     setResponseErrors([]);
                     navigate('/');
+                } else if (res.status === 409) {
+                    //Conflict
+                    setResponseErrors(res.errors);
+                } else if (res.status === 422) {
+                    //UnprocessableEntity
+                    setResponseErrors(res.errorMessage)
                 }
             })
             .catch(err => {
@@ -105,27 +109,33 @@ const Register = () => {
         });
     }
 
+    const errorMessage =
+        Array.isArray(responeseErrors)
+            ? responeseErrors.map((err) => (
+                <p key={err.code} className={styles['err-msg']}>
+                    {err.description}
+                </p>))
+            : (<p className={styles['err-msg']}>
+                    {responeseErrors}
+                </p>)
+
     return (
         <div id={styles['register']}>
-            <div className={styles['center']}> 
+            <div className={styles['center']}>
                 <form className={styles['register-form']} onSubmit={registerSubmitHandler} method='POST'>
                     <h1 className={styles['title']}>Register</h1>
 
-                    { responeseErrors && responeseErrors.map((err) => (
-                        <p key={err.code} className={styles['err-msg']}>
-                            {err.description}
-                        </p>))
-                    }
+                    {errorMessage}
 
                     {inputs.map(input => {
-                        return <FormInput 
+                        return <FormInput
                             key={input.id}
                             {...input}
                             value={inputValues[input.name]}
                             onChange={onChange}
-                        /> 
+                        />
                     })}
-                    
+
                     <button className={styles['submit-btn']}>Submit</button>
                 </form>
             </div>

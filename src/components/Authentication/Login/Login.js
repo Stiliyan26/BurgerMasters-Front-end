@@ -53,12 +53,19 @@ const Login = () => {
 
         authService.login(data)
             .then(res => {
-                if (res.status === 401){
-                    setResponseErrorMsg(res.errorMessage);
-                } else if (res.status === 200){
+                if (res.status === 200){
                     login(res.userInfo);
                     setResponseErrorMsg('');
                     navigate('/');
+                } else if (res.status === 401) {
+                    //Unauthorized
+                    setResponseErrorMsg(res.errorMessage);
+                } else if (res.status === 404) {
+                    //NotFound
+                    setResponseErrorMsg(res.errorMessage);
+                } else if (res.status === 422){
+                    //UnprocessableEntity
+                    setResponseErrorMsg(res.errorMessage);
                 }
             })
             .catch(err => {

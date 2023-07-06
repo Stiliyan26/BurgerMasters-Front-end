@@ -8,27 +8,31 @@ export const register = async (data) => {
         },
         body: JSON.stringify(data)
     })
-    .then(resData => resData.json())
-    .then(result => {
-        return result;
-    });
+        .then(resData => resData.json())
+        .then(result => {
+            return result;
+        });
 }
 
 export const login = async (data) => {
     return fetch(`${baseUrl}/Login`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            .then(resData => resData.json())
-            .then(result => {
-                return result;
-            });
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(resData => resData.json())
+        .then(result => {
+            return result;
+        });
 }
 
-export const logout = async () => {
-    await fetch(`${baseUrl}/Logout`);
-}
-    
+export const logout = async (token) => {
+    await fetch(`${baseUrl}/Logout`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
+};

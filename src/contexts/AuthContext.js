@@ -6,7 +6,9 @@ export const AuthContext = createContext();
 const initialValue = {
     username: '',
     email: '',
-    birthday: ''
+    birthday: '',
+    role: '',
+    token: ''
 };
 
 export const AuthProvider = ({
@@ -23,7 +25,7 @@ export const AuthProvider = ({
     }
 
     return (
-        <AuthContext.Provider value={{user, isAuthenticated: user.email, login, logout}}>
+        <AuthContext.Provider value={{user, isAuthenticated: user.email, isAdmin: user.role , login, logout}}>
             {children}
         </AuthContext.Provider>
     )

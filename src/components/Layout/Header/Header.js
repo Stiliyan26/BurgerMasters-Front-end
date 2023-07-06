@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { useAuthContext } from '../../../contexts/AuthContext';
 
 const Header = () => {
-    const { isAuthenticated, user } = useAuthContext();
+    const { isAuthenticated, user, isAdmin } = useAuthContext();
 
     const guestNav = (
         <Fragment>
@@ -21,27 +21,9 @@ const Header = () => {
         </Fragment>
     );
 
+
     const userNav = (
         <Fragment>
-            <li className={styles['list-item']}>
-                <Link to="/" className={styles['create']}>
-                    Create <i className="fa-solid fa-caret-down"></i>
-                </Link>
-
-                <ul className={styles['create-dropdown']}>
-                    <li className={styles['create-item']}>
-                    <Link to="/"><i className="fa-solid fa-plus fa-beat-fade"></i> Burger</Link>
-                    </li>
-
-                    <li className={styles['create-item']}>
-                        <Link to="/"><i className="fa-solid fa-plus fa-beat-fade"></i> Drink</Link>
-                    </li>
-
-                    <li className={styles['create-item']}>
-                        <Link to="/"><i className="fa-solid fa-plus fa-beat-fade"></i> Fries</Link>
-                    </li>
-                </ul>
-            </li>
             <li className={styles['list-item']}>
                 <div className={styles.menu}>
                     <p className={styles['menu-title']}>Menu</p>
@@ -51,28 +33,24 @@ const Header = () => {
                 <ul className={styles['menu-dropdown']}>
                     <li className={styles['menu-item']}>
                         <Link to="/">
-                            Burgers <i className="fa-solid fa-burger fa-flip" style={{color: "#995900",}}></i>
+                            Burgers <i className="fa-solid fa-burger fa-flip" style={{ color: "#995900", }}></i>
                         </Link>
                     </li>
 
                     <li className={styles['menu-item']}>
                         <Link to="/">
-                            Drinks <i className="fa-solid fa-cup-straw-swoosh fa-flip" style={{color: "#9d0101",}}></i>
+                            Drinks <i className="fa-solid fa-cup-straw-swoosh fa-flip" style={{ color: "#9d0101", }}></i>
                         </Link>
                     </li>
 
                     <li className={styles['menu-item']}>
-                        <Link to="/">Fries <i className="fa-solid fa-french-fries fa-flip" style={{color: "#b8b100",}}></i></Link>
+                        <Link to="/">Fries <i className="fa-solid fa-french-fries fa-flip" style={{ color: "#b8b100", }}></i></Link>
                     </li>
                 </ul>
             </li>
 
             <li className={styles['list-item']}>
-                <Link to="/">Cart <i className="fa-solid fa-cart-shopping" style={{color: "#d5d9de",}}></i></Link>
-            </li>
-
-            <li className={styles['list-item']}>
-                <Link to="/">My Posts <i className="fa-light fa-mailbox"></i></Link>
+                <Link to="/">Cart <i className="fa-solid fa-cart-shopping" style={{ color: "#d5d9de", }}></i></Link>
             </li>
 
             <li className={styles['list-item']}>
@@ -85,8 +63,41 @@ const Header = () => {
         </Fragment>
     );
 
+    const adminNav = (
+        <Fragment>
+            <li className={styles['list-item']}>
+                <Link to="/" className={styles['create']}>
+                    Create <i className="fa-solid fa-caret-down"></i>
+                </Link>
+
+                <ul className={styles['create-dropdown']}>
+                    <li className={styles['create-item']}>
+                        <Link to="/"><i className="fa-solid fa-plus fa-beat-fade"></i> Burger</Link>
+                    </li>
+
+                    <li className={styles['create-item']}>
+                        <Link to="/"><i className="fa-solid fa-plus fa-beat-fade"></i> Drink</Link>
+                    </li>
+
+                    <li className={styles['create-item']}>
+                        <Link to="/"><i className="fa-solid fa-plus fa-beat-fade"></i> Fries</Link>
+                    </li>
+                </ul>
+            </li>
+
+            <li className={styles['list-item']}>
+                <Link to="/">My Posts <i className="fa-light fa-mailbox"></i></Link>
+            </li>
+
+            {userNav}
+
+        </Fragment>
+    )
+
     const showNav = isAuthenticated
-        ? userNav
+        ? isAdmin
+            ? adminNav
+            : userNav
         : guestNav
 
     return (

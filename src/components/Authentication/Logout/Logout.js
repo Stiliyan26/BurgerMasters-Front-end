@@ -4,11 +4,12 @@ import { useEffect } from "react";
 import * as authService from '../../../services/authService';
 
 const Logout = () => {
-    const { logout } = useAuthContext();
+    const { logout, user } = useAuthContext();
     const navigate = useNavigate();
+    const { token } = user;
     
     useEffect(() => {
-        authService.logout()
+        authService.logout(token)
             .then(() => {
                 logout();
                 navigate("/");

@@ -6,6 +6,7 @@ import { useAuthContext } from '../../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 import * as authService from '../../../services/authService'
+import jwtDecode from 'jwt-decode';
 
 const Login = () => {
     const [inputValues, setInputValues] = useState({
@@ -54,7 +55,17 @@ const Login = () => {
         authService.login(data)
             .then(res => {
                 if (res.status === 200){
-                    login(res.userInfo);
+                    const { token } = res;
+                    const decodedToken = jwtDecode(token);
+
+                    const username = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
+                    const email = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'];
+                    const birthday = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/dateofbirth'];
+                    const role = decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+
+                    const userInfo = { username, email, birthday, role, token };
+
+                    login(userInfo);
                     setResponseErrorMsg('');
                     navigate('/');
                 } else if (res.status === 401) {

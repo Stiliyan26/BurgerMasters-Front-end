@@ -13,29 +13,29 @@ import GuestRoute from './GuardedRoutes/GuestRoute';
 import UserRoute from './GuardedRoutes/UserRoute';
 
 function App() {
-  return (
-    <AuthProvider>
-    	<Header />
+	return (
+		<AuthProvider>
+			<Header />
 
-		<div className='container'>
-			<Routes>
-				<Route path='/' element={<Home />} />
+			<div className='container'>
+				<Routes>
+					<Route path='/' element={<Home />} />
 
-				<Route element={<UserRoute />}>
-					<Route path='/Logout' element={<Logout />} />
-				</Route>
+					<Route element={<UserRoute />}>
+						<Route path='/Logout' element={<Logout />} />
+					</Route>
 
-				<Route element={<GuestRoute />}>
-					<Route path='/Login' element={<Login />} />
-					<Route path='/Register' element={<Register />} />
-				</Route>
+					<Route element={<GuestRoute />}>
+						<Route path='/Login' element={<Login />} />
+						<Route path='/Register' element={<Register />} />
+					</Route>
 
-			</Routes>
-		</div>
+				</Routes>
+			</div>
 
-    	<Footer />
-    </AuthProvider>
-  );
+			<Footer />
+		</AuthProvider>
+	);
 }
 
 export default App;

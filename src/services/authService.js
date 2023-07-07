@@ -36,3 +36,13 @@ export const logout = async (token) => {
         }
     });
 };
+
+export const refreshToken = async (id) => {
+    return fetch(`${baseUrl}/RefreshToken?userId=${id}`, {
+        method: 'POST'
+    })
+        .then(resData => resData.json())
+        .then(result => {
+            return result;
+        });
+};

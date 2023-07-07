@@ -57,13 +57,15 @@ const Login = () => {
                 if (res.status === 200){
                     const { token } = res;
                     const decodedToken = jwtDecode(token);
-
+                    
+                    const userId = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
                     const username = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
                     const email = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'];
                     const birthday = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/dateofbirth'];
-                    const role = decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+                    const role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+                    const jwtExpireDate = decodedToken['exp'];
 
-                    const userInfo = { username, email, birthday, role, token };
+                    const userInfo = { userId, username, email, birthday, role, token, jwtExpireDate };
 
                     login(userInfo);
                     setResponseErrorMsg('');

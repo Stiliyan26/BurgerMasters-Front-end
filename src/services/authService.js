@@ -1,3 +1,5 @@
+import jwtDecode from 'jwt-decode';
+
 const baseUrl = 'https://localhost:7129/api/Account';
 
 export const register = async (data) => {
@@ -46,3 +48,17 @@ export const refreshToken = async (id) => {
             return result;
         });
 };
+
+
+export const getUserInfo = (token) => {
+    const decodedToken = jwtDecode(token);
+
+    const userId = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
+    const username = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
+    const email = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'];
+    const birthday = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/dateofbirth'];
+    const role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+    const jwtExpireDate = decodedToken['exp'];
+
+    return { userId, username, email, birthday, role, token, jwtExpireDate };
+}

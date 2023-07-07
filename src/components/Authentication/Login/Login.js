@@ -54,18 +54,10 @@ const Login = () => {
 
         authService.login(data)
             .then(res => {
-                if (res.status === 200){
+                if (res.status === 200) {
                     const { token } = res;
-                    const decodedToken = jwtDecode(token);
-                    
-                    const userId = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
-                    const username = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
-                    const email = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'];
-                    const birthday = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/dateofbirth'];
-                    const role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
-                    const jwtExpireDate = decodedToken['exp'];
-
-                    const userInfo = { userId, username, email, birthday, role, token, jwtExpireDate };
+                    //Gettig the information from the decoded jwt
+                    const userInfo = authService.getUserInfo(token);
 
                     login(userInfo);
                     setResponseErrorMsg('');
@@ -76,7 +68,7 @@ const Login = () => {
                 } else if (res.status === 404) {
                     //NotFound
                     setResponseErrorMsg(res.errorMessage);
-                } else if (res.status === 422){
+                } else if (res.status === 422) {
                     //UnprocessableEntity
                     setResponseErrorMsg(res.errorMessage);
                 }
@@ -95,25 +87,25 @@ const Login = () => {
 
     return (
         <div id={styles['login']}>
-            <div className={styles['center']}> 
+            <div className={styles['center']}>
                 <form className={styles['login-form']} onSubmit={loginSubmitHandler} method='POST'>
                     <h1 className={styles['title']}>Login</h1>
 
-                    { responeseErrorMsg && 
+                    {responeseErrorMsg &&
                         <p className={styles['err-msg']}>
                             {responeseErrorMsg}
-                        </p> 
+                        </p>
                     }
 
                     {inputs.map(input => {
-                        return <FormInput 
+                        return <FormInput
                             key={input.id}
                             {...input}
                             value={inputValues[input.name]}
                             onChange={onChange}
-                        /> 
+                        />
                     })}
-                    
+
                     <button className={styles['submit-btn']}>Submit</button>
                 </form>
             </div>

@@ -6,7 +6,7 @@ import { useAuthContext } from '../../../contexts/AuthContext'
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import * as authService from '../../../services/authService'
+import * as authService from '../../../services/authService';
 
 const Register = () => {
     const [inputValues, setInputValues] = useState({
@@ -86,7 +86,11 @@ const Register = () => {
         authService.register(data)
             .then(res => {
                 if (res.status === 200) {
-                    login(res.userInfo);
+                    const { token } = res;
+                    //Gettig the information from the decoded jwt
+                    const userInfo = authService.getUserInfo(token);
+
+                    login(userInfo);
                     setResponseErrors([]);
                     navigate('/');
                 } else if (res.status === 409) {

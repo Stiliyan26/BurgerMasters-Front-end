@@ -3,7 +3,6 @@ import styles from './Header.module.css';
 import { Link } from "react-router-dom";
 import { Fragment } from 'react';
 
-import { useEffect } from "react";
 import { useAuthContext } from '../../../contexts/AuthContext';
 
 const Header = () => {
@@ -25,26 +24,30 @@ const Header = () => {
     const userNav = (
         <Fragment>
             <li className={styles['list-item']}>
-                <div className={styles.menu}>
-                    <p className={styles['menu-title']}>Menu</p>
-                    <i className="fa-solid fa-bars"></i>
-                </div>
+                <Link>
+                    <div className={styles.menu}>
+                        <p className={styles['menu-title']}>Menu</p>
+                        <i className="fa-solid fa-bars"></i>
+                    </div>
+                </Link>
 
                 <ul className={styles['menu-dropdown']}>
                     <li className={styles['menu-item']}>
-                        <Link to="/">
+                        <Link to="/Menu/Burgers">
                             Burgers <i className="fa-solid fa-burger fa-flip" style={{ color: "#995900", }}></i>
                         </Link>
                     </li>
 
                     <li className={styles['menu-item']}>
-                        <Link to="/">
+                        <Link to="/Menu/Drinks">
                             Drinks <i className="fa-solid fa-cup-straw-swoosh fa-flip" style={{ color: "#9d0101", }}></i>
                         </Link>
                     </li>
 
                     <li className={styles['menu-item']}>
-                        <Link to="/">Fries <i className="fa-solid fa-french-fries fa-flip" style={{ color: "#b8b100", }}></i></Link>
+                        <Link to="/Menu/Fries">
+                            Fries <i className="fa-solid fa-french-fries fa-flip" style={{ color: "#b8b100", }}></i>
+                        </Link>
                     </li>
                 </ul>
             </li>
@@ -66,21 +69,27 @@ const Header = () => {
     const adminNav = (
         <Fragment>
             <li className={styles['list-item']}>
-                <Link to="/" className={styles['create']}>
+                <Link className={styles['create']}>
                     Create <i className="fa-solid fa-caret-down"></i>
                 </Link>
 
                 <ul className={styles['create-dropdown']}>
                     <li className={styles['create-item']}>
-                        <Link to="/"><i className="fa-solid fa-plus fa-beat-fade"></i> Burger</Link>
+                        <Link to="/Create/Burger">
+                            <i className="fa-solid fa-plus fa-beat-fade"></i> Burger
+                        </Link>
                     </li>
 
                     <li className={styles['create-item']}>
-                        <Link to="/"><i className="fa-solid fa-plus fa-beat-fade"></i> Drink</Link>
+                        <Link to="/Create/Drink">
+                            <i className="fa-solid fa-plus fa-beat-fade"></i> Drink
+                        </Link>
                     </li>
 
                     <li className={styles['create-item']}>
-                        <Link to="/"><i className="fa-solid fa-plus fa-beat-fade"></i> Fries</Link>
+                        <Link to="/Create/Fries">
+                            <i className="fa-solid fa-plus fa-beat-fade"></i> Fries
+                        </Link>
                     </li>
                 </ul>
             </li>

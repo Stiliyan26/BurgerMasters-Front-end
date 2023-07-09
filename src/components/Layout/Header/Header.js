@@ -1,12 +1,26 @@
 import styles from './Header.module.css';
 
-import { Link } from "react-router-dom";
+import { useAuthContext } from '../../../contexts/AuthContext';
+import * as authService from '../../../services/authService';
+
+import { Link, useNavigate } from "react-router-dom";
 import { Fragment } from 'react';
 
-import { useAuthContext } from '../../../contexts/AuthContext';
-
 const Header = () => {
-    const { isAuthenticated, user, isAdmin } = useAuthContext();
+    const { isAuthenticated, isAdmin, user, logout } = useAuthContext();
+    const { token } = user;
+
+    const navigate = useNavigate();
+
+    function handleLogout(e) {
+        e.preventDefault();
+        
+        authService.logout(token)
+            .then(() => {
+                logout();
+                navigate("/");
+            });
+    }
 
     const guestNav = (
         <Fragment>
@@ -57,7 +71,7 @@ const Header = () => {
             </li>
 
             <li className={styles['list-item']}>
-                <Link to="/Logout">Logout <i className="fa-solid fa-right-from-bracket"></i></Link>
+                <Link onClick={handleLogout}>Logout <i className="fa-solid fa-right-from-bracket"></i></Link>
             </li>
 
             <li className={styles['list-item']}>

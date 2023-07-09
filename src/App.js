@@ -7,7 +7,6 @@ import Home from './components/Pages/Home/Home';
 // Auth
 import Login from './components/Authentication/Login/Login';
 import Register from './components/Authentication/Register/Register';
-import Logout from './components/Authentication/Logout/Logout';
 // Create
 import CreateBurger from './components/Create/Burger/CreateBurger';
 import CreateDrink from './components/Create/Drink/CreateDrink';
@@ -45,7 +44,6 @@ function App() {
 						<Route path='/Menu/Drinks' element={<DrinksMenu />} />
 						<Route path='/Menu/Fries' element={<FriesMenu />} />
 
-						<Route path='/Logout' element={<Logout />} />
 					</Route>
 					{/* Guest section */}
 					<Route element={<GuestRoute />}>

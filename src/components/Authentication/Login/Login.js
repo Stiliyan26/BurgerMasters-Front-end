@@ -1,12 +1,11 @@
 import styles from './Login.module.css';
-import FormInput from '../FormInput/FormInput';
+import FormInput from '../../FormInput/FormInput';
 
 import { useState, useEffect } from 'react';
 import { useAuthContext } from '../../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 import * as authService from '../../../services/authService'
-import jwtDecode from 'jwt-decode';
 
 const Login = () => {
     const [inputValues, setInputValues] = useState({

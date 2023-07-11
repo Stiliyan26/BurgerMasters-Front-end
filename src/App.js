@@ -8,9 +8,7 @@ import Home from './components/Pages/Home/Home';
 import Login from './components/Authentication/Login/Login';
 import Register from './components/Authentication/Register/Register';
 // Create
-import CreateBurger from './components/Create/Burger/CreateBurger';
-import CreateDrink from './components/Create/Drink/CreateDrink';
-import CreateFries from './components/Create/Fries/CreateFries';
+import CreateMenuItem from './components/Form/Create/CreateMenuItem';
 // Menu
 import BurgerMenu from './components/Menu/Burgers/BurgerMenu';
 import DrinksMenu from './components/Menu/Drinks/DrinksMenu';
@@ -35,9 +33,7 @@ function App() {
 					<Route element={<UserRoute />}>
 						{/* Admin section */}
 						<Route element={<AdminRoute />}>
-							<Route path='/Create/Burger' element={<CreateBurger />} />
-							<Route path='/Create/Drink' element={<CreateDrink />} />
-							<Route path='/Create/Fries' element={<CreateFries />} />
+							<Route path='/CreateItem' element={<CreateMenuItem />} />
 						</Route>
 
 						<Route path='/Menu/Burgers' element={<BurgerMenu />} />

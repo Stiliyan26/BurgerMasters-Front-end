@@ -10,7 +10,7 @@ const initialValue = {
     userId: '',
     username: '',
     email: '',
-    birthday: '',
+    birthdate: '',
     role: '',
     token: '',
     jwtExpireDate: ''

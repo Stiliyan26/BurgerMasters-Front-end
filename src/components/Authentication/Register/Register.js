@@ -1,6 +1,6 @@
 import styles from './Register.module.css';
 
-import FormInput from '../FormInput/FormInput';
+import FormInput from '../../FormInput/FormInput';
 
 import { useAuthContext } from '../../../contexts/AuthContext'
 import { useState, useEffect } from 'react';
@@ -12,7 +12,7 @@ const Register = () => {
     const [inputValues, setInputValues] = useState({
         username: "",
         email: "",
-        birthday: "",
+        birthdate: "",
         password: "",
         confirmPassword: ""
     });
@@ -48,11 +48,11 @@ const Register = () => {
         },
         {
             id: 3,
-            name: 'birthday',
+            name: 'birthdate',
             type: 'date',
-            placeholder: 'Birthday',
-            errorMessage: "Birthday is required!",
-            label: 'Birthday',
+            placeholder: 'Birthdate',
+            errorMessage: "Birthdate is required!",
+            label: 'Birthdate',
             required: true
         },
         {

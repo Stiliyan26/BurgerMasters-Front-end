@@ -83,29 +83,9 @@ const Header = () => {
     const adminNav = (
         <Fragment>
             <li className={styles['list-item']}>
-                <Link className={styles['create']}>
-                    Create <i className="fa-solid fa-caret-down"></i>
+                <Link to='/CreateItem' className={styles['create']}>
+                    Create Item <i className="fa-solid fa-plus fa-beat-fade"></i>
                 </Link>
-
-                <ul className={styles['create-dropdown']}>
-                    <li className={styles['create-item']}>
-                        <Link to="/Create/Burger">
-                            <i className="fa-solid fa-plus fa-beat-fade"></i> Burger
-                        </Link>
-                    </li>
-
-                    <li className={styles['create-item']}>
-                        <Link to="/Create/Drink">
-                            <i className="fa-solid fa-plus fa-beat-fade"></i> Drink
-                        </Link>
-                    </li>
-
-                    <li className={styles['create-item']}>
-                        <Link to="/Create/Fries">
-                            <i className="fa-solid fa-plus fa-beat-fade"></i> Fries
-                        </Link>
-                    </li>
-                </ul>
             </li>
 
             <li className={styles['list-item']}>

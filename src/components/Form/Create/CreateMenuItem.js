@@ -1,112 +1,148 @@
 import styles from './CreateMenuItem.module.css';
-import FormInput from '../../FormInput/FormInput';
 
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { useFormik } from "formik";
+import { createMenuItemSchema } from '../../../schemas/index'
+
 const CreateMenuItem = () => {
-    const [inputValues, setInputValues] = useState({
-        name: "",
-        itemType: "",
-        portionSize: "",
-        description: "",
-        price: ""
-    });
-
-    //const [responeseErrorMsg, setResponseErrorMsg] = useState('');
-
     useEffect(() => {
         document.title = 'Create Item';
     }, []);
 
+    //const [inputValues, setInputValues] = useState({});
+    //const [responeseErrorMsg, setResponseErrorMsg] = useState('');
+
     const navigate = useNavigate();
 
-    const inputs = [
-        {
-            id: 1,
-            name: 'name',
-            type: 'text',
-            placeholder: 'Name',
-            errorMessage: "Item name should be between 5 and 30 characters and include only upper and lower case letters!",
-            pattern: `^.{5,30}$`,
-            label: 'Item name',
-            required: true
-        },
-        {
-            id: 2,
-            name: 'itemType',
-            type: 'select',
-            label: 'Item type',
-            options: [
-                { value: 'Burger', label: 'Burger' },
-                { value: 'Drink', label: 'Drink' },
-                { value: 'Fries', label: 'Fries' }
-            ],
-            required: true
-        },
-        {
-            id: 3,
-            name: 'portionSize',
-            type: 'text',
-            placeholder: 'Portion size in grams/ml',
-            errorMessage: 'Portion should be between 200 and 1000 grams/ml',
-            pattern: `^(?:[1-9][0-9]{2}|1000)$`,
-            label: 'Portion size',
-            required: true
-        },
-        {
-            id: 4,
-            name: 'description',
-            type: 'textarea',
-            placeholder: 'Separate with comma and space - Salt, Pepper, Tomato',
-            errorMessage: 'Description should be between 10 and 100 characters long',
-            pattern: `^.{5,30}$`,
-            label: 'Description',
-            required: true
-        },
-        {
-            id: 5,
-            name: 'price',
-            type: 'text',
-            placeholder: 'Price',
-            errorMessage: 'Price must be a positvie number',
-            label: 'Price',
-            required: true
-        },
-    ];
-
-    const CreateItemHandler = (e) => {
-        e.preventDefault();
-
-        const formData = new FormData(e.target);
-        const data = Object.fromEntries(formData);
-
-        console.log(data);
+    const CreateItemHandler = (values, actions) => {
+        console.log(values)
     }
 
-    const onChange = (e) => {
-        setInputValues({
-            ...inputValues,
-            [e.target.name]: e.target.value
-        });
+    const { values, errors, touched, isSubmitting ,handleBlur, handleChange, handleSubmit } = useFormik({
+        initialValues: {
+            name: '',
+            imageUrl: '',
+            itemType: '',
+            portionSize: '',
+            description: '',
+            price: ''
+        },
+        validationSchema: createMenuItemSchema,
+        onSubmit: CreateItemHandler
+    })
+    
+    //Sets proper class for the input based on existing error
+    const classNameValidator = (hasError, validClassName, errorClassName) => {
+        return hasError
+            ? `${styles[validClassName]} ${styles[errorClassName]}`
+            : styles[validClassName]
+    }
+
+    //Returns error message
+    const getErrorMessage = (errorMessage) => {
+        return (<span className={styles['span']}>{errorMessage}</span>)
     }
 
     return (
         <div id={styles['create-item']}>
             <div className={styles['center']}>
-                <form className={styles['create-item-form']} onSubmit={CreateItemHandler} method='POST'>
+                <form className={styles['create-item-form']} onSubmit={handleSubmit} method='POST'>
                     <h1 className={styles['title']}>Create Item</h1>
 
-                    {inputs.map(input => {
-                        return <FormInput
-                            key={input.id}
-                            {...input}
-                            value={inputValues[input.name]}
-                            onChange={onChange}
+                    <div className={styles['form-input-container']}>
+                        <label className={styles['label']}>Name</label>
+                        <input
+                            className={classNameValidator(errors.name && touched.name, 'input', 'error')}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.name}
+                            type='text'
+                            id="name"
+                            placeholder='Enter Item Name'
                         />
-                    })}
+                        {(errors.name && touched.name) && getErrorMessage(errors.name)}
+                    </div>
 
-                    <button className={styles['submit-btn']}>Create</button>
+                    <div className={styles['form-input-container']}>
+                        <label className={styles['label']}>Image Url</label>
+                        <input
+                            className={classNameValidator(errors.imageUrl && touched.imageUrl, 'input', 'error')}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.imageUrl}
+                            type='text'
+                            id="imageUrl"
+                            placeholder='Enter Image Url'
+                        />
+                        {(errors.imageUrl && touched.imageUrl) && getErrorMessage(errors.imageUrl)}
+                    </div>
+
+                    <div className={styles['form-input-container']}>
+                        <label className={styles['label']}>Item Type</label>
+                        <select
+                        className={classNameValidator(errors.itemType && touched.itemType, 'select', 'error')}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.itemType}
+                            id='itemType'
+                        >
+                            <option value="" disabled>Select item</option>
+                            <option className='option' value="Burger">Burger</option>
+                            <option className='option' value="Drink">Drink</option>
+                            <option className='option' value="Fries">Fries</option>
+                        </select>
+
+                        {(errors.itemType && touched.itemType) && getErrorMessage(errors.itemType)}
+                    </div>
+
+                    <div className={styles['form-input-container']}>
+                        <label className={styles['label']}>Portion Size</label>
+                        <input
+                            className={classNameValidator(errors.portionSize && touched.portionSize, 'input', 'error')}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.portionSize}
+                            id='portionSize'
+                            type='number'
+                            placeholder='Enter Portion size'
+                        />
+                        {(errors.portionSize && touched.portionSize) && getErrorMessage(errors.portionSize)}
+                    </div>
+
+                    <div className={styles['form-input-container']}>
+                        <label className={styles['label']}>Description</label>
+                        <textarea
+                            className={classNameValidator(errors.description && touched.description, 'textarea', 'error')}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.description}
+                            id='description'
+                            placeholder='Enter description products separated with comma and space: (salt, ketchup, meat)'
+                        />
+                        {(errors.description && touched.description) && getErrorMessage(errors.description)}
+                    </div>
+
+                    <div className={styles['form-input-container']}>
+                        <label className={styles['label']}>Price</label>
+                        <input
+                            className={classNameValidator(errors.price && touched.price, 'input', 'error')}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.price}
+                            id='price'
+                            type='number'
+                            placeholder='Enter Price'
+                        />
+                        {(errors.price && touched.price) && getErrorMessage(errors.price)}
+                    </div>
+
+                    <button 
+                        type="submit"
+                        disabled={isSubmitting} 
+                        className={styles['submit-btn']}>
+                    Create</button>
                 </form>
             </div>
         </div>

@@ -1,6 +1,6 @@
 import styles from './Register.module.css';
 
-import FormInput from '../../FormInput/FormInput';
+import FormInput from '../FormInput/FormInput';
 
 import { useAuthContext } from '../../../contexts/AuthContext'
 import { useState, useEffect } from 'react';

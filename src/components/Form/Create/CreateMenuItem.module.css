@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap');
 
 #create-item {
     height: 100%;
@@ -15,7 +16,9 @@
 }
 
 #create-item .create-item-form {
-    background-image: url("../../../../public/images/FormWall3.png");
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 1px solid black;
+    background-position: center;
     background-size: cover;
     padding: 0px 60px;
     border-radius: 30px;
@@ -53,4 +56,71 @@
     color: rgb(217, 2, 2);
     text-align: center;
     font-size: 20px;
+}
+
+
+#create-item .form-input-container {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+}
+
+#create-item .form-input-container .input,
+#create-item .form-input-container .select {
+    padding: 15px;
+    margin: 10px 0px;
+    border: 1px solid gray;
+    background-color: #d5d9de;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: 'Kelly Slab', cursive;
+}
+
+#create-item .form-input-container .label {
+    font-size: 20px;
+    color: #d5d9de;
+}
+
+#create-item .form-input-container .span {
+    font-size: 20px;
+    padding-top: 2px;
+    padding-bottom: 20px;
+    color: rgb(217, 2, 2);
+    border-radius: 20px;
+    text-align: center;
+    display: none;
+}
+
+#create-item .form-input-container .error {
+    border: 4px solid rgb(217, 2, 2);
+}
+
+#create-item .form-input-container .input ~ .span,
+#create-item .form-input-container .textarea ~ .span,
+#create-item .form-input-container .select ~ .span {
+    display: block;
+}
+
+#create-item .form-input-container .input::placeholder {
+    font-family: 'Lobster', cursive;
+}
+
+#create-item .form-input-container .select .option {
+    font-size: 1rem
+}
+
+#create-item .form-input-container .textarea {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 5px;
+    background-color: #d5d9de;
+    font-family: 'Lobster', cursive;
+    height: 150px;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+#create-item .submit-btn:disabled{
+    opacity: 0.35;
 }

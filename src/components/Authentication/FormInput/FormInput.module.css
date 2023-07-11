@@ -31,7 +31,7 @@
 }
 
 .form-input-container .input:invalid[focused="true"] {
-    border: 2px solid rgb(217, 2, 2);
+    border: 4px solid rgb(217, 2, 2);
 }
 
 .form-input-container .input:invalid[focused="true"] ~ .span {

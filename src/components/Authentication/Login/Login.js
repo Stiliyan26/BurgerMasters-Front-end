@@ -1,5 +1,5 @@
 import styles from './Login.module.css';
-import FormInput from '../../FormInput/FormInput';
+import FormInput from '../FormInput/FormInput';
 
 import { useState, useEffect } from 'react';
 import { useAuthContext } from '../../../contexts/AuthContext';

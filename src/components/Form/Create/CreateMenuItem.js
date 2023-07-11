@@ -1,5 +1,7 @@
 import styles from './CreateMenuItem.module.css';
 
+import * as menuItemService from '../../../services/menuItemService';
+
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -7,8 +9,15 @@ import { useFormik } from "formik";
 import { createMenuItemSchema } from '../../../schemas/index'
 
 const CreateMenuItem = () => {
+    const [itemTypes, setItemTypes] = useState([]);
+
     useEffect(() => {
         document.title = 'Create Item';
+
+        menuItemService.getAllItemTypes()
+            .then(res => {
+                setItemTypes(res);
+            })
     }, []);
 
     //const [inputValues, setInputValues] = useState({});
@@ -20,7 +29,7 @@ const CreateMenuItem = () => {
         console.log(values)
     }
 
-    const { values, errors, touched, isSubmitting ,handleBlur, handleChange, handleSubmit } = useFormik({
+    const { values, errors, touched, isSubmitting, handleBlur, handleChange, handleSubmit } = useFormik({
         initialValues: {
             name: '',
             imageUrl: '',
@@ -43,6 +52,14 @@ const CreateMenuItem = () => {
     //Returns error message
     const getErrorMessage = (errorMessage) => {
         return (<span className={styles['span']}>{errorMessage}</span>)
+    }
+
+    const itemTypesOption = () => {
+        return (
+            itemTypes.map(item => {
+                return <option key={item.id} className='option' value={item.name}>{item.name}</option>
+            })
+        )
     }
 
     return (
@@ -89,9 +106,7 @@ const CreateMenuItem = () => {
                             id='itemType'
                         >
                             <option value="" disabled>Select item</option>
-                            <option className='option' value="Burger">Burger</option>
-                            <option className='option' value="Drink">Drink</option>
-                            <option className='option' value="Fries">Fries</option>
+                            {itemTypes && itemTypesOption()}
                         </select>
 
                         {(errors.itemType && touched.itemType) && getErrorMessage(errors.itemType)}

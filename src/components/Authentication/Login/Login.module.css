@@ -16,6 +16,8 @@
 
 #login .login-form {
     background-image: url("../../../../public/images/FormWall3.png");
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 1px solid black;
     background-size: cover;
     padding: 0px 60px;
     border-radius: 30px;
@@ -38,7 +40,7 @@
     font-weight: bold;
     font-size: 22px;
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 40px;
     margin-bottom: 30px;
     font-family: 'Lobster', cursive;
 }

@@ -13,7 +13,6 @@ export const createMenuItemSchema = yup.object().shape({
         .max(50, 'Image Url should be less than 80 characters long!')
         .required("Image Url is required!"),
     itemType: yup.string()
-        .oneOf(['Burger', 'Drink', 'Fries'], 'Please select a valid item type!')
         .notOneOf(['Select item'], 'Please select an item type!')
         .required("Item type is required!"),
     portionSize: yup.number()

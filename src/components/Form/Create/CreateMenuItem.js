@@ -1,5 +1,7 @@
 import styles from './CreateMenuItem.module.css';
 
+import { useAuthContext } from '../../../contexts/AuthContext';
+
 import * as menuItemService from '../../../services/menuItemService';
 
 import { useState, useEffect } from 'react';
@@ -10,6 +12,7 @@ import { createMenuItemSchema } from '../../../schemas/index'
 
 const CreateMenuItem = () => {
     const [itemTypes, setItemTypes] = useState([]);
+    const { token } = useAuthContext();
 
     useEffect(() => {
         document.title = 'Create Item';
@@ -17,16 +20,31 @@ const CreateMenuItem = () => {
         menuItemService.getAllItemTypes()
             .then(res => {
                 setItemTypes(res);
-            })
+            });
     }, []);
 
-    //const [inputValues, setInputValues] = useState({});
-    //const [responeseErrorMsg, setResponseErrorMsg] = useState('');
+    const [responeseErrorMsg, setResponseErrorMsg] = useState('');
 
     const navigate = useNavigate();
 
-    const CreateItemHandler = (values, actions) => {
-        console.log(values)
+    const CreateItemHandler = (menuItemInfo) => {
+        menuItemService.createMenuItem(menuItemInfo, token)
+            .then(res => {
+                if (res.status === 200){
+                    if (res.itemType === 'Burger'){
+                        navigate('/Menu/Burgers');
+                    } else if (res.itemType === 'Drink'){
+                        navigate('/Menu/Drinks');
+                    }  else if (res.itemType === 'Fries'){
+                        navigate('/Menu/Fries');
+                    }
+                } else if (res.status === 422){
+                    setResponseErrorMsg(res.errorMessage);
+                }
+            })
+            .catch(err => {
+                console.log(err.message);
+            });
     }
 
     const { values, errors, touched, isSubmitting, handleBlur, handleChange, handleSubmit } = useFormik({
@@ -41,7 +59,7 @@ const CreateMenuItem = () => {
         validationSchema: createMenuItemSchema,
         onSubmit: CreateItemHandler
     })
-    
+
     //Sets proper class for the input based on existing error
     const classNameValidator = (hasError, validClassName, errorClassName) => {
         return hasError
@@ -67,6 +85,12 @@ const CreateMenuItem = () => {
             <div className={styles['center']}>
                 <form className={styles['create-item-form']} onSubmit={handleSubmit} method='POST'>
                     <h1 className={styles['title']}>Create Item</h1>
+
+                    {responeseErrorMsg &&
+                        <p className={styles['err-msg']}>
+                            {responeseErrorMsg}
+                        </p>
+                    }
 
                     <div className={styles['form-input-container']}>
                         <label className={styles['label']}>Name</label>
@@ -99,7 +123,7 @@ const CreateMenuItem = () => {
                     <div className={styles['form-input-container']}>
                         <label className={styles['label']}>Item Type</label>
                         <select
-                        className={classNameValidator(errors.itemType && touched.itemType, 'select', 'error')}
+                            className={classNameValidator(errors.itemType && touched.itemType, 'select', 'error')}
                             onChange={handleChange}
                             onBlur={handleBlur}
                             value={values.itemType}
@@ -153,11 +177,10 @@ const CreateMenuItem = () => {
                         {(errors.price && touched.price) && getErrorMessage(errors.price)}
                     </div>
 
-                    <button 
-                        type="submit"
-                        disabled={isSubmitting} 
-                        className={styles['submit-btn']}>
-                    Create</button>
+                    <button
+                        type="submit" disabled={isSubmitting} className={styles['submit-btn']}>
+                        Create
+                    </button>
                 </form>
             </div>
         </div>

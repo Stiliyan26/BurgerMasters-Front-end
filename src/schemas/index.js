@@ -1,16 +1,16 @@
 import * as yup from "yup";
 
-const namePattern = /^[A-Z][a-z]{2,}(?: [A-Za-z][a-z]{2,})*$/;
+const namePattern = /^[A-Za-z\s]{5,50}$/;
 //Create Menu item validation schema
 export const createMenuItemSchema = yup.object().shape({
     name: yup.string()
         .min(5, 'Name should be at leaset 5 characters long!')
         .max(50, 'Name should be less than 50 characters long!')
-        .matches(namePattern, 'Name must start with an uppercase letter followed by lower case letters and optionaly space')
+        .matches(namePattern, 'No digits or special characters allowed!')
         .required("Name is required!"),
     imageUrl: yup.string()
         .min(5, 'Image Url should be at leaset 5 characters long!')
-        .max(50, 'Image Url should be less than 80 characters long!')
+        .max(80, 'Image Url should be less than 80 characters long!')
         .required("Image Url is required!"),
     itemType: yup.string()
         .notOneOf(['Select item'], 'Please select an item type!')

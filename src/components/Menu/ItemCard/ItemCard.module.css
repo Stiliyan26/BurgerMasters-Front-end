@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Cuprum:ital,wght@1,500&display=swap');
+
+#card {
+    border-radius: 30px;
+    padding-bottom: 50px;
+    width: 100%;
+    font-family: 'Cuprum', sans-serif;
+}
+
+#card .img-container {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.0);
+}
+
+#card .img-container .img {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    animation: levitateAnim 3s ease-in-out infinite alternate;
+}
+
+#card .wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#card .item-info {
+    color: #d5d9de;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#card .link--tag {
+    color: inherit;
+    text-decoration: none;
+}
+
+#card .item--title {
+    margin-top: 10px;
+    white-space: nowrap;
+    font-size: 2rem;
+    text-shadow: 0 0 5px #d5d9de;
+    animation: glowing 2s ease-in-out infinite;
+    cursor: pointer;
+    margin: 0px;
+    margin-right: 10px;
+    
+}
+
+#card .item--portion-size {
+    margin: 0px;
+    font-size: 1.8rem;
+    animation: glowing 2s ease-in-out infinite;
+}
+
+#card .item--price {
+    font-size: 1.5rem;
+    margin-top: 15px;
+}
+
+#card .item--add-to-cart-btn {
+    font-size: 1.3rem;
+    background-color: #013c57;
+    text-align: center;
+    width: 50%;
+    padding: 10px 20px;
+    border-radius: 1.5rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+    color: inherit;
+    text-decoration: none;
+}
+
+#card .btn--content {
+    display: inline-block;
+    padding-right: 10px;
+    margin: 0px;
+}
+
+#card .item--add-to-cart-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #e3e7ec;
+    background-color: #013e5a;
+}
+
+#card .item--add-to-cart-btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+@keyframes levitateAnim {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes glowing {
+    0% {
+        text-shadow: 0 0 5px #d5d9de;
+    }
+
+    50% {
+        text-shadow: 0 0 20px #d5d9de;
+    }
+
+    100% {
+        text-shadow: 0 0 5px #d5d9de;
+    }
+}

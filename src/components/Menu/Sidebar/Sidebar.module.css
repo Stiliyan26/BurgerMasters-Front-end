@@ -1,0 +1,45 @@
+#sidebar {
+    width: 20%;
+}
+#sidebar .sidebar--wrapper--link {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    color: #d5d9de;
+    text-decoration: none;
+}
+
+#sidebar .sidebar--img {
+    width: 40%;
+    animation: levitateAnim 3s ease-in-out infinite alternate;
+}
+
+#sidebar .sidebar--subtitle {
+    font-size: 3rem;
+    animation: glowing 2s ease-in-out infinite;
+    padding-left: 5px;
+}
+
+@keyframes glowing {
+    0% {
+        text-shadow: 0 0 5px #d5d9de;
+    }
+
+    50% {
+        text-shadow: 0 0 15px #d5d9de;
+    }
+
+    100% {
+        text-shadow: 0 0 5px #d5d9de;
+    }
+}
+
+@keyframes levitateAnim {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-10px);
+    }
+}

@@ -15,7 +15,7 @@
 }
 
 #register .register-form {
-    background-image: url("../../../../public/images/FormWall3.png");
+    background-image: url("../../../../public/images/FormWall.png");
     background-color: rgba(0, 0, 0, 0.4);
     border: 1px solid black;
     background-size: cover;

@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-const namePattern = /^[A-Za-z\s]{5,50}$/;
+const namePattern = /^[A-Za-z\s'-]{5,50}$/;
 //Create Menu item validation schema
 export const createMenuItemSchema = yup.object().shape({
     name: yup.string()
@@ -21,7 +21,7 @@ export const createMenuItemSchema = yup.object().shape({
         .required("Portion size is required!"),
     description: yup.string()
         .min(10, 'Description should be at leaset 10 characters long!')
-        .max(100, 'Description should be less than 100 characters long!')
+        .max(300, 'Description should be less than 300 characters long!')
         .required("Description is required!"),
     price: yup.number()
         .min(2, 'Price should be at leaset 2 leva!')

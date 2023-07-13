@@ -1,7 +1,7 @@
 .slider-frame {
     margin-top: 50px;
     overflow: hidden;
-    background-image: url("../../../../public/images/home2.jpg");
+    background-image: url("../../../../public/images/home.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     width: 30%;
@@ -11,7 +11,7 @@
 .slider-frame .wrapper {
    width: 100%;
    height: 100%;
-   animation: slide 10s infinite;
+   animation: slide 30s infinite;
    display: flex;
    flex-direction: row;
 }

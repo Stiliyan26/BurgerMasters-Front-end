@@ -1,4 +1,4 @@
-import styles from './FriesMenu.module.css';
+import styles from './DrinkMenu.module.css';
 
 import ItemCard from '../ItemCard/ItemCard';
 import Sidebar from '../Sidebar/Sidebar';
@@ -8,26 +8,26 @@ import * as menuItemService from '../../../services/menuItemService';
 
 import { Fragment, useEffect, useState } from 'react';
 
-const FriesMenu = () => {
-    const [friesCollection, setFriesCollection] = useState([]);
+const DrinkMenu = () => {
+    const [drinks, setDrinks] = useState([]);
     const { token } = useAuthContext();
-    const itemType = 'Fries';
+    const itemType = 'Drink';
 
     useEffect(() => {
-        document.title = 'Fries Menu';
+        document.title = 'Drinks Menu';
         
         menuItemService.getAllOfItemType(token, itemType)
             .then(res => {
-                setFriesCollection(res);
+                setDrinks(res);
             })
             .catch(err => {
                 console.log(err.message);
             });
     }, []);
 
-    const getAllFries = () => {
-        return friesCollection.map(fries => (
-            <ItemCard key={fries.id} item={fries}/>
+    const getAllDrinks = () => {
+        return drinks.map(drink => (
+            <ItemCard key={drink.id} item={drink}/>
         ));
     }
 
@@ -40,11 +40,11 @@ const FriesMenu = () => {
                 <Sidebar />
 
                 <section id={styles['menu']} className={styles['grid']}>
-                    {friesCollection && getAllFries()}
+                    {drinks && getAllDrinks()}
                 </section>
             </div>
         </Fragment>
     )
 }
 
-export default FriesMenu;
+export default DrinkMenu;

@@ -11,7 +11,7 @@ import Register from './components/Authentication/Register/Register';
 import CreateMenuItem from './components/Form/Create/CreateMenuItem';
 // Menu
 import BurgerMenu from './components/Menu/Burgers/BurgerMenu';
-import DrinksMenu from './components/Menu/Drinks/DrinksMenu';
+import DrinkMenu from './components/Menu/Drinks/DrinkMenu';
 import FriesMenu from './components/Menu/Fries/FriesMenu';
 // Guarded routes
 import GuestRoute from './GuardedRoutes/GuestRoute';
@@ -37,7 +37,7 @@ function App() {
 						</Route>
 
 						<Route path='/Menu/Burgers' element={<BurgerMenu />} />
-						<Route path='/Menu/Drinks' element={<DrinksMenu />} />
+						<Route path='/Menu/Drinks' element={<DrinkMenu />} />
 						<Route path='/Menu/Fries' element={<FriesMenu />} />
 
 					</Route>

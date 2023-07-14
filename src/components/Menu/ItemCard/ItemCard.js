@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styles from './ItemCard.module.css';
 
-const ItemCard = ({item, itemType}) => {
+const ItemCard = ({item}) => {
     const imageUrl = `/images/${item.itemType}Menu/${item.imageUrl}`;
     const portionMeasure = 
         item.itemType === 'Drink'
@@ -11,7 +11,7 @@ const ItemCard = ({item, itemType}) => {
     return (
         <section id={styles['card']}>
             <div className={styles['img-container']}>
-                <Link to='/'>
+                <Link to='/' className={styles['link--img']}>
                     <img src={imageUrl} className={styles['img']} alt="item image" />
                 </Link>    
             </div>
@@ -21,7 +21,7 @@ const ItemCard = ({item, itemType}) => {
                     <Link to='/' className={styles['link--tag']}>
                         <h3 className={styles['item--title']}>{item.name}</h3>
                     </Link>
-                    <p className={styles['item--portion-size']}>({item.portionSize} {portionMeasure})</p>
+                    <p className={styles['item--portion-size']}>({item.portionSize}{portionMeasure})</p>
                 </div>
                 
                 <p className={styles['item--price']}>Price: {item.price.toFixed(2)} leva</p>

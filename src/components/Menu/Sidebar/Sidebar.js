@@ -8,8 +8,8 @@ const Sidebar = () => {
         { name: "Burgers", image: 'Burger.png', route: '/Menu/Burgers' },
         { name: "Fries", image: 'Fries.png', route: '/Menu/Fries' },
         { name: "Drinks", image: 'Drinks.png', route: '/Menu/Drinks' },
-        { name: "Hot dog", image: 'Hot-Dog.png', route: '/' },
-        { name: "Grill", image: 'Grill.png', route: '/' },
+        { name: "Hot dog", image: 'Hot-Dog.png', route: '/Menu/Hotdog' },
+        { name: "Grill", image: 'Grill.png', route: '/Menu/Grill' },
     ];
 
     const getMenuSidebar = () => {

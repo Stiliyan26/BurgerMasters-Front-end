@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Cuprum:ital,wght@1,500&display=swap');
+
+#menu.grid {
+    width: 60%;
+    padding-bottom: 200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    justify-items: center;
+} 
+
+#grid-container {
+    display: flex;
+    padding-top: 50px;
+    font-family: 'Cuprum', sans-serif;
+}
+
+@keyframes glowing {
+    0% {
+        text-shadow: 0 0 5px #d5d9de;
+    }
+
+    50% {
+        text-shadow: 0 0 15px #d5d9de;
+    }
+
+    100% {
+        text-shadow: 0 0 5px #d5d9de;
+    }
+}
+
+@keyframes levitateAnim {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-10px);
+    }
+}

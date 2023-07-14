@@ -1,5 +1,6 @@
 #sidebar {
     width: 20%;
+    padding-bottom: 150px;
 }
 #sidebar .sidebar--wrapper--link {
     display: flex;

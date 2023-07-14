@@ -37,6 +37,10 @@ const CreateMenuItem = () => {
                         navigate('/Menu/Drinks');
                     }  else if (res.itemType === 'Fries'){
                         navigate('/Menu/Fries');
+                    } else if (res.itemType == 'Hotdog'){
+                        navigate('/Menu/Hotdog');
+                    } else if (res.itemType == 'Grill'){
+                        navigate('/Menu/Grill');
                     }
                 } else if (res.status === 422){
                     setResponseErrorMsg(res.errorMessage);

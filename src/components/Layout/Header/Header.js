@@ -63,6 +63,18 @@ const Header = () => {
                             Fries <i className="fa-solid fa-french-fries fa-flip" style={{ color: "#b8b100", }}></i>
                         </Link>
                     </li>
+
+                    <li className={styles['menu-item']}>
+                        <Link to="/Menu/Hotdog">
+                            Hotdog <i class="fa-duotone fa-hotdog fa-flip"></i>
+                        </Link>
+                    </li>
+
+                    <li className={styles['menu-item']}>
+                        <Link to="/Menu/Grill">
+                            Grill <i class="fa-solid fa-sausage fa-flip" style={{ color: '#940a00'}}></i>
+                        </Link>
+                    </li>
                 </ul>
             </li>
 

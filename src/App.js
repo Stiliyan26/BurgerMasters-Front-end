@@ -13,6 +13,8 @@ import CreateMenuItem from './components/Form/Create/CreateMenuItem';
 import BurgerMenu from './components/Menu/Burgers/BurgerMenu';
 import DrinkMenu from './components/Menu/Drinks/DrinkMenu';
 import FriesMenu from './components/Menu/Fries/FriesMenu';
+import HotdogMenu from './components/Menu/HotdogMenu/HotdogMenu';
+import GrillMenu from './components/Menu/GrillMenu/GrillMenu';
 // Guarded routes
 import GuestRoute from './GuardedRoutes/GuestRoute';
 import UserRoute from './GuardedRoutes/UserRoute';
@@ -39,6 +41,8 @@ function App() {
 						<Route path='/Menu/Burgers' element={<BurgerMenu />} />
 						<Route path='/Menu/Drinks' element={<DrinkMenu />} />
 						<Route path='/Menu/Fries' element={<FriesMenu />} />
+						<Route path='/Menu/Hotdog' element={<HotdogMenu />} />
+						<Route path='/Menu/Grill' element={<GrillMenu />} />
 
 					</Route>
 					{/* Guest section */}

@@ -66,13 +66,13 @@ const Header = () => {
 
                     <li className={styles['menu-item']}>
                         <Link to="/Menu/Hotdog">
-                            Hotdog <i class="fa-duotone fa-hotdog fa-flip"></i>
+                            Hotdog <i className="fa-duotone fa-hotdog fa-flip"></i>
                         </Link>
                     </li>
 
                     <li className={styles['menu-item']}>
                         <Link to="/Menu/Grill">
-                            Grill <i class="fa-solid fa-sausage fa-flip" style={{ color: '#940a00'}}></i>
+                            Grill <i className="fa-solid fa-sausage fa-flip" style={{ color: '#940a00'}}></i>
                         </Link>
                     </li>
                 </ul>
@@ -87,7 +87,7 @@ const Header = () => {
             </li>
 
             <li className={styles['list-item']}>
-                <Link>Hello {user.username}</Link>
+                <Link>Hello, {user.username}!</Link>
             </li>
         </Fragment>
     );

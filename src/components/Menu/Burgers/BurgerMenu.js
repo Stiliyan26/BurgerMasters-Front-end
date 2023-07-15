@@ -66,7 +66,9 @@ const BurgerMenu = () => {
     };
 
     const getDropDownClass = () => {
-        return isActive ? `${styles.dropdown} ${styles.active}` : styles.dropdown;
+        return isActive ? 
+            `${styles.dropdown} ${styles.active}` 
+            : styles.dropdown;
     };
 
     function handleSerach(e) {

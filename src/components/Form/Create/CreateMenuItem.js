@@ -2,7 +2,8 @@ import styles from './CreateMenuItem.module.css';
 
 import { useAuthContext } from '../../../contexts/AuthContext';
 
-import * as menuItemService from '../../../services/menuItemService';
+import * as menuItemService from '../../../services/menuItemService'
+import * as adminService from '../../../services/adminService';
 
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -28,7 +29,7 @@ const CreateMenuItem = () => {
     const navigate = useNavigate();
 
     const CreateItemHandler = (menuItemInfo) => {
-        menuItemService.createMenuItem(menuItemInfo, token)
+        adminService.createMenuItem(menuItemInfo, token)
             .then(res => {
                 if (res.status === 200){
                     if (res.itemType === 'Burger'){

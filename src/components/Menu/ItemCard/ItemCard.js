@@ -3,6 +3,8 @@ import styles from './ItemCard.module.css';
 
 const ItemCard = ({item}) => {
     const imageUrl = `/images/${item.itemType}Menu/${item.imageUrl}`;
+    const detailsLink = `/Details/${item.id}`;
+
     const portionMeasure = 
         item.itemType === 'Drink'
             ? 'ml'
@@ -11,14 +13,14 @@ const ItemCard = ({item}) => {
     return (
         <section id={styles['card']}>
             <div className={styles['img-container']}>
-                <Link to='/' className={styles['link--img']}>
+                <Link to={detailsLink} className={styles['link--img']}>
                     <img src={imageUrl} className={styles['img']} alt="item image" />
                 </Link>    
             </div>
 
             <div className={styles['item-info']}>
                 <div className={styles['wrap']}>
-                    <Link to='/' className={styles['link--tag']}>
+                    <Link to={detailsLink} className={styles['link--tag']}>
                         <h3 className={styles['item--title']}>{item.name}</h3>
                     </Link>
                     <p className={styles['item--portion-size']}>({item.portionSize}{portionMeasure})</p>

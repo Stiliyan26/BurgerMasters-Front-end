@@ -1,4 +1,4 @@
-import styles from './FriesMenu.module.css';
+import styles from '../Menu.module.css';
 
 import ItemCard from '../ItemCard/ItemCard';
 import Sidebar from '../Sidebar/Sidebar';
@@ -23,7 +23,7 @@ const FriesMenu = () => {
     useEffect(() => {
         document.title = 'Fries Menu';
 
-        menuItemService.getAllOfItemType(token, itemType)
+        menuItemService.getAllItemsByType(token, itemType)
             .then(res => {
                 setFriesCollection(res);
                 setTimeout(() => setIsLoading(false), 500);

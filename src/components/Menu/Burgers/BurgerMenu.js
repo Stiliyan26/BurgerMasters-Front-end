@@ -1,4 +1,4 @@
-import styles from './BurgerMenu.module.css';
+import styles from '../Menu.module.css';
 
 import ItemCard from '../ItemCard/ItemCard';
 import Sidebar from '../Sidebar/Sidebar';
@@ -23,7 +23,7 @@ const BurgerMenu = () => {
     useEffect(() => {
         document.title = 'Burger Menu';
 
-        menuItemService.getAllOfItemType(token, itemType)
+        menuItemService.getAllItemsByType(token, itemType)
             .then(res => {
                 setBurgersCollection(res);
                 setTimeout(() => setIsLoading(false), 500);

@@ -1,4 +1,4 @@
-import styles from './GrillMenu.module.css';
+import styles from '../Menu.module.css';
 
 import ItemCard from '../ItemCard/ItemCard';
 import Sidebar from '../Sidebar/Sidebar';
@@ -23,7 +23,7 @@ const GrillMenu = () => {
     useEffect(() => {
         document.title = 'Grill Menu';
 
-        menuItemService.getAllOfItemType(token, itemType)
+        menuItemService.getAllItemsByType(token, itemType)
             .then(res => {
                 setGrillsCollection(res);
                 setTimeout(() => setIsLoading(false), 500);

@@ -1,4 +1,4 @@
-import styles from './DrinkMenu.module.css';
+import styles from '../Menu.module.css';
 
 import ItemCard from '../ItemCard/ItemCard';
 import Sidebar from '../Sidebar/Sidebar';
@@ -24,7 +24,7 @@ const DrinkMenu = () => {
     useEffect(() => {
         document.title = 'drinksCollection Menu';
 
-        menuItemService.getAllOfItemType(token, itemType)
+        menuItemService.getAllItemsByType(token, itemType)
             .then(res => {
                 setDrinksCollection(res);
                 setTimeout(() => setIsLoading(false), 500);

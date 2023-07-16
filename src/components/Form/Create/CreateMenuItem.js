@@ -163,7 +163,7 @@ const CreateMenuItem = () => {
                             onBlur={handleBlur}
                             value={values.description}
                             id='description'
-                            placeholder='Enter description products separated with comma and space: (salt, ketchup, meat)'
+                            placeholder='Enter description products separated with comma: (salt, ketchup, meat)'
                         />
                         {(errors.description && touched.description) && getErrorMessage(errors.description)}
                     </div>

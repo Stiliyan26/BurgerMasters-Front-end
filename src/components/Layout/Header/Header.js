@@ -75,6 +75,12 @@ const Header = () => {
                             Grill <i className="fa-solid fa-sausage fa-flip" style={{ color: '#940a00'}}></i>
                         </Link>
                     </li>
+
+                    <li className={styles['menu-item']}>
+                        <Link to="/Menu/Salad">
+                            Salad <i className="fa-solid fa-salad" style={{ color: '#1f5125'}}></i>
+                        </Link>
+                    </li>
                 </ul>
             </li>
 
@@ -101,7 +107,7 @@ const Header = () => {
             </li>
 
             <li className={styles['list-item']}>
-                <Link to="/">My Posts <i className="fa-light fa-mailbox"></i></Link>
+                <Link to="/MyPosts">My Posts <i className="fa-light fa-mailbox"></i></Link>
             </li>
 
             {userNav}

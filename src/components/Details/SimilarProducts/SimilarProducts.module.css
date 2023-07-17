@@ -1,0 +1,48 @@
+#similar-products {
+    margin-top: 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    color: #d5d9de;
+    padding-top: 2rem;
+}
+
+#similar-products .title {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    margin-top: 0px;
+    opacity: 0;
+    transform: 100%;
+    padding-left: 10%;
+    animation: slideInTitle 1s ease-in-out forwards;
+}
+
+#similar-products .grid--container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    opacity: 0;
+    animation: fadeInGrid 1s ease-in-out forwards;
+    gap: 2rem;
+}
+
+@keyframes fadeInGrid {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInTitle {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

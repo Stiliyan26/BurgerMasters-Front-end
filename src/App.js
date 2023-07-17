@@ -7,14 +7,16 @@ import Home from './components/Pages/Home/Home';
 // Auth
 import Login from './components/Authentication/Login/Login';
 import Register from './components/Authentication/Register/Register';
-// Create
-import CreateMenuItem from './components/Form/Create/CreateMenuItem';
+// Admin
+import CreateMenuItem from './components/Admin/Create/CreateMenuItem';
+import MyPosts from './components/Admin/MyPosts/MyPosts';
 // Menu
-import BurgerMenu from './components/Menu/Burgers/BurgerMenu';
-import DrinkMenu from './components/Menu/Drinks/DrinkMenu';
-import FriesMenu from './components/Menu/Fries/FriesMenu';
+import BurgerMenu from './components/Menu/BurgerMenu/BurgerMenu';
+import DrinkMenu from './components/Menu/DrinkMenu/DrinkMenu';
+import FriesMenu from './components/Menu/FriesMenu/FriesMenu';
 import HotdogMenu from './components/Menu/HotdogMenu/HotdogMenu';
 import GrillMenu from './components/Menu/GrillMenu/GrillMenu';
+import SaladMenu from './components/Menu/SaladMenu/SaladMenu';
 //Details
 import ItemDetails from './components/Details/ItemDetails/ItemDetails';
 // Guarded routes
@@ -38,6 +40,7 @@ function App() {
 						{/* Admin section */}
 						<Route element={<AdminRoute />}>
 							<Route path='/CreateItem' element={<CreateMenuItem />} />
+							<Route path='/MyPosts' element={<MyPosts />} />
 						</Route>
 
 						<Route path='/Menu/Burgers' element={<BurgerMenu />} />
@@ -45,6 +48,7 @@ function App() {
 						<Route path='/Menu/Fries' element={<FriesMenu />} />
 						<Route path='/Menu/Hotdog' element={<HotdogMenu />} />
 						<Route path='/Menu/Grill' element={<GrillMenu />} />
+						<Route path='/Menu/Salad' element={<SaladMenu />} />
 
 						<Route path='/Details/:itemId' element={<ItemDetails />}/>
 

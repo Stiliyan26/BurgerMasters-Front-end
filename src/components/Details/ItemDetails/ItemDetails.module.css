@@ -1,16 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Chela+One&display=swap');
 
-#details-container {
+#details-wrapper {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    flex-wrap: wrap;
     margin-top: 8%;
     height: 100%;
     width: 80%;
     padding-bottom: 300px;
-    color: #d5d9de;
     font-family: 'Chela One', cursive;
+}
+
+#details-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    color: #d5d9de;
 }
 
 #details-container .img--container {
@@ -22,7 +30,7 @@
 }
 
 #details-container .img {
-    width: 500px;
+    width: 65%;
     filter: drop-shadow(0 0 10px #d5d9de);
     animation: slideInImg 1s ease-in-out forwards, levitateGlowingImg 2s ease-in-out infinite;
     opacity: 0;
@@ -32,6 +40,7 @@
 #details-container .item--info {
     flex-basis: 50%;
     font-size: 2.5rem;
+    width: 100%;
 }
 
 #details-container .description-item {
@@ -46,23 +55,7 @@
     transform: 100%;
     animation: slideIn 1s ease-in-out forwards;
 }
-
-#details-container .item--quantity {
-    appearance: none;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 8px 12px;
-    font-size: 16px;
-    width: 100px;
-    transition: 0 0 5px rgba(52, 152, 219, 0.5);
-}
-
-#details-container .item--quantity:focus {
-    outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
-}
-
+/* Order Item */
 #details-container .order--item {
     display: flex;
     flex-direction: row;

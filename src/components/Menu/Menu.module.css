@@ -167,27 +167,3 @@
     padding-top: 50px;
     font-family: 'Cuprum', sans-serif;
 }
-
-@keyframes glowing {
-    0% {
-        text-shadow: 0 0 5px #d5d9de;
-    }
-
-    50% {
-        text-shadow: 0 0 15px #d5d9de;
-    }
-
-    100% {
-        text-shadow: 0 0 5px #d5d9de;
-    }
-}
-
-@keyframes levitateAnim {
-    0% {
-        transform: translateY(0);
-    }
-
-    100% {
-        transform: translateY(-10px);
-    }
-}

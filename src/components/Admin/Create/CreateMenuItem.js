@@ -13,7 +13,7 @@ import { createMenuItemSchema } from '../../../schemas/index'
 
 const CreateMenuItem = () => {
     const [itemTypes, setItemTypes] = useState([]);
-    const { token } = useAuthContext();
+    const { token, user } = useAuthContext();
 
     useEffect(() => {
         document.title = 'Create Item';
@@ -29,7 +29,7 @@ const CreateMenuItem = () => {
     const navigate = useNavigate();
 
     const CreateItemHandler = (menuItemInfo) => {
-        adminService.createMenuItem(menuItemInfo, token)
+        adminService.createMenuItem(menuItemInfo, token, user.userId)
             .then(res => {
                 if (res.status === 200){
                     if (res.itemType === 'Burger'){
@@ -42,7 +42,11 @@ const CreateMenuItem = () => {
                         navigate('/Menu/Hotdog');
                     } else if (res.itemType == 'Grill'){
                         navigate('/Menu/Grill');
+                    } else if (res.itemType == 'Salad'){
+                        navigate('/Menu/Salad');
                     }
+                } else if (res.status === 409){
+                    setResponseErrorMsg(res.errorMessage);
                 } else if (res.status === 422){
                     setResponseErrorMsg(res.errorMessage);
                 }

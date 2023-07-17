@@ -26,6 +26,7 @@
     margin: 0px 10px;
     display: inline-block;
     transition: 0.5s;
+    cursor: pointer;
 }
 
 #footer .social-icons li.icon a:hover {

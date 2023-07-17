@@ -45,6 +45,10 @@
     font-family: 'Lobster', cursive;
 }
 
+#login input {
+    font-family: 'Kelly Slab', cursive;
+}
+
 #login .login-form .submit-btn:hover {
     background-color: #004268;
     color: #d5d9de;

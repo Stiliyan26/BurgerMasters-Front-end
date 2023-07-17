@@ -10,7 +10,8 @@ const Loader = ({itemType}) => {
         'Fries': <i id={styles['icon']} className="fa-solid fa-french-fries"></i>,
         'Drink': <i id={styles['icon']} className="fa-duotone fa-glass"></i>,
         'Hotdog': <i id={styles['icon']} className="fa-solid fa-hotdog"></i>,
-        'Grill': <i id={styles['icon']} class="fa-solid fa-sausage"></i>
+        'Grill': <i id={styles['icon']} className="fa-solid fa-sausage"></i>,
+        'Salad': <i id={styles['icon']} class="fa-solid fa-salad"></i>
     }
 
     return (

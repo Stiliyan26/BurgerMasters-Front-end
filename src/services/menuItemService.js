@@ -11,4 +11,8 @@ export const getAllItemsByType = (token, itemType) =>
 export const getItemById = (token, itemId) =>
     requester(`${baseUrl}/ItemDetailsById?itemId=${itemId}`, 'GET', null, token);
 
+export const getSimilarProducts = (token, itemType, itemId) => 
+    requester(`${baseUrl}/SimilarProducts?itemType=${itemType}&itemId=${itemId}`, 'GET', null, token);
+
+
 

@@ -19,7 +19,7 @@
 
 #similar-products .grid--container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(300px, 1fr));
     opacity: 0;
     animation: fadeInGrid 1s ease-in-out forwards;
     gap: 2rem;

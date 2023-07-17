@@ -12,8 +12,9 @@ import CreateMenuItem from './components/Admin/Create/CreateMenuItem';
 import MyPosts from './components/Admin/MyPosts/MyPosts';
 // Menu
 import BurgerMenu from './components/Menu/BurgerMenu/BurgerMenu';
-import DrinkMenu from './components/Menu/DrinkMenu/DrinkMenu';
+import SandwichMenu from './components/Menu/SandwithMenu/SandwichMenu';
 import FriesMenu from './components/Menu/FriesMenu/FriesMenu';
+import DrinkMenu from './components/Menu/DrinkMenu/DrinkMenu';
 import HotdogMenu from './components/Menu/HotdogMenu/HotdogMenu';
 import GrillMenu from './components/Menu/GrillMenu/GrillMenu';
 import SaladMenu from './components/Menu/SaladMenu/SaladMenu';
@@ -49,6 +50,7 @@ function App() {
 						<Route path='/Menu/Hotdog' element={<HotdogMenu />} />
 						<Route path='/Menu/Grill' element={<GrillMenu />} />
 						<Route path='/Menu/Salad' element={<SaladMenu />} />
+						<Route path='/Menu/Sandwich' element={<SandwichMenu />} />
 
 						<Route path='/Details/:itemId' element={<ItemDetails />}/>
 

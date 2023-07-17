@@ -44,6 +44,8 @@ const CreateMenuItem = () => {
                         navigate('/Menu/Grill');
                     } else if (res.itemType == 'Salad'){
                         navigate('/Menu/Salad');
+                    } else if (res.itemType == 'Sandwich'){
+                        navigate('/Menu/Sandwich');
                     }
                 } else if (res.status === 409){
                     setResponseErrorMsg(res.errorMessage);

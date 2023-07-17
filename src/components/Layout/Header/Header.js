@@ -53,6 +53,12 @@ const Header = () => {
                     </li>
 
                     <li className={styles['menu-item']}>
+                        <Link to="/Menu/Sandwich">
+                            Sandwich <i className="fa-solid fa-sandwich fa-flip" style={{ color: '#a39600'}}></i>
+                        </Link>
+                    </li>
+
+                    <li className={styles['menu-item']}>
                         <Link to="/Menu/Drinks">
                             Drinks <i className="fa-solid fa-cup-straw-swoosh fa-flip" style={{ color: "#9d0101", }}></i>
                         </Link>
@@ -78,7 +84,7 @@ const Header = () => {
 
                     <li className={styles['menu-item']}>
                         <Link to="/Menu/Salad">
-                            Salad <i className="fa-solid fa-salad" style={{ color: '#1f5125'}}></i>
+                            Salad <i className="fa-solid fa-salad fa-flip" style={{ color: '#1f5125'}}></i>
                         </Link>
                     </li>
                 </ul>

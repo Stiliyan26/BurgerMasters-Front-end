@@ -11,7 +11,8 @@ const Loader = ({itemType}) => {
         'Drink': <i id={styles['icon']} className="fa-duotone fa-glass"></i>,
         'Hotdog': <i id={styles['icon']} className="fa-solid fa-hotdog"></i>,
         'Grill': <i id={styles['icon']} className="fa-solid fa-sausage"></i>,
-        'Salad': <i id={styles['icon']} class="fa-solid fa-salad"></i>
+        'Salad': <i id={styles['icon']} className="fa-solid fa-salad"></i>,
+        'Sandwich':<i id={styles['icon']} className="fa-solid fa-sandwich"></i>
     }
 
     return (

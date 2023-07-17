@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 const Sidebar = () => {
     const menu = [
         { name: "Burgers", image: 'Burger.png', route: '/Menu/Burgers' },
+        { name: "Sandwich", image: 'Sandwich.png', route: '/Menu/Sandwich' },
         { name: "Fries", image: 'Fries.png', route: '/Menu/Fries' },
         { name: "Drinks", image: 'Drinks.png', route: '/Menu/Drinks' },
         { name: "Hot-dogs", image: 'Hot-Dog.png', route: '/Menu/Hotdog' },

@@ -16,7 +16,7 @@ export const createMenuItemSchema = yup.object().shape({
         .notOneOf(['Select item'], 'Please select an item type!')
         .required("Item type is required!"),
     portionSize: yup.number()
-        .min(200, "Portion size should be at least 200 grams/ml!")
+        .min(150, "Portion size should be at least 150 grams/ml!")
         .max(800, "Portion size should be less than 800 grams/ml!")
         .required("Portion size is required!"),
     description: yup.string()

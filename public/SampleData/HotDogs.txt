@@ -1,0 +1,23 @@
+Name: Hot-Dog Old Style Oklahoma
+Image Url: Oklahoma.webp
+Portion size: 200
+Description: Homemade bread, BBQ sauce, Grilled sausage with cheddar and bacon, Mustard, Onion, Oklahoma Mince, Homemade cheddar sauce
+Price: 12.49
+
+Name: Hot-Dog Old Style Mac'n'cheese
+Image Url: MacNcheese.webp
+Portion size: 200
+Description: Homemade Brioche Bread, Grilled beef sausage, Smoked bacon, Mustard, Pasta with American cheese
+Price: 11.49
+
+Name: Hot-dog Old Style Mineapolis
+Image Url: Mineapolis.webp
+Portion Size: 200
+Description: Homemade brioche bread, Smoked pork sausage, Smoked bacon, Coleslaw salad, BBQ sauce, Mustard
+Price: 11.49
+
+Name: CornDog
+Image Url: CornDog.webp
+Portion size: 250
+Description: Beef sausage breaded with cornmeal, egg, mustard and honey, Coleslaw salad, Mustard
+Price: 11.49

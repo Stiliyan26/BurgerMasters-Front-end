@@ -1,0 +1,73 @@
+Name: THE JUICY LUCY
+Image Url: JuicyLucy.webp
+Portion size: 350
+Description: Homemade Brioche Bread, Burger sauce, Black Angus ground beef mixed with cheddar, Melted Irish red cheddar, 
+Crispy bacon, Caramelized onions
+Price: 17.40
+
+
+Name: Pineapple Bacon Run
+Image Url: PineappleBaconRun.webp
+Portion size: 380
+Description: Homemade Brioche Bread, Pineapple butter with rum, 200g Black Angus ground beef, Grilled pineapple, Crispy bacon with brown sugar
+Price: 19.40
+
+
+Name: RUSTY SAVAGE
+Image Url: RustySavage.webp
+Portion size: 630
+Description: Homemade Brioche Bread, Burger sauce, Colsloe,Ground beef Black Angus x2, Melted Irish red cheddar x2, Crispy bacon, 
+Homemade pickle, Caramelized onions
+Price: 27.49
+
+
+Name: THUNDER
+Image Url: Tunder.webp
+Portion size: 380
+Description: Homemade Brioche Bread, Grilled onions, Thunder spicy sauce (tomato sauce, jalapeño, pickle, sweet apricot), Black Angus ground beef, Homemade cheddar sauce, Homemade pickle
+Price: 17.49
+
+
+Name: American Cheese Burger
+Image Url: American.webp
+Portion size: 320
+Description: Homemade Brioche Bread, Burger sauce, Iceberg, Black Angus ground beef, Crispy bacon, American cheese, Tomato, Pickled red onion
+Price: 14.99
+
+Name: Surf'n'Turf
+Image Url: SurfNTurff.webp
+Portion size: 370
+Description: Homemade Brioche Bread, Black Angus ground beef, Aioli sauce, Shrimp, Iceberg
+Price: 19.49
+
+Name: Burger Pie
+Image Url: BurgerPie.webp
+Portion size: 380
+Description: Black Angus ground beef, American cheese, Cheddar, Jalapeno
+Price: 19.49
+
+Name: Smokey Whiskey Cheeseburger
+Image Url: SmokeyWhiskeyCheeseburger.webp
+Portion size: 480
+Description: Homemade Brioche Bread, Burger sauce, 200g Black Angus ground beef patties with brown sugar and whiskey, Smokey BBQ,
+Mushrooms with olive oil, onion and garlic, Crispy bacon, Very cheddar, Fresh tomato
+Price: 23.49
+
+Name: Triple Cheeseburger
+Image Url: TrippleCheese.webp
+Portion size: 550
+Description: Homemade Brioche Bread, BBQ sauce with bourbon, Our pickle, Black Angus ground beef with blue cheese, mozzarella and lots of cheddar, wrapped in bacon, Grilled onions
+Price: 22.20
+
+Name: Bacon Jam Burger
+Image Url: BaconJam.webp
+Portion size: 450
+Description: Homemade Brioche Bread, Homemade bourbon BBQ sauce, Crispy iceberg, Black Angus ground beef patties, Very cheddar, Bacon Apricot Marmalade
+Price: 19.49
+
+Name: BBQ Pulled Pork
+Image Url: BBQPulledPork.webp
+Portion size: 350
+Description: Homemade Brioche Bread, Colsloe, Slow Roasted Pork Shoulder, Caramelized onions, Melted cheddar, Homemade bourbon BBQ sauce
+Price: 14.40
+

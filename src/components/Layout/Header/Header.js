@@ -7,20 +7,89 @@ import { Link, useNavigate } from "react-router-dom";
 import { Fragment } from 'react';
 
 const Header = () => {
-    const { isAuthenticated, isAdmin, user, logout } = useAuthContext();
-    const { token } = user;
+    const { isAuthenticated, isAdmin, user, token, logout } = useAuthContext();
 
     const navigate = useNavigate();
 
     function handleLogout(e) {
         e.preventDefault();
-        
+
         authService.logout(token)
             .then(() => {
                 logout();
                 navigate("/");
             });
     }
+
+    const iconClassName = (iconNameAndStyle) =>
+        `${iconNameAndStyle} fa-beat-fade`;
+
+    const setIcon = (iconNameAndStyle, color) =>
+        <i className={iconClassName(iconNameAndStyle)} style={{ color: color }}></i>
+
+    const itemOptions = [
+        {
+            name: 'Burgers',
+            icon: setIcon('fa-solid fa-burger', '#995900'),
+            menuRoute: '/Menu/Burgers',
+            myPostsRoute: '/MyPosts/Burgers'
+        },
+        {
+            name: 'Sandwich',
+            icon: setIcon('fa-solid fa-sandwich', '#a39600'),
+            menuRoute: '/Menu/Sandwich',
+            myPostsRoute: '/MyPosts/Sandwich'
+        },
+        {
+            name: 'Drinks',
+            icon: setIcon('fa-solid fa-cup-straw-swoosh', '#9d0101'),
+            menuRoute: '/Menu/Drinks',
+            myPostsRoute: '/MyPosts/Drinks'
+        },
+        {
+            name: 'Fries',
+            icon: setIcon('fa-solid fa-french-fries', '#b8b100'),
+            menuRoute: '/Menu/Fries',
+            myPostsRoute: '/MyPosts/Fries'
+        },
+        {
+            name: 'Hotdog',
+            icon: setIcon('fa-duotone fa-hotdog', ''),
+            menuRoute: '/Menu/Hotdog',
+            myPostsRoute: '/MyPosts/Hotdog'
+        },
+        {
+            name: 'Grill',
+            icon: setIcon('fa-solid fa-sausage', '#940a00'),
+            menuRoute: '/Menu/Grill',
+            myPostsRoute: '/MyPosts/Grill'
+        },
+        {
+            name: 'Salad',
+            icon: setIcon('fa-solid fa-salad', '#1f5125'),
+            menuRoute: '/Menu/Salad',
+            myPostsRoute: '/MyPosts/Salad'
+        }
+    ]
+
+    const getPageRoute = (page, itemInfo) => 
+        page === 'Menu'
+            ? itemInfo.menuRoute
+            : itemInfo.myPostsRoute
+
+    const getAllItemsNav = (page) => {
+        return itemOptions
+            .map((itemInfo, i) => {
+                return (
+                    <li key={i} className={styles['menu-item']}>
+                        <Link to={getPageRoute(page, itemInfo)}>
+                            {itemInfo.name} {itemInfo.icon}
+                        </Link>
+                    </li>
+                )
+            })
+    };
+
 
     const guestNav = (
         <Fragment>
@@ -34,7 +103,6 @@ const Header = () => {
         </Fragment>
     );
 
-
     const userNav = (
         <Fragment>
             <li className={styles['list-item']}>
@@ -46,52 +114,12 @@ const Header = () => {
                 </Link>
 
                 <ul className={styles['menu-dropdown']}>
-                    <li className={styles['menu-item']}>
-                        <Link to="/Menu/Burgers">
-                            Burgers <i className="fa-solid fa-burger fa-flip" style={{ color: "#995900", }}></i>
-                        </Link>
-                    </li>
-
-                    <li className={styles['menu-item']}>
-                        <Link to="/Menu/Sandwich">
-                            Sandwich <i className="fa-solid fa-sandwich fa-flip" style={{ color: '#a39600'}}></i>
-                        </Link>
-                    </li>
-
-                    <li className={styles['menu-item']}>
-                        <Link to="/Menu/Drinks">
-                            Drinks <i className="fa-solid fa-cup-straw-swoosh fa-flip" style={{ color: "#9d0101", }}></i>
-                        </Link>
-                    </li>
-
-                    <li className={styles['menu-item']}>
-                        <Link to="/Menu/Fries">
-                            Fries <i className="fa-solid fa-french-fries fa-flip" style={{ color: "#b8b100", }}></i>
-                        </Link>
-                    </li>
-
-                    <li className={styles['menu-item']}>
-                        <Link to="/Menu/Hotdog">
-                            Hotdog <i className="fa-duotone fa-hotdog fa-flip"></i>
-                        </Link>
-                    </li>
-
-                    <li className={styles['menu-item']}>
-                        <Link to="/Menu/Grill">
-                            Grill <i className="fa-solid fa-sausage fa-flip" style={{ color: '#940a00'}}></i>
-                        </Link>
-                    </li>
-
-                    <li className={styles['menu-item']}>
-                        <Link to="/Menu/Salad">
-                            Salad <i className="fa-solid fa-salad fa-flip" style={{ color: '#1f5125'}}></i>
-                        </Link>
-                    </li>
+                    {getAllItemsNav('Menu')}
                 </ul>
             </li>
 
             <li className={styles['list-item']}>
-                <Link to="/">Cart <i className="fa-solid fa-cart-shopping" style={{ color: "#d5d9de", }}></i></Link>
+                <Link to="/Cart">Cart <i className="fa-solid fa-cart-shopping" style={{ color: "#d5d9de", }}></i></Link>
             </li>
 
             <li className={styles['list-item']}>
@@ -111,9 +139,18 @@ const Header = () => {
                     Create Item <i className="fa-solid fa-plus fa-beat-fade"></i>
                 </Link>
             </li>
-
+             
             <li className={styles['list-item']}>
-                <Link to="/MyPosts">My Posts <i className="fa-light fa-mailbox"></i></Link>
+                <Link>
+                    <div className={styles.menu}>
+                        <p className={styles['menu-title']}>My Posts</p>
+                        <i className="fa-light fa-mailbox"></i>
+                    </div>
+                </Link>
+
+                <ul className={styles['menu-dropdown']}>
+                    {getAllItemsNav('MyPosts')}
+                </ul>
             </li>
 
             {userNav}

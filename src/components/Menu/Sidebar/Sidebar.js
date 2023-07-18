@@ -3,23 +3,29 @@ import styles from './Sidebar.module.css';
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
-const Sidebar = () => {
+const Sidebar = ({ pageType }) => {
     const menu = [
-        { name: "Burgers", image: 'Burger.png', route: '/Menu/Burgers' },
-        { name: "Sandwich", image: 'Sandwich.png', route: '/Menu/Sandwich' },
-        { name: "Fries", image: 'Fries.png', route: '/Menu/Fries' },
-        { name: "Drinks", image: 'Drinks.png', route: '/Menu/Drinks' },
-        { name: "Hot-dogs", image: 'Hot-Dog.png', route: '/Menu/Hotdog' },
-        { name: "Grill", image: 'Grill.png', route: '/Menu/Grill' },
-        { name: "Salads", image: 'Salad.png', route: '/Menu/Salad' }
+        { name: "Burgers", image: 'Burger.png', menuRoute: '/Menu/Burgers', myPostsRoute: '/MyPosts/Burgers' },
+        { name: "Sandwich", image: 'Sandwich.png', menuRoute: '/Menu/Sandwich', myPostsRoute: '/MyPosts/Sandwich' },
+        { name: "Fries", image: 'Fries.png', menuRoute: '/Menu/Fries', myPostsRoute: '/MyPosts/Fries' },
+        { name: "Drinks", image: 'Drinks.png', menuRoute: '/Menu/Drinks', myPostsRoute: '/MyPosts/Drinks' },
+        { name: "Hot-dogs", image: 'Hot-Dog.png', menuRoute: '/Menu/Hotdog', myPostsRoute: '/MyPosts/Hotdog' },
+        { name: "Grill", image: 'Grill.png', menuRoute: '/Menu/Grill', myPostsRoute: '/MyPosts/Grill' },
+        { name: "Salads", image: 'Salad.png', menuRoute: '/Menu/Salad', myPostsRoute: '/MyPosts/Salad' }
     ];
+
+    const getPageRoute = (option) =>
+        pageType === 'Menu'
+            ? option.menuRoute
+            : option.myPostsRoute;
+
 
     const getMenuSidebar = () => {
         return menu.map(option => (
             <Fragment key={option.name}>
                 <hr className={styles.divider} />
 
-                <Link to={option.route} className={styles['sidebar--wrapper--link']}>
+                <Link to={getPageRoute(option)} className={styles['sidebar--wrapper--link']}>
                     <img className={styles['sidebar--img']} src={`/images/menu/${option.image}`} alt={option.name} />
                     <p className={styles['sidebar--subtitle']}>{option.name}</p>
                 </Link>

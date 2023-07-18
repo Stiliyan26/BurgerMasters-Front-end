@@ -43,7 +43,7 @@ const Menu = ({ itemType }) => {
     const getFilteredItems = useMemo(() => {
         if (!query && !sortQuery) {
             return itemsCollection.map(item => (
-                <ItemCard key={item.id} item={item} />
+                <ItemCard key={item.id} item={item} pageType={'Menu'}/>
             ));
         }
 
@@ -52,14 +52,14 @@ const Menu = ({ itemType }) => {
                 .slice()
                 .sort(sortQueries[sortQuery])
                 .map(item => (
-                    <ItemCard key={item.id} item={item} />
+                    <ItemCard key={item.id} item={item} pageType={'Menu'}/>
                 ));
         }
 
         return itemsCollection
             .filter(item => item.name.toLowerCase().includes(query.toLowerCase()))
             .map(item => (
-                <ItemCard key={item.id} item={item} />
+                <ItemCard key={item.id} item={item} pageType={'Menu'}/>
             ));
     }, [itemsCollection, query, sortQuery]);
 
@@ -107,7 +107,7 @@ const Menu = ({ itemType }) => {
             </section>
 
             <div id={styles['grid-container']}>
-                <Sidebar />
+                <Sidebar pageType={'Menu'} />
 
                 <section id={styles.menu} className={styles.grid}>
                     {itemsCollection && getFilteredItems}
@@ -116,7 +116,9 @@ const Menu = ({ itemType }) => {
         </Fragment>
     );
 
-    return isLoading ? <Loader itemType={itemType} /> : menuData();
+    return isLoading
+        ? <Loader itemType={itemType} />
+        : menuData();
 };
 
 export default Menu;

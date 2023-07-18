@@ -3,10 +3,12 @@ import styles from './ItemDetails.module.css';
 import NumericInputControl from '../NumericInputControl/NumericInputControl';
 import SimilarProducts from '../SimilarProducts/SimilarProducts';
 
+import * as adminService from '../../../services/adminService';
 import * as menuService from '../../../services/menuItemService';
+
 import { useAuthContext } from "../../../contexts/AuthContext";
 
-import { Link, useNavigate, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams, useLocation } from "react-router-dom"
 import { useEffect, useState } from 'react';
 
 const ItemDetails = () => {
@@ -16,25 +18,33 @@ const ItemDetails = () => {
         description: '',
         portionSize: 0,
     });
-
     const [quantity, setQuantity] = useState(1);
 
-    const { token } = useAuthContext();
+    const { token, user } = useAuthContext();
     const { itemId } = useParams();
 
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
 
     useEffect(() => {
         document.title = 'Details';
 
         menuService.getItemById(token, itemId)
-            .then(res => {
+            .then(res => {  
                 setItem(res);
             })
             .catch(err => {
                 console.log(err.message);
+                navigate('/Not-found');
             });
     }, [itemId]);
+
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const source = queryParams.get('source');
+
+    if (source != 'MyPosts' && source != 'Menu') {
+        navigate('/Not-found');
+    }
 
     const getDescription = () => {
         return item.description
@@ -84,10 +94,12 @@ const ItemDetails = () => {
             </section>
 
             {item.itemType &&
-                <SimilarProducts 
-                    token={token} 
-                    itemType={item.itemType} 
+                <SimilarProducts
+                    token={token}
+                    itemType={item.itemType}
                     itemId={itemId}
+                    source={source}
+                    creatorId={user.userId}
                 />}
         </div>
     )

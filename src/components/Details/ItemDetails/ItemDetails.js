@@ -11,30 +11,36 @@ import { MENU_PAGE_NAME, MYPOSTS_PAGE_NAME } from '../../../Constants/globalCons
 import { useAuthContext } from "../../../contexts/AuthContext";
 
 import { Link, useNavigate, useParams, useLocation } from "react-router-dom"
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 
 const ItemDetails = () => {
     const [item, setItem] = useState({
+        id: '',
         name: '',
+        imageUrl: '',
         itemType: '',
         description: '',
+        price: 0,
         portionSize: 0,
+        creatorId: ''
     });
     const [quantity, setQuantity] = useState(1);
 
-    const { token, user } = useAuthContext();
+    const { token, user, isAdmin } = useAuthContext();
     const { itemId } = useParams();
 
     const navigate = useNavigate();
     const location = useLocation();
+    let source = new URLSearchParams(location.search).get('source');
 
     useEffect(() => {
         document.title = 'Details';
 
-        const source = new URLSearchParams(location.search).get('source');
+        source = new URLSearchParams(location.search).get('source');
 
         if (source != MYPOSTS_PAGE_NAME && source != MENU_PAGE_NAME) {
             navigate('/Not-found');
+            return;
         }
 
         const fetchData = async () => {
@@ -51,6 +57,7 @@ const ItemDetails = () => {
                     setItem(response.item);
                 } else if (response.status === 404) {
                     navigate('/Not-found');
+                    return;
                 }
 
             } catch (error) {
@@ -83,6 +90,40 @@ const ItemDetails = () => {
             : 'g';
     }
 
+    const userButtons = (
+        <div className={styles['order--item']}>
+            <NumericInputControl quantity={quantity} setQuantity={setQuantity} />
+
+            <Link to='/' className={styles['item--add-to-cart-btn']}>
+                <p className={styles['btn--content']}>Add to cart</p>
+                <i className="fa-light fa-cart-shopping fa-fade"></i>
+            </Link>
+        </div>
+    )
+
+    const adminButtons = (
+        <Fragment>
+            {source === MENU_PAGE_NAME && userButtons}
+
+            <div className={styles['admin--btns']}>
+                <Link to='/' className={styles['edit-btn']}>
+                    <p className={styles['btn--content']}>Edit</p>
+                    <i className="fa-solid fa-pen-to-square fa-fade"></i>
+                </Link>
+
+                <Link to='/' className={styles['delete-btn']}>
+                    <p className={styles['btn--content']}>Delete</p>
+                    <i className="fa-solid fa-trash fa-beat-fade"></i>
+                </Link>
+            </div>
+        </Fragment>
+    )
+
+    const getAdminButtons = () =>
+        isAdmin && item.creatorId === user.userId
+            ? adminButtons
+            : userButtons;
+
     return (
         <div id={styles['details-wrapper']}>
             <section id={styles['details-container']}>
@@ -97,14 +138,7 @@ const ItemDetails = () => {
                         {getDescription()}
                     </ul>
 
-                    <div className={styles['order--item']}>
-                        <NumericInputControl quantity={quantity} setQuantity={setQuantity} />
-
-                        <Link to='/' className={styles['item--add-to-cart-btn']}>
-                            <p className={styles['btn--content']}>Add to cart</p>
-                            <i className="fa-light fa-cart-shopping fa-fade"></i>
-                        </Link>
-                    </div>
+                    {getAdminButtons()}
                 </section>
             </section>
 

@@ -6,6 +6,7 @@ import Loader from '../../Menu/Loader/Loader';
 
 import { useAuthContext } from '../../../contexts/AuthContext';
 import * as adminService from '../../../services/adminService';
+import { MYPOSTS_PAGE_NAME } from '../../../Constants/globalConstants';
 
 import { Fragment, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -48,7 +49,7 @@ const MyPosts = ({ itemType }) => {
     const getFilteredItems = useMemo(() => {
         if (!query && !sortQuery) {
             return itemsCollection.map(item => (
-                <ItemCard key={item.id} item={item} pageType={'MyPosts'} />
+                <ItemCard key={item.id} item={item} pageType={MYPOSTS_PAGE_NAME} />
             ));
         }
 
@@ -57,14 +58,14 @@ const MyPosts = ({ itemType }) => {
                 .slice()
                 .sort(sortQueries[sortQuery])
                 .map(item => (
-                    <ItemCard key={item.id} item={item} pageType={'MyPosts'} />
+                    <ItemCard key={item.id} item={item} pageType={MYPOSTS_PAGE_NAME} />
                 ));
         }
 
         return itemsCollection
             .filter(item => item.name.toLowerCase().includes(query.toLowerCase()))
             .map(item => (
-                <ItemCard key={item.id} item={item} pageType={'MyPosts'} />
+                <ItemCard key={item.id} item={item} pageType={MYPOSTS_PAGE_NAME} />
             ));
     }, [itemsCollection, query, sortQuery]);
 
@@ -112,7 +113,7 @@ const MyPosts = ({ itemType }) => {
             </section>
 
             <div id={styles['grid-container']}>
-                <Sidebar pageType={'MyPosts'} />
+                <Sidebar pageType={MYPOSTS_PAGE_NAME} />
 
                 <section id={styles.menu} className={styles.grid}>
                     {itemsCollection && getFilteredItems}

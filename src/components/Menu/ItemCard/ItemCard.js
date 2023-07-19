@@ -1,5 +1,7 @@
 import styles from './ItemCard.module.css';
 
+import { MYPOSTS_PAGE_NAME, MENU_PAGE_NAME } from '../../../Constants/globalConstants';
+
 import { Link } from 'react-router-dom';
 
 const ItemCard = ({ item, pageType }) => {
@@ -7,12 +9,12 @@ const ItemCard = ({ item, pageType }) => {
 
     const detailsPageSource = () => {
         switch (pageType) {
-            case 'Menu':
-                return `/Details/${item.id}?source=Menu`;
-            case 'MyPosts':
-                return `/Details/${item.id}?source=MyPosts`;
+            case MENU_PAGE_NAME:
+                return `/Details/${item.id}?source=${MENU_PAGE_NAME}`;
+            case MYPOSTS_PAGE_NAME:
+                return `/Details/${item.id}?source=${MYPOSTS_PAGE_NAME}`;
             default:
-                return `/Details/${item.id}?source=Menu`;
+                return `/Details/${item.id}?source=${MENU_PAGE_NAME}`;
         }
     }
 
@@ -36,7 +38,7 @@ const ItemCard = ({ item, pageType }) => {
     )
 
     const getButtonByPageType = () =>
-        pageType === 'MyPosts'
+        pageType === MYPOSTS_PAGE_NAME
             ? detailsBtn
             : addToCartBtn
 
@@ -61,7 +63,6 @@ const ItemCard = ({ item, pageType }) => {
                 {getButtonByPageType()}
             </div>
         </section>
-
     )
 }
 

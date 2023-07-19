@@ -1,5 +1,7 @@
 import styles from './Sidebar.module.css';
 
+import { MENU_PAGE_NAME, MYPOSTS_PAGE_NAME } from '../../../Constants/globalConstants';
+
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -14,11 +16,14 @@ const Sidebar = ({ pageType }) => {
         { name: "Salads", image: 'Salad.png', menuRoute: '/Menu/Salad', myPostsRoute: '/MyPosts/Salad' }
     ];
 
-    const getPageRoute = (option) =>
-        pageType === 'Menu'
-            ? option.menuRoute
-            : option.myPostsRoute;
-
+    const getPageRoute = (option) => {
+        switch (pageType) {
+            case MENU_PAGE_NAME:
+                return option.menuRoute;
+            case MYPOSTS_PAGE_NAME:
+                return option.myPostsRoute
+        }
+    }
 
     const getMenuSidebar = () => {
         return menu.map(option => (

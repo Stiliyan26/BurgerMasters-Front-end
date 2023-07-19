@@ -2,6 +2,7 @@ import styles from './Header.module.css';
 
 import { useAuthContext } from '../../../contexts/AuthContext';
 import * as authService from '../../../services/authService';
+import { MENU_PAGE_NAME, MYPOSTS_PAGE_NAME } from '../../../Constants/globalConstants';
 
 import { Link, useNavigate } from "react-router-dom";
 import { Fragment } from 'react';
@@ -72,10 +73,14 @@ const Header = () => {
         }
     ]
 
-    const getPageRoute = (page, itemInfo) => 
-        page === 'Menu'
-            ? itemInfo.menuRoute
-            : itemInfo.myPostsRoute
+    const getPageRoute = (page, itemInfo) => {
+        switch (page) {
+            case MENU_PAGE_NAME:
+                return itemInfo.menuRoute;
+            case MYPOSTS_PAGE_NAME:
+                return itemInfo.myPostsRoute;
+        }
+    }
 
     const getAllItemsNav = (page) => {
         return itemOptions
@@ -114,7 +119,7 @@ const Header = () => {
                 </Link>
 
                 <ul className={styles['menu-dropdown']}>
-                    {getAllItemsNav('Menu')}
+                    {getAllItemsNav(MENU_PAGE_NAME)}
                 </ul>
             </li>
 
@@ -139,7 +144,7 @@ const Header = () => {
                     Create Item <i className="fa-solid fa-plus fa-beat-fade"></i>
                 </Link>
             </li>
-             
+
             <li className={styles['list-item']}>
                 <Link>
                     <div className={styles.menu}>
@@ -149,7 +154,7 @@ const Header = () => {
                 </Link>
 
                 <ul className={styles['menu-dropdown']}>
-                    {getAllItemsNav('MyPosts')}
+                    {getAllItemsNav(MYPOSTS_PAGE_NAME)}
                 </ul>
             </li>
 

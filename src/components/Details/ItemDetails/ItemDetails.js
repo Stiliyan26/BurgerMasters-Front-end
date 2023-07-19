@@ -6,6 +6,8 @@ import SimilarProducts from '../SimilarProducts/SimilarProducts';
 import * as adminService from '../../../services/adminService';
 import * as menuService from '../../../services/menuItemService';
 
+import { MENU_PAGE_NAME, MYPOSTS_PAGE_NAME } from '../../../Constants/globalConstants';
+
 import { useAuthContext } from "../../../contexts/AuthContext";
 
 import { Link, useNavigate, useParams, useLocation } from "react-router-dom"
@@ -24,27 +26,40 @@ const ItemDetails = () => {
     const { itemId } = useParams();
 
     const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         document.title = 'Details';
 
-        menuService.getItemById(token, itemId)
-            .then(res => {  
-                setItem(res);
-            })
-            .catch(err => {
-                console.log(err.message);
-                navigate('/Not-found');
-            });
-    }, [itemId]);
+        const source = new URLSearchParams(location.search).get('source');
 
-    const location = useLocation();
-    const queryParams = new URLSearchParams(location.search);
-    const source = queryParams.get('source');
+        if (source != MYPOSTS_PAGE_NAME && source != MENU_PAGE_NAME) {
+            navigate('/Not-found');
+        }
 
-    if (source != 'MyPosts' && source != 'Menu') {
-        navigate('/Not-found');
-    }
+        const fetchData = async () => {
+            try {
+                let response;
+
+                if (source === MYPOSTS_PAGE_NAME) {
+                    response = await adminService.getCreatorItem(token, itemId, user.userId);
+                } else if (source === MENU_PAGE_NAME) {
+                    response = await menuService.getItemById(token, itemId);
+                }
+
+                if (response.status === 200) {
+                    setItem(response.item);
+                } else if (response.status === 404) {
+                    navigate('/Not-found');
+                }
+
+            } catch (error) {
+                console.log(error.message);
+            }
+        }
+
+        fetchData();
+    }, [itemId, location.search]);
 
     const getDescription = () => {
         return item.description
@@ -98,7 +113,6 @@ const ItemDetails = () => {
                     token={token}
                     itemType={item.itemType}
                     itemId={itemId}
-                    source={source}
                     creatorId={user.userId}
                 />}
         </div>

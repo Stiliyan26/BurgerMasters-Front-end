@@ -5,28 +5,40 @@ import ItemCard from '../../Menu/ItemCard/ItemCard';
 import * as menuItemService from '../../../services/menuItemService';
 import * as adminService from '../../../services/adminService';
 
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { MENU_PAGE_NAME, MYPOSTS_PAGE_NAME } from '../../../Constants/globalConstants';
 
-const SimilarProducts = ({ token, itemType, itemId, source, creatorId }) => {
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+
+const SimilarProducts = ({ token, itemType, itemId, creatorId }) => {
     const [similarProducts, setSimilarProducts] = useState([]);
 
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const source = new URLSearchParams(location.search).get('source');
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 let response;
 
-                if (source === 'MyPosts') {
+                if (source === MYPOSTS_PAGE_NAME) {
                     response = await adminService.getSimilarProductsByCreator(token, itemType, itemId, creatorId);
-                } else if (source == 'Menu') {
+                } else if (source == MENU_PAGE_NAME) {
                     response = await menuItemService.getSimilarProducts(token, itemType, itemId);
                 } else {
                     navigate('/Not-found');
                 }
 
-                setSimilarProducts(response);
+                if (response.status === 200) {
+                    setSimilarProducts(response.items);
+                } else if (response.status === 404) {
+                    navigate('/Not-found');
+                } else if (response.status === 409) {
+                    console.log(response.errorMessage);
+                }
+
             } catch (error) {
                 console.log(error);
             }

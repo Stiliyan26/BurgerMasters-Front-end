@@ -4,6 +4,8 @@ import ItemCard from './ItemCard/ItemCard';
 import Sidebar from './Sidebar/Sidebar';
 import Loader from './Loader/Loader';
 
+import { MENU_PAGE_NAME } from '../../Constants/globalConstants';
+
 import { useAuthContext } from '../../contexts/AuthContext';
 import * as menuItemService from '../../services/menuItemService';
 
@@ -43,7 +45,7 @@ const Menu = ({ itemType }) => {
     const getFilteredItems = useMemo(() => {
         if (!query && !sortQuery) {
             return itemsCollection.map(item => (
-                <ItemCard key={item.id} item={item} pageType={'Menu'}/>
+                <ItemCard key={item.id} item={item} pageType={MENU_PAGE_NAME}/>
             ));
         }
 
@@ -52,14 +54,14 @@ const Menu = ({ itemType }) => {
                 .slice()
                 .sort(sortQueries[sortQuery])
                 .map(item => (
-                    <ItemCard key={item.id} item={item} pageType={'Menu'}/>
+                    <ItemCard key={item.id} item={item} pageType={MENU_PAGE_NAME}/>
                 ));
         }
 
         return itemsCollection
             .filter(item => item.name.toLowerCase().includes(query.toLowerCase()))
             .map(item => (
-                <ItemCard key={item.id} item={item} pageType={'Menu'}/>
+                <ItemCard key={item.id} item={item} pageType={MENU_PAGE_NAME}/>
             ));
     }, [itemsCollection, query, sortQuery]);
 
@@ -107,7 +109,7 @@ const Menu = ({ itemType }) => {
             </section>
 
             <div id={styles['grid-container']}>
-                <Sidebar pageType={'Menu'} />
+                <Sidebar pageType={MENU_PAGE_NAME} />
 
                 <section id={styles.menu} className={styles.grid}>
                     {itemsCollection && getFilteredItems}

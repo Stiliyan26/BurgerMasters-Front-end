@@ -10,6 +10,7 @@ import Login from './components/Authentication/Login/Login';
 import Register from './components/Authentication/Register/Register';
 // Admin
 import CreateMenuItem from './components/Admin/Create/CreateMenuItem';
+import EditMenuItem from './components/Admin/Edit/EditMenuItem'
 import MyBurgerPosts from './components/Admin/MyPosts/MyBurgersPosts/MyBurgerPosts'
 import MyDrinkPosts from './components/Admin/MyPosts/MyDrinkPosts/MyDrinkPosts';
 import MyFriesPosts from './components/Admin/MyPosts/MyFriesPosts/MyFriesPosts';
@@ -54,6 +55,7 @@ function App() {
 						{/* Admin section */}
 						<Route element={<AdminRoute />}>
 							<Route path='/CreateItem' element={<CreateMenuItem />} />
+							<Route path='/EditItem/:itemId' element={<EditMenuItem />} />
 
 							<Route path='/MyPosts/Burgers' element={<MyBurgerPosts />} />
 							<Route path='/MyPosts/Drinks' element={<MyDrinkPosts />} />

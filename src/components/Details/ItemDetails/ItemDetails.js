@@ -106,7 +106,7 @@ const ItemDetails = () => {
             {source === MENU_PAGE_NAME && userButtons}
 
             <div className={styles['admin--btns']}>
-                <Link to='/' className={styles['edit-btn']}>
+                <Link to={`/EditItem/${itemId}?source=${source}`} className={styles['edit-btn']}>
                     <p className={styles['btn--content']}>Edit</p>
                     <i className="fa-solid fa-pen-to-square fa-fade"></i>
                 </Link>

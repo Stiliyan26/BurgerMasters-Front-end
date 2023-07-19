@@ -36,8 +36,6 @@ const ItemDetails = () => {
     useEffect(() => {
         document.title = 'Details';
 
-        source = new URLSearchParams(location.search).get('source');
-
         if (source != MYPOSTS_PAGE_NAME && source != MENU_PAGE_NAME) {
             navigate('/Not-found');
             return;
@@ -66,7 +64,7 @@ const ItemDetails = () => {
         }
 
         fetchData();
-    }, [itemId, location.search]);
+    }, [itemId]);
 
     const getDescription = () => {
         return item.description
@@ -101,6 +99,31 @@ const ItemDetails = () => {
         </div>
     )
 
+    function handlDeleteItem() {
+        adminService.deleteMenuItem(token, itemId, user.userId)
+            .then(res => {
+                if (res.status === 204) {
+                    if (item.itemType === 'Sandwich') {
+                        return navigate(`/${source}/Sandwiches`);
+                    } else if (item.itemType === 'Burger') {
+                        navigate(`/${source}/Burgers`);
+                    } else if (item.itemType === 'Drink') {
+                        navigate(`/${source}/Drinks`);
+                    } else if (item.itemType === 'Fries') {
+                        navigate(`/${source}/Fries`);
+                    } else if (item.itemType === 'Hotdog') {
+                        navigate(`/${source}/Hotdogs`);
+                    } else if (item.itemType === 'Grill') {
+                        navigate(`/${source}/Grills`);
+                    } else if (item.itemType === 'Salad') {
+                        navigate(`/${source}/Salads`);
+                    }
+                } else if (res.status === 404) {
+                    navigate('/Not-found');
+                }
+            });
+    }
+
     const adminButtons = (
         <Fragment>
             {source === MENU_PAGE_NAME && userButtons}
@@ -111,7 +134,7 @@ const ItemDetails = () => {
                     <i className="fa-solid fa-pen-to-square fa-fade"></i>
                 </Link>
 
-                <Link to='/' className={styles['delete-btn']}>
+                <Link onClick={handlDeleteItem} className={styles['delete-btn']}>
                     <p className={styles['btn--content']}>Delete</p>
                     <i className="fa-solid fa-trash fa-beat-fade"></i>
                 </Link>

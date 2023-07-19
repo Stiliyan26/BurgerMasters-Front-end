@@ -28,7 +28,7 @@ const SimilarProducts = ({ token, itemType, itemId, creatorId }) => {
                 } else if (source == MENU_PAGE_NAME) {
                     response = await menuItemService.getSimilarProducts(token, itemType, itemId);
                 } else {
-                    navigate('/Not-found');
+                    return;
                 }
 
                 if (response.status === 200) {

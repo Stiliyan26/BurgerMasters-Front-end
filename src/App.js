@@ -60,19 +60,19 @@ function App() {
 							<Route path='/MyPosts/Burgers' element={<MyBurgerPosts />} />
 							<Route path='/MyPosts/Drinks' element={<MyDrinkPosts />} />
 							<Route path='/MyPosts/Fries' element={<MyFriesPosts />} />
-							<Route path='/MyPosts/Hotdog' element={<MyHotdogPosts />} />
-							<Route path='/MyPosts/Grill' element={<MyGrillPosts />} />
-							<Route path='/MyPosts/Salad' element={<MySaladPosts />} />
-							<Route path='/MyPosts/Sandwich' element={<MySandwichPosts />} />
+							<Route path='/MyPosts/Hotdogs' element={<MyHotdogPosts />} />
+							<Route path='/MyPosts/Grills' element={<MyGrillPosts />} />
+							<Route path='/MyPosts/Salads' element={<MySaladPosts />} />
+							<Route path='/MyPosts/Sandwiches' element={<MySandwichPosts />} />
 						</Route>
 
 						<Route path='/Menu/Burgers' element={<BurgerMenu />} />
 						<Route path='/Menu/Drinks' element={<DrinkMenu />} />
 						<Route path='/Menu/Fries' element={<FriesMenu />} />
-						<Route path='/Menu/Hotdog' element={<HotdogMenu />} />
-						<Route path='/Menu/Grill' element={<GrillMenu />} />
-						<Route path='/Menu/Salad' element={<SaladMenu />} />
-						<Route path='/Menu/Sandwich' element={<SandwichMenu />} />
+						<Route path='/Menu/Hotdogs' element={<HotdogMenu />} />
+						<Route path='/Menu/Grills' element={<GrillMenu />} />
+						<Route path='/Menu/Salads' element={<SaladMenu />} />
+						<Route path='/Menu/Sandwiches' element={<SandwichMenu />} />
 
 						<Route path='/Details/:itemId' element={<ItemDetails />} />
 						<Route path='/Cart' element={<Cart />} />

@@ -36,10 +36,10 @@ const Header = () => {
             myPostsRoute: '/MyPosts/Burgers'
         },
         {
-            name: 'Sandwich',
+            name: 'Sandwiches',
             icon: setIcon('fa-solid fa-sandwich', '#a39600'),
-            menuRoute: '/Menu/Sandwich',
-            myPostsRoute: '/MyPosts/Sandwich'
+            menuRoute: '/Menu/Sandwiches',
+            myPostsRoute: '/MyPosts/Sandwiches'
         },
         {
             name: 'Drinks',
@@ -54,22 +54,22 @@ const Header = () => {
             myPostsRoute: '/MyPosts/Fries'
         },
         {
-            name: 'Hotdog',
+            name: 'Hotdogs',
             icon: setIcon('fa-duotone fa-hotdog', ''),
-            menuRoute: '/Menu/Hotdog',
-            myPostsRoute: '/MyPosts/Hotdog'
+            menuRoute: '/Menu/Hotdogs',
+            myPostsRoute: '/MyPosts/Hotdogs'
         },
         {
-            name: 'Grill',
+            name: 'Grills',
             icon: setIcon('fa-solid fa-sausage', '#940a00'),
-            menuRoute: '/Menu/Grill',
-            myPostsRoute: '/MyPosts/Grill'
+            menuRoute: '/Menu/Grills',
+            myPostsRoute: '/MyPosts/Grills'
         },
         {
-            name: 'Salad',
+            name: 'Salads',
             icon: setIcon('fa-solid fa-salad', '#1f5125'),
-            menuRoute: '/Menu/Salad',
-            myPostsRoute: '/MyPosts/Salad'
+            menuRoute: '/Menu/Salads',
+            myPostsRoute: '/MyPosts/Salads'
         }
     ]
 

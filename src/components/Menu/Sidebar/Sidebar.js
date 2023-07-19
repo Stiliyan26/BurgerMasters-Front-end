@@ -8,12 +8,12 @@ import { Link } from 'react-router-dom';
 const Sidebar = ({ pageType }) => {
     const menu = [
         { name: "Burgers", image: 'Burger.png', menuRoute: '/Menu/Burgers', myPostsRoute: '/MyPosts/Burgers' },
-        { name: "Sandwich", image: 'Sandwich.png', menuRoute: '/Menu/Sandwich', myPostsRoute: '/MyPosts/Sandwich' },
+        { name: "Sandwiches", image: 'Sandwich.png', menuRoute: '/Menu/Sandwiches', myPostsRoute: '/MyPosts/Sandwiches' },
         { name: "Fries", image: 'Fries.png', menuRoute: '/Menu/Fries', myPostsRoute: '/MyPosts/Fries' },
         { name: "Drinks", image: 'Drinks.png', menuRoute: '/Menu/Drinks', myPostsRoute: '/MyPosts/Drinks' },
-        { name: "Hot-dogs", image: 'Hot-Dog.png', menuRoute: '/Menu/Hotdog', myPostsRoute: '/MyPosts/Hotdog' },
-        { name: "Grill", image: 'Grill.png', menuRoute: '/Menu/Grill', myPostsRoute: '/MyPosts/Grill' },
-        { name: "Salads", image: 'Salad.png', menuRoute: '/Menu/Salad', myPostsRoute: '/MyPosts/Salad' }
+        { name: "Hot-dogs", image: 'Hot-Dog.png', menuRoute: '/Menu/Hotdogs', myPostsRoute: '/MyPosts/Hotdogs' },
+        { name: "Grills", image: 'Grill.png', menuRoute: '/Menu/Grills', myPostsRoute: '/MyPosts/Grills' },
+        { name: "Salads", image: 'Salad.png', menuRoute: '/Menu/Salads', myPostsRoute: '/MyPosts/Salads' }
     ];
 
     const getPageRoute = (option) => {

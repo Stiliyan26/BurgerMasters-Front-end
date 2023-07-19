@@ -29,7 +29,7 @@ const CreateMenuItem = () => {
     const navigate = useNavigate();
 
     const CreateItemHandler = (menuItemInfo) => {
-        adminService.createMenuItem(menuItemInfo, token, user.userId)
+        adminService.createMenuItem(token, menuItemInfo, user.userId)
             .then(res => {
                 if (res.status === 200){
                     if (res.itemType === 'Burger'){
@@ -39,13 +39,13 @@ const CreateMenuItem = () => {
                     }  else if (res.itemType === 'Fries'){
                         navigate('/Menu/Fries');
                     } else if (res.itemType == 'Hotdog'){
-                        navigate('/Menu/Hotdog');
+                        navigate('/Menu/Hotdogs');
                     } else if (res.itemType == 'Grill'){
-                        navigate('/Menu/Grill');
+                        navigate('/Menu/Grills');
                     } else if (res.itemType == 'Salad'){
-                        navigate('/Menu/Salad');
+                        navigate('/Menu/Salads');
                     } else if (res.itemType == 'Sandwich'){
-                        navigate('/Menu/Sandwich');
+                        navigate('/Menu/Sandwiches');
                     }
                 } else if (res.status === 409){
                     setResponseErrorMsg(res.errorMessage);

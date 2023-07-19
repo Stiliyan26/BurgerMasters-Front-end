@@ -41,7 +41,7 @@ const EditMenuItem = () => {
                         imageUrl: res.item.imageUrl,
                         portionSize: res.item.portionSize,
                         description: res.item.description,
-                        price: res.item.price
+                        price: parseFloat(res.item.price).toFixed(2)
                     });
                 } else if (res.status === 404){
                     navigate('/Not-found')
@@ -69,9 +69,9 @@ const EditMenuItem = () => {
         initialValues: {
             name: '',
             imageUrl: '',
-            portionSize: '',
+            portionSize: 0,
             description: '',
-            price: ''
+            price: 0
         },
         validationSchema: editMenuItemSchema,
         onSubmit: EditItemHandler

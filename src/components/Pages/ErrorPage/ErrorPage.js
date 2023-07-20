@@ -9,7 +9,7 @@ const ErrorPage = () => {
 
     const handleGoBack = () => {
         if (location.pathname === '/Not-found'){
-            navigate(-2);
+            navigate(-3);
         } else {
             navigate(-1);
         }

@@ -2,6 +2,7 @@ import styles from './ItemDetails.module.css';
 
 import NumericInputControl from '../NumericInputControl/NumericInputControl';
 import SimilarProducts from '../SimilarProducts/SimilarProducts';
+import DeleteDialog from '../../Admin/DeleteDialog/DeleteDialog';
 
 import * as adminService from '../../../services/adminService';
 import * as menuService from '../../../services/menuItemService';
@@ -25,6 +26,7 @@ const ItemDetails = () => {
         creatorId: ''
     });
     const [quantity, setQuantity] = useState(1);
+    const [showConfirmDialog, setShowConfirmDialog] = useState(false);
 
     const { token, user, isAdmin } = useAuthContext();
     const { itemId } = useParams();
@@ -88,16 +90,17 @@ const ItemDetails = () => {
             : 'g';
     }
 
-    const userButtons = (
-        <div className={styles['order--item']}>
-            <NumericInputControl quantity={quantity} setQuantity={setQuantity} />
+    const showDeleteConfirmationDialog = (e) => {
+        e.preventDefault();
 
-            <Link to='/' className={styles['item--add-to-cart-btn']}>
-                <p className={styles['btn--content']}>Add to cart</p>
-                <i className="fa-light fa-cart-shopping fa-fade"></i>
-            </Link>
-        </div>
-    )
+        setShowConfirmDialog(true);
+    }
+
+    const hideDeleteConfirmationDialog = (e) => {
+        e.preventDefault();
+
+        setShowConfirmDialog(false);
+    }
 
     function handlDeleteItem() {
         adminService.deleteMenuItem(token, itemId, user.userId)
@@ -124,6 +127,17 @@ const ItemDetails = () => {
             });
     }
 
+    const userButtons = (
+        <div className={styles['order--item']}>
+            <NumericInputControl quantity={quantity} setQuantity={setQuantity} />
+
+            <Link to='/' className={styles['item--add-to-cart-btn']}>
+                <p className={styles['btn--content']}>Add to cart</p>
+                <i className="fa-light fa-cart-shopping fa-fade"></i>
+            </Link>
+        </div>
+    )
+
     const adminButtons = (
         <Fragment>
             {source === MENU_PAGE_NAME && userButtons}
@@ -134,7 +148,7 @@ const ItemDetails = () => {
                     <i className="fa-solid fa-pen-to-square fa-fade"></i>
                 </Link>
 
-                <Link onClick={handlDeleteItem} className={styles['delete-btn']}>
+                <Link onClick={showDeleteConfirmationDialog} className={styles['delete-btn']}>
                     <p className={styles['btn--content']}>Delete</p>
                     <i className="fa-solid fa-trash fa-beat-fade"></i>
                 </Link>
@@ -171,6 +185,13 @@ const ItemDetails = () => {
                     itemType={item.itemType}
                     itemId={itemId}
                     creatorId={user.userId}
+                />}
+
+            {showConfirmDialog && 
+                <DeleteDialog 
+                    hideDialog={hideDeleteConfirmationDialog}
+                    handleDelete={handlDeleteItem}
+                    itemName={item.name}
                 />}
         </div>
     )

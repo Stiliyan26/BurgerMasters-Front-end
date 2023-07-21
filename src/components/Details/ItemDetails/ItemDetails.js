@@ -6,6 +6,7 @@ import DeleteDialog from '../../Admin/DeleteDialog/DeleteDialog';
 
 import * as adminService from '../../../services/adminService';
 import * as menuService from '../../../services/menuItemService';
+import * as customerService from '../../../services/customerService';
 
 import { MENU_PAGE_NAME, MYPOSTS_PAGE_NAME } from '../../../Constants/globalConstants';
 
@@ -127,11 +128,27 @@ const ItemDetails = () => {
             });
     }
 
+    function handleAddToCart(e) {
+        e.preventDefault();
+
+        customerService.addToCart(token, item.id, user.userId, quantity)
+            .then(res => {
+                if (res.status === 200){
+                    console.log("Item added to cart");
+                } else if (res.status === 404){
+                    console.log("Item not found");
+                }
+            })
+            .catch(error => {
+                console.log(error.message)
+            })
+    }
+
     const userButtons = (
         <div className={styles['order--item']}>
             <NumericInputControl quantity={quantity} setQuantity={setQuantity} />
 
-            <Link to='/' className={styles['item--add-to-cart-btn']}>
+            <Link to='#' onClick={handleAddToCart} className={styles['item--add-to-cart-btn']}>
                 <p className={styles['btn--content']}>Add to cart</p>
                 <i className="fa-light fa-cart-shopping fa-fade"></i>
             </Link>

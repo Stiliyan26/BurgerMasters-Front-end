@@ -1,23 +1,44 @@
 import styles from './Cart.module.css';
 
-import NumericInputControl from '../../components/Details/NumericInputControl/NumericInputControl';
+import CartItemCard from './CartItemCard/CartItemCard';
 
-import { Fragment, useEffect } from 'react';
+import * as customerService from '../../services/customerService';
+import { useAuthContext } from '../../contexts/AuthContext';
 
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Cart = () => {
+    const [cartItems, setCartItems] = useState([]);
+    const { token, user } = useAuthContext();
 
     useEffect(() => {
         document.title = 'Cart';
+
+        customerService.getAllCartItems(token, user.userId)
+            .then(res => {
+                if (res.status === 200) {
+                    setCartItems(res.cartItems);
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }, []);
+
+
+    const getAllCartItems = () => {
+        return cartItems.map(item => {
+            return <CartItemCard key={item.id} item={item}/>
+        })
+    }
+
+    const getOrderPrice = () => {
+        return cartItems.reduce((totalPrice, item) => totalPrice + item.price, 0);
+    }
 
     return (
         <div id={styles['cart-wrapper']}>
-            <section id={styles['total-table']}>
-                <p className={styles['total-title']}>Total</p>
-                <p className={styles['total-price']}>56.12 lv.</p>
-            </section>
             <section id={styles['cart-container']}>
                 <section id={styles['cart-row']}>
                     <p className={styles['cart-column-name']}>Item</p>
@@ -27,67 +48,20 @@ const Cart = () => {
                     <p className={styles['cart-column-name']}>Sum</p>
                 </section>
 
-                <section id={styles['item-info']}>
-                    <div className={styles['img-container']}>
-                        <img className={styles['item-img']} src='/images/BurgerMenu/American.webp' />
-                    </div>
+                {cartItems && getAllCartItems()}
+            </section>
 
+            <section id={styles['total-table']}>
+                <p className={styles['total-title']}>Total payment</p>
 
-                    <h2 className={styles['item-name']}>American Cheese Burger (350g)</h2>
+                <div className={styles['total-row']}>
+                    <p className={styles['total-price--title']}>Total:</p>
+                    <p className={styles['total-price']}>{getOrderPrice()} lv.</p>
+                </div>
 
-                    <p className={styles['item-price']}> 14.99 lv.</p>
-
-                    <div className={styles['quantity-container']}>
-                        <NumericInputControl quantity={1} />
-                    </div>
-
-                    <p className={styles['total']}>24.25 lv</p>
-
-                    <Link className={styles["spinning-x"]}>
-                        <i className="fa-regular fa-xmark"></i>
-                    </Link>
-                </section>
-
-                <section id={styles['item-info']}>
-                    <div className={styles['img-container']}>
-                        <img className={styles['item-img']} src='/images/BurgerMenu/JuicyLucy.webp' />
-                    </div>
-
-                    <h2 className={styles['item-name']}> The Juicy Lucy (400g)</h2>
-
-                    <p className={styles['item-price']}> 14.99 lv.</p>
-
-                    <div className={styles['quantity-container']}>
-                        <NumericInputControl quantity={3} />
-                    </div>
-
-                    <p className={styles['total']}>24.25 lv</p>
-
-                    <Link className={styles["spinning-x"]}>
-                        <i className="fa-regular fa-xmark"></i>
-                    </Link>
-                </section>
-
-                <section id={styles['item-info']}>
-                    <div className={styles['img-container']}>
-                        <img className={styles['item-img']} src='/images/BurgerMenu/RustySavage.webp' />
-                    </div>
-
-
-                    <h2 className={styles['item-name']}> Rusty Savage (600g)</h2>
-
-                    <p className={styles['item-price']}>23.12 lv.</p>
-
-                    <div className={styles['quantity-container']}>
-                        <NumericInputControl quantity={2} />
-                    </div>
-
-                    <p className={styles['total']}>24.25 lv</p>
-
-                    <Link to="#" className={styles["spinning-x"]}>
-                        <i className="fa-regular fa-xmark"></i>
-                    </Link>
-                </section>
+                <Link className={styles['order-btn']}>
+                    Order
+                </Link>
             </section>
         </div>
     )

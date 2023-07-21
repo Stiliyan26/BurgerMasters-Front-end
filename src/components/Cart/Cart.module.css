@@ -1,12 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Chela+One&display=swap');
 
-#cart-wrapper{
-    margin-top: 30px;
+#cart-wrapper {
+    margin-top: 60px;
     margin-bottom: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
 }
 
 #cart-container {
-    width: 70%;
+    flex-basis: 80%;
     grid-template-columns: repeat(1, minmax(300px, 1fr));
     font-family: 'Chela One', cursive;
     text-align: center;
@@ -21,114 +25,54 @@
     color: #d5d9de;
 }
 
-#item-info {
-    display: grid;
-    grid-template-areas: "image name price quantity total remove";
-    grid-template-columns: 200px 1fr 1fr 1fr 1fr 1fr;
-    justify-items: center;
-    margin: 20px 0 20px 0;
-    border: 1px solid black;
-    padding: 15px 10px; 
-    background-color: #003554;
-    border-radius: 2rem;
-}
-
-#item-info .img-container {
-    grid-area: image;
-    display: inline-block;
-    flex-shrink: 0;
-    width: 200px;
-    margin-right: 10px;
-}
-
-#item-info .item-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: drop-shadow(0 0 10px #d5d9de);
-    animation: levitateAndGlowing 3s ease-in-out infinite;
-}
-
-#item-info .item-name {
-    grid-area: name;
-    color: #d5d9de;
-    align-self: center;
-    text-align: center;
-    animation: moveName 2s ease-in-out infinite;
-}
-
-#item-info .quantity-container {
-    grid-area: quantity;
-    align-self: center;
-}
-
-#item-info .item-price {
-    grid-area: price;
-    color: #d5d9de;
-    align-self: center;
-    font-size: 2rem;
-}
-
-#item-info .total {
-    grid-area: total;
-    color: #d5d9de;
-    align-self: center;
-    font-size: 2rem;
-}
-
-#item-info .spinning-x {
-    grid-area: remove;
-    font-family: 'Chela One', cursive;
+#total-table {
+    flex-basis: 15%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    cursor: pointer;
-    height: 200px;
-    text-decoration: none;
-    color: #545454;
-    transition: transform 0.3s ease;
     font-size: 2rem;
-    color: red;
-    transform: rotate(0deg);
+    font-family: 'Chela One', cursive;
+    color: #d5d9de;
+    height: 100%;
+    border-radius: 1rem;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 1px solid black;
+    text-align: center;
 }
 
-#item-info .spinning-x:hover {
-    transform: rotate(180deg);
+#total-table .total-title {
+    font-size: 2.5rem;
+    margin: 10px 0px 20px 0px;
 }
 
-#item-info .spinning-x:not(:hover) {
-    transition: transform 0.3s ease;
+#total-table .total-row {
+    font-size: 2rem;
+    display: flex;
+    flex-direction: row;
 }
 
-#item-info .spinning-x:not(:hover):hover {
-    transform: rotate(-180deg);
+#total-table .total-price--title {
+    margin: 0px;
+    padding-right: 15px;
 }
 
-@keyframes levitateAndGlowing {
-    0% {
-        filter: drop-shadow(0 0 5px #d5d9de);
-        transform: translateY(0px);
-    }
-
-    50% {
-        filter: drop-shadow(0 0 15px #d5d9de);
-        transform: translateY(-10px);
-    }
-
-    100% {
-        filter: drop-shadow(0 0 5px #d5d9de);
-        transform: translateY(0px);
-    }
+#total-table .total-price {
+    margin-top: 0px;
 }
 
-@keyframes moveName {
-    0% {
-        transform: scale(1.05);
-    }
-    50% {
-        transform: scale(1);
-    }
-    100% {
-        transform: scale(1.05);
-    }
+#total-table .order-btn {
+    text-decoration: none;
+    color: #d5d9de;
+    background-color: rgb(168, 0, 0);
+    padding: 10px 20px;
+    border-radius: 1rem;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+#total-table .order-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #e3e7ec;
+    background-color: rgb(168, 0, 0);
 }

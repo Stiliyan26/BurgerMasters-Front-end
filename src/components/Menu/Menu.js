@@ -45,7 +45,7 @@ const Menu = ({ itemType }) => {
     const getFilteredItems = useMemo(() => {
         if (!query && !sortQuery) {
             return itemsCollection.map(item => (
-                <ItemCard key={item.id} item={item} pageType={MENU_PAGE_NAME}/>
+                <ItemCard key={item.id} item={item} pageType={MENU_PAGE_NAME} />
             ));
         }
 
@@ -54,14 +54,14 @@ const Menu = ({ itemType }) => {
                 .slice()
                 .sort(sortQueries[sortQuery])
                 .map(item => (
-                    <ItemCard key={item.id} item={item} pageType={MENU_PAGE_NAME}/>
+                    <ItemCard key={item.id} item={item} pageType={MENU_PAGE_NAME} />
                 ));
         }
 
         return itemsCollection
             .filter(item => item.name.toLowerCase().includes(query.toLowerCase()))
             .map(item => (
-                <ItemCard key={item.id} item={item} pageType={MENU_PAGE_NAME}/>
+                <ItemCard key={item.id} item={item} pageType={MENU_PAGE_NAME} />
             ));
     }, [itemsCollection, query, sortQuery]);
 
@@ -73,7 +73,7 @@ const Menu = ({ itemType }) => {
 
     const menuData = () => (
         <Fragment>
-            <FilterSearchBar handleSearch={handleSearch} query={query} setSortQuery={setSortQuery}/>
+            <FilterSearchBar handleSearch={handleSearch} query={query} setSortQuery={setSortQuery} />
 
             <div id={styles['grid-container']}>
                 <Sidebar pageType={MENU_PAGE_NAME} />

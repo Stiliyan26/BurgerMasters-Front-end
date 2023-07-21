@@ -1,10 +1,16 @@
 import styles from './CartItemCard.module.css';
 
 import NumericInputControl from '../../Details/NumericInputControl/NumericInputControl';
+import * as customerService from '../../../services/customerService';
+import { useAuthContext } from '../../../contexts/AuthContext';
 
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
-const CartItemCard = ({item}) => {
+const CartItemCard = ({ item, handleRemoveItem, updateQuantity }) => {
+    const [quantity, setQuantity] = useState(item.quantity);
+
+    const { token, user } = useAuthContext();
 
     const portionMeasure = () => {
         return item.itemType === 'Drink'
@@ -13,9 +19,28 @@ const CartItemCard = ({item}) => {
     }
 
     const getQuantityPrice = () => {
-        return item.quantity * item.price;
+        return (quantity * item.price).toFixed(2);
     }
-    
+
+    function handleAddQuantity(quantityToAddOrRemove) {
+        customerService.addToCart(token, item.id, user.userId, quantityToAddOrRemove)
+            .then(res => {
+                if (res.status === 200) {
+                    console.log("Item added to cart");
+                    updateQuantity(item.id, quantity + quantityToAddOrRemove)
+                } else if (res.status === 404) {
+                    console.log("Item not found");
+                }
+            })
+            .catch(error => {
+                console.log(error.message)
+            })
+    }
+
+    function onRemove(){
+        handleRemoveItem(item.id);
+    }
+
     return (
         <section id={styles['item-info']}>
             <div className={styles['img-container']}>
@@ -29,16 +54,21 @@ const CartItemCard = ({item}) => {
                 {item.name} ({item.portionSize} {portionMeasure()})
             </h2>
 
-            <p className={styles['item-price']}>{item.price}</p>
+            <p className={styles['item-price']}>{item.price} lv.</p>
 
             <div className={styles['quantity-container']}>
-                <NumericInputControl quantity={item.quantity} />
+                <NumericInputControl
+                    quantity={quantity}
+                    setQuantity={setQuantity}
+                    handleAddToCart={handleAddQuantity}
+                    page={'Cart'}
+                />
             </div>
 
             <p className={styles['total']}>{getQuantityPrice()} lv.</p>
 
             <Link className={styles["spinning-x"]}>
-                <i className="fa-regular fa-xmark"></i>
+                <i onClick={onRemove} id={styles['spinning-icon']} className="fa-regular fa-xmark"></i>
             </Link>
         </section>
     )

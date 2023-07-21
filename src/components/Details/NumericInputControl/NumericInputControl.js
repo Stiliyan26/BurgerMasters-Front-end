@@ -1,22 +1,28 @@
 import styles from './NumericInputControl.module.css';
 
-import { useState } from 'react';
+const NumericInputControl = ({ quantity, setQuantity, handleAddToCart, page }) => {
 
-const NumericInputControl = ({ quantity, setQuantity }) => {
-
-    function handleQuantityDecrement(e) {
+    function handleQuantityDecrement() {
         if (quantity > 1) {
             setQuantity(prev => {
                 return prev - 1;
             });
+
+            if (page === 'Cart') {
+                handleAddToCart(-1);
+            }
         }
     }
 
-    function handleQuantityIncrement(e) {
+    function handleQuantityIncrement() {
         if (quantity < 15) {
             setQuantity(prev => {
                 return prev + 1;
             })
+
+            if (page === 'Cart') {
+                handleAddToCart(1);
+            }
         }
     }
 
@@ -30,7 +36,7 @@ const NumericInputControl = ({ quantity, setQuantity }) => {
                 className={styles['inp--quantity']}
                 readOnly
                 min="1"
-                max="15"    
+                max="15"
             />
 
             <button id={styles['increment']} onClick={handleQuantityIncrement}> + </button>

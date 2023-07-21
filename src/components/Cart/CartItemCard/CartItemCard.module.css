@@ -57,6 +57,7 @@
 #item-info .spinning-x {
     grid-area: remove;
     font-family: 'Chela One', cursive;
+    align-self: center;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -64,21 +65,22 @@
     height: 200px;
     text-decoration: none;
     color: #545454;
-    transition: transform 0.3s ease;
     font-size: 2rem;
     color: red;
-    transform: rotate(0deg);
+}
+#item-info #spinning-icon {
+    transition: transform 0.3s ease;
 }
 
-#item-info .spinning-x:hover {
+#item-info #spinning-icon:hover {
     transform: rotate(180deg);
 }
 
-#item-info .spinning-x:not(:hover) {
+#item-info #spinning-icon:not(:hover) {
     transition: transform 0.3s ease;
 }
 
-#item-info .spinning-x:not(:hover):hover {
+#item-info #spinning-icon:not(:hover):hover {
     transform: rotate(-180deg);
 }
 

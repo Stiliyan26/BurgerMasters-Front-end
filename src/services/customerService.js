@@ -7,3 +7,6 @@ export const addToCart = (token, itemId, userId, quantity) =>
 
 export const getAllCartItems = (token, userId) => 
     requester(`${baseUrl}/AllCartItems?userId=${userId}`, 'GET', null, token);
+
+export const removeCartItem = (token, itemId, userId) => 
+    requester(`${baseUrl}/RemoveCartItem?itemId=${itemId}&userId=${userId}`, 'DELETE', null, token);

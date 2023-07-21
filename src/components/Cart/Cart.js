@@ -10,6 +10,8 @@ import { Link } from 'react-router-dom';
 
 const Cart = () => {
     const [cartItems, setCartItems] = useState([]);
+    const [orderTotalPrice, setOrderTotalPrice] = useState('');
+
     const { token, user } = useAuthContext();
 
     useEffect(() => {
@@ -26,15 +28,52 @@ const Cart = () => {
             })
     }, []);
 
+    useEffect(() => {
+        getOrderPrice();
+    }, [cartItems]);
+
+    const getOrderPrice = () => {
+        const totalOrderPrice = cartItems.reduce(
+            (totalPrice, item) => totalPrice + (item.price * item.quantity), 0);
+
+        setOrderTotalPrice(totalOrderPrice.toFixed(2));
+    }
+
+    const handleUpdateQuantity = (itemId, newQuantity) => {
+        const updatedCartItems = cartItems
+            .map((item) =>
+                item.id === itemId 
+                ? { ...item, quantity: newQuantity } 
+                : item
+        );
+    
+        setCartItems(updatedCartItems);
+      };
 
     const getAllCartItems = () => {
         return cartItems.map(item => {
-            return <CartItemCard key={item.id} item={item}/>
+            return <CartItemCard
+                key={item.id}
+                item={item}
+                handleRemoveItem={handleRemoveItem}
+                updateQuantity={handleUpdateQuantity}
+            />
         })
     }
 
-    const getOrderPrice = () => {
-        return cartItems.reduce((totalPrice, item) => totalPrice + item.price, 0);
+    const handleRemoveItem = (itemIdToDelete) => {
+        customerService.removeCartItem(token, itemIdToDelete, user.userId)
+            .then(res => {
+                if (res.status === 200) {
+                    setCartItems(prevCartItems =>
+                        prevCartItems.filter(item => item.id !== itemIdToDelete));
+                } else if (res.status === 404) {
+                    console.log("Item not found");
+                }
+            })
+            .catch(error => {
+                console.log(error.message);
+            });
     }
 
     return (
@@ -56,7 +95,7 @@ const Cart = () => {
 
                 <div className={styles['total-row']}>
                     <p className={styles['total-price--title']}>Total:</p>
-                    <p className={styles['total-price']}>{getOrderPrice()} lv.</p>
+                    <p className={styles['total-price']}>{orderTotalPrice} lv.</p>
                 </div>
 
                 <Link className={styles['order-btn']}>

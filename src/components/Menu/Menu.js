@@ -3,6 +3,7 @@ import styles from './Menu.module.css';
 import ItemCard from './ItemCard/ItemCard';
 import Sidebar from './Sidebar/Sidebar';
 import Loader from './Loader/Loader';
+import FilterSearchBar from './FilterSearchBar/FilterSearchBar';
 
 import { MENU_PAGE_NAME } from '../../Constants/globalConstants';
 
@@ -10,8 +11,6 @@ import { useAuthContext } from '../../contexts/AuthContext';
 import * as menuItemService from '../../services/menuItemService';
 
 import { Fragment, useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
-import FilterSearchBar from './FilterSearchBar/FilterSearchBar';
 
 const Menu = ({ itemType }) => {
     const [itemsCollection, setItemsCollection] = useState([]);

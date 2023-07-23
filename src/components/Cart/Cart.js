@@ -13,7 +13,7 @@ const Cart = () => {
     const [orderTotalPrice, setOrderTotalPrice] = useState('');
 
     const { token, user } = useAuthContext();
-
+    //Load data
     useEffect(() => {
         document.title = 'Cart';
 
@@ -27,7 +27,7 @@ const Cart = () => {
                 console.log(error);
             })
     }, []);
-
+    
     useEffect(() => {
         getOrderPrice();
     }, [cartItems]);

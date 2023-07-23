@@ -6,7 +6,7 @@ import { useAuthContext } from '../../../contexts/AuthContext';
 
 import { Link } from 'react-router-dom';
 
-const ItemCard = ({ item, pageType }) => {
+const ItemCard = ({ item, pageType, handleShowSideCart }) => {
     const { token, user } = useAuthContext();
 
     const imageUrl = `/images/${item.itemType}Menu/${item.imageUrl}`;
@@ -53,6 +53,7 @@ const ItemCard = ({ item, pageType }) => {
             .then(res => {
                 if (res.status === 200) {
                     console.log("Item added to cart");
+                    handleShowSideCart(true);
                 } else if (res.status === 404) {
                     console.log("Item not found");
                 }

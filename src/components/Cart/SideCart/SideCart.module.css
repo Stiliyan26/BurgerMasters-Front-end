@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif&display=swap');
+
+.side-cart-container {
+    position: fixed;
+    top: 0;
+    width: 350px;
+    height: 100%;
+    background-color: #0a425e;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    transition: right 0.3s ease-in-out;
+    z-index: 1;
+    overflow: auto;
+    color: #d5d9de;
+    font-family: 'Roboto Serif', serif;
+}
+
+.side-cart-content {
+    padding: 20px;
+}
+
+.side-cart-item {
+    display: flex;
+    align-items: center;
+    padding-bottom: 25px;
+}
+
+.side-cart-item .side-cart-item-img {
+    width: 80px;
+    object-fit: cover;
+    margin-right: 10px;
+    filter: drop-shadow(0 0 9px #d5d9de);
+    animation: glowImg 2s ease infinite;
+}
+
+@keyframes glowImg {
+    0% {
+        transform: translateY(0);
+        filter: drop-shadow(0 0 3px #d5d9de);
+    }
+
+    50% {
+        transform: translateY(-5px);
+        filter: drop-shadow(0 0 9px #d5d9de);
+    }
+
+    100% {
+        transform: translateY(0);
+        filter: drop-shadow(0 0 3px #d5d9de);
+    }
+}
+
+.side-cart-item .column-container {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+}
+
+.side-cart-item .side-cart-item-name {
+    animation: glowing 2s ease-in-out infinite;
+}
+
+@keyframes glowing {
+    0% {
+        text-shadow: 0 0 5px #d5d9de;
+    }
+
+    50% {
+        text-shadow: 0 0 20px #d5d9de;
+    }
+
+    100% {
+        text-shadow: 0 0 5px #d5d9de;
+    }
+}
+
+.side-cart-item-quantity {
+    color: rgb(168, 167, 167);
+}
+
+.side-cart-item .spinning-x {
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    color: rgb(207, 0, 0);
+    font-size: 1.5rem;
+}
+
+.side-cart-container .closing-side-cart {
+    font-size: 2rem;
+    margin-top: 20px;
+    margin-right: 20px;
+    display: flex;
+    justify-content: flex-end;
+    text-decoration: none;
+    color: rgb(207, 0, 0);
+}
+
+.closing-side-cart #spinning-icon {
+    padding: 10px 15px;
+    border-radius: 50%;
+}
+
+.side-cart-item #spinning-icon,
+.closing-side-cart #spinning-icon {
+    transition: transform 0.3s ease;
+}
+
+.side-cart-item #spinning-icon:hover,
+.closing-side-cart #spinning-icon:hover {
+    transform: rotate(180deg);
+}
+
+.side-cart-item #spinning-icon:not(:hover),
+.closing-side-cart #spinning-icon:not(:hover) {
+    transition: transform 0.3s ease;
+}
+
+.side-cart-item #spinning-icon:not(:hover):hover,
+.closing-side-cart #spinning-icon:not(:hover):hover {
+    transform: rotate(-180deg);
+}
+
+.side-cart-container .side-cart-total {
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.side-cart-total .total-price {
+    margin-bottom: 30px;
+    animation: glowing 2s ease-in-out infinite;
+}
+
+.side-cart-total .checkout-btn {
+    text-decoration: none;
+    color: #d5d9de;
+    padding: 10px 20px;
+    background-color: gray;
+    border-radius: 1.5rem;
+}
+
+.side-cart-total .checkout-btn:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: rgb(137, 136, 136);
+    color: #e3e7ec;
+}

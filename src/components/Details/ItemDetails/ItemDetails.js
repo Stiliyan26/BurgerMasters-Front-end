@@ -3,6 +3,7 @@ import styles from './ItemDetails.module.css';
 import NumericInputControl from '../NumericInputControl/NumericInputControl';
 import SimilarProducts from '../SimilarProducts/SimilarProducts';
 import DeleteDialog from '../../Admin/DeleteDialog/DeleteDialog';
+import SideCart from '../../Cart/SideCart/SideCart';
 
 import * as adminService from '../../../services/adminService';
 import * as menuService from '../../../services/menuItemService';
@@ -28,6 +29,7 @@ const ItemDetails = () => {
     });
     const [quantity, setQuantity] = useState(1);
     const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+    const [isSideCartOpen, setIsSideCartOpen] = useState(false);
 
     const { token, user, isAdmin } = useAuthContext();
     const { itemId } = useParams();
@@ -133,9 +135,10 @@ const ItemDetails = () => {
 
         customerService.addToCart(token, item.id, user.userId, quantity)
             .then(res => {
-                if (res.status === 200){    
+                if (res.status === 200) {
                     console.log("Item added to cart");
-                } else if (res.status === 404){
+                    setIsSideCartOpen(true);
+                } else if (res.status === 404) {
                     console.log("Item not found");
                 }
             })
@@ -178,6 +181,10 @@ const ItemDetails = () => {
             ? adminButtons
             : userButtons;
 
+    function handleShowSideCart(isOpened) {
+        setIsSideCartOpen(isOpened);
+    }
+
     return (
         <div id={styles['details-wrapper']}>
             <section id={styles['details-container']}>
@@ -204,8 +211,14 @@ const ItemDetails = () => {
                     creatorId={user.userId}
                 />}
 
-            {showConfirmDialog && 
-                <DeleteDialog 
+            {isSideCartOpen
+                && <SideCart
+                    isSideCartOpen={isSideCartOpen}
+                    handleShowSideCart={handleShowSideCart}
+                />}
+
+            {showConfirmDialog &&
+                <DeleteDialog
                     hideDialog={hideDeleteConfirmationDialog}
                     handleDelete={handlDeleteItem}
                     itemName={item.name}

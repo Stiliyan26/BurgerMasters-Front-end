@@ -4,6 +4,7 @@ import ItemCard from './ItemCard/ItemCard';
 import Sidebar from './Sidebar/Sidebar';
 import Loader from './Loader/Loader';
 import FilterSearchBar from './FilterSearchBar/FilterSearchBar';
+import SideCart from '../Cart/SideCart/SideCart';
 
 import { MENU_PAGE_NAME } from '../../Constants/globalConstants';
 
@@ -17,6 +18,7 @@ const Menu = ({ itemType }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [query, setQuery] = useState("");
     const [sortQuery, setSortQuery] = useState("");
+    const [isSideCartOpen, setIsSideCartOpen] = useState(false);
 
     const { token } = useAuthContext();
 
@@ -44,7 +46,12 @@ const Menu = ({ itemType }) => {
     const getFilteredItems = useMemo(() => {
         if (!query && !sortQuery) {
             return itemsCollection.map(item => (
-                <ItemCard key={item.id} item={item} pageType={MENU_PAGE_NAME} />
+                <ItemCard
+                    key={item.id}
+                    item={item}
+                    pageType={MENU_PAGE_NAME}
+                    handleShowSideCart={handleShowSideCart}
+                />
             ));
         }
 
@@ -53,21 +60,34 @@ const Menu = ({ itemType }) => {
                 .slice()
                 .sort(sortQueries[sortQuery])
                 .map(item => (
-                    <ItemCard key={item.id} item={item} pageType={MENU_PAGE_NAME} />
+                    <ItemCard
+                        key={item.id}
+                        item={item}
+                        pageType={MENU_PAGE_NAME}
+                        handleShowSideCart={handleShowSideCart}
+                    />
                 ));
         }
 
         return itemsCollection
             .filter(item => item.name.toLowerCase().includes(query.toLowerCase()))
             .map(item => (
-                <ItemCard key={item.id} item={item} pageType={MENU_PAGE_NAME} />
+                <ItemCard
+                    key={item.id}
+                    item={item}
+                    pageType={MENU_PAGE_NAME}
+                    handleShowSideCart={handleShowSideCart}
+                />
             ));
     }, [itemsCollection, query, sortQuery]);
-
 
     function handleSearch(e) {
         setQuery(e.target.value);
         setSortQuery('');
+    }
+
+    function handleShowSideCart(isOpened) {
+        setIsSideCartOpen(isOpened);
     }
 
     const menuData = () => (
@@ -81,6 +101,12 @@ const Menu = ({ itemType }) => {
                     {itemsCollection && getFilteredItems}
                 </section>
             </div>
+
+            {isSideCartOpen 
+                && <SideCart 
+                        isSideCartOpen={isSideCartOpen}
+                        handleShowSideCart={handleShowSideCart}
+                    />}
         </Fragment>
     );
 

@@ -26,7 +26,6 @@ const CartItemCard = ({ item, handleRemoveItem, updateQuantity }) => {
         customerService.addToCart(token, item.id, user.userId, quantityToAddOrRemove)
             .then(res => {
                 if (res.status === 200) {
-                    console.log("Item added to cart");
                     updateQuantity(item.id, quantity + quantityToAddOrRemove)
                 } else if (res.status === 404) {
                     console.log("Item not found");

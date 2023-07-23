@@ -3,12 +3,18 @@
     grid-template-areas: "image name price quantity total remove";
     grid-template-columns: 200px 1fr 1fr 1fr 1fr 1fr;
     justify-items: center;
-    margin: 20px 0 20px 0;
-    border: 1px solid black;
-    padding: 15px 10px; 
+    margin: 30px 0 30px 0;
+    padding: 15px 10px;
     background-color: #003554;
     border-radius: 2rem;
     overflow: hidden;
+    box-shadow: 9px 10px 10px -1px rgba(0, 53, 84, 0.77);
+    -webkit-box-shadow: 9px 10px 10px -1px rgba(0, 53, 84, 0.77);
+    -moz-box-shadow: 9px 10px 10px -1px rgba(0, 53, 84, 0.77);
+    background-image: url('/public/images/card5.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover
 }
 
 #item-info .img-container {
@@ -17,6 +23,7 @@
     flex-shrink: 0;
     width: 200px;
     margin-right: 10px;
+    margin-left: 10px;
 }
 
 #item-info .item-img {
@@ -66,8 +73,10 @@
     text-decoration: none;
     color: #545454;
     font-size: 2rem;
-    color: red;
+    color: rgb(207, 0, 0);
+    font-size: 2.5rem;
 }
+
 #item-info #spinning-icon {
     transition: transform 0.3s ease;
 }
@@ -105,9 +114,11 @@
     0% {
         transform: scale(1.05);
     }
+
     50% {
         transform: scale(1);
     }
+
     100% {
         transform: scale(1.05);
     }

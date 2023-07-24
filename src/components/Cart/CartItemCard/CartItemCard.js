@@ -4,6 +4,8 @@ import NumericInputControl from '../../Details/NumericInputControl/NumericInputC
 import * as customerService from '../../../services/customerService';
 import { useAuthContext } from '../../../contexts/AuthContext';
 
+import { handleSmoothRedirection } from '../../../services/navigationServices';
+
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -43,7 +45,7 @@ const CartItemCard = ({ item, handleRemoveItem, updateQuantity }) => {
     return (
         <section id={styles['item-info']}>
             <div className={styles['img-container']}>
-                <Link to={`/Details/${item.id}?source=Menu`}>
+                <Link to={`/Details/${item.id}?source=Menu`} onClick={handleSmoothRedirection}>
                     <img className={styles['item-img']}
                         src={`/images/${item.itemType}Menu/${item.imageUrl}`}
                     />

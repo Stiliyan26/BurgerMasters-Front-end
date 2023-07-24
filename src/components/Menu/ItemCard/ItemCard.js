@@ -1,7 +1,7 @@
 import styles from './ItemCard.module.css';
 
 import * as customerService from '../../../services/customerService';
-import { handleDetailsLinkClick } from '../../../services/navigationServices';
+import { handleSmoothRedirection } from '../../../services/navigationServices';
 
 import { MYPOSTS_PAGE_NAME, MENU_PAGE_NAME } from '../../../Constants/globalConstants';
 import { useAuthContext } from '../../../contexts/AuthContext';
@@ -37,7 +37,7 @@ const ItemCard = ({ item, pageType, handleShowSideCart, setSideCartItemsCount })
     );
 
     const detailsBtn = (
-        <Link to={detailsPageSource()} onClick={handleDetailsLinkClick} className={styles['details--btn']}>
+        <Link to={detailsPageSource()} onClick={handleSmoothRedirection} className={styles['details--btn']}>
             <p className={styles['btn--content']}>Details</p>
             <i className="fa-light fa-cart-shopping fa-fade"></i>
         </Link>
@@ -69,14 +69,14 @@ const ItemCard = ({ item, pageType, handleShowSideCart, setSideCartItemsCount })
     return (
         <section id={styles['card']}>
             <div className={styles['img-container']}>
-                <Link to={detailsPageSource()} onClick={handleDetailsLinkClick} className={styles['link--img']}>
+                <Link to={detailsPageSource()} onClick={handleSmoothRedirection} className={styles['link--img']}>
                     <img src={imageUrl} className={styles['img']} alt="item image" />
                 </Link>
             </div>
 
             <div className={styles['item-info']}>
                 <div className={styles['wrap']}>
-                    <Link to={detailsPageSource()} onClick={handleDetailsLinkClick} className={styles['link--tag']}>
+                    <Link to={detailsPageSource()} onClick={handleSmoothRedirection} className={styles['link--tag']}>
                         <h3 className={styles['item--title']}>{item.name}</h3>
                     </Link>
                     <p className={styles['item--portion-size']}>({item.portionSize}{portionMeasure})</p>

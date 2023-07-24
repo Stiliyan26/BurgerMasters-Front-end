@@ -81,9 +81,9 @@ const Cart = () => {
     function handleOrder() {
         const orderDate = orderService.getOrderDateToString();
         const orderPrice = Number(orderTotalPrice);
+        const menuItems = cartItems.map(ci => ({ menuItemId: ci.id, quantity: ci.quantity }))
 
-        //console.log({ userId: user.userId, cartItems, orderPrice, orderDate })
-        orderService.sentOrder(token, orderDate, user.userId, cartItems, orderPrice)
+        orderService.sentOrder(token, orderDate, user.userId, menuItems, orderPrice)
             .then(res => {
                 if (res.status === 200) {
                     console.log("Order sent!");

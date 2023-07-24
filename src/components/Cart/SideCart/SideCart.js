@@ -1,6 +1,7 @@
 import styles from './SideCart.module.css';
 
 import * as customerService from '../../../services/customerService';
+import { handleSmoothRedirection } from '../../../services/navigationServices';
 
 import { useAuthContext } from '../../../contexts/AuthContext';
 
@@ -115,7 +116,7 @@ const SideCart = ({ isSideCartOpen, handleShowSideCart, sideCartItemCount, setSi
             <div className={styles['side-cart-total']}>
                 <p className={styles['total-price']}>Total: {totalPrice()} lv.</p>
 
-                <Link to="/Cart" className={styles['checkout-btn']}>
+                <Link to="/Cart" onClick={handleSmoothRedirection} className={styles['checkout-btn']}>
                     CHECKOUT
                 </Link>
             </div>

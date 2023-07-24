@@ -5,16 +5,16 @@
     top: 100px;
     bottom: 0;
     width: 350px;
-    background-color: #0a425e;
+    background-color: #003554;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     transition: right 0.3s ease-in-out;
     z-index: 1;
     overflow: auto;
     color: #d5d9de;
     font-family: 'Roboto Serif', serif;
-    background-image: url('/public/images/bluewall.jpg');
+    /* background-image: url('/public/images/bluewallLighten.webp');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; */
 }
 
 /* Add a class to set full height when scrolling */

@@ -2,10 +2,11 @@ import { requester } from "./requester";
 
 const baseUrl = 'https://localhost:7129/api/Order';
 
-export const sentOrder = (token, orderDate, userId, orderDetails, orderPrice ) =>
-    requester(`${baseUrl}/SentOrder`, 'POST', { orderDate, userId, orderDetails, orderPrice }, token);
+export const sentOrder = (token, orderDate, userId, menuItems, orderPrice ) =>
+    requester(`${baseUrl}/SentOrder`, 'POST', { orderDate, userId, menuItems, orderPrice }, token);
 
-
+export const getAllPendingOrders = (token, adminId) => 
+    requester(`${baseUrl}/AllPendingOrders?adminId=${adminId}`, 'GET', null, token);
 
 export const getOrderDateToString = () => {
     const now = new Date();

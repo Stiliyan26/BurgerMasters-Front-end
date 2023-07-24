@@ -10,7 +10,7 @@ import { MENU_PAGE_NAME, MYPOSTS_PAGE_NAME } from '../../../Constants/globalCons
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const SimilarProducts = ({ token, itemType, itemId, creatorId }) => {
+const SimilarProducts = ({ token, itemType, itemId, creatorId, handleShowSideCart, setSideCartItemsCount }) => {
     const [similarProducts, setSimilarProducts] = useState([]);
 
     const navigate = useNavigate();
@@ -54,6 +54,8 @@ const SimilarProducts = ({ token, itemType, itemId, creatorId }) => {
                 className={styles['similar-item']}
                 item={item}
                 pageType={source}
+                handleShowSideCart={handleShowSideCart}
+                setSideCartItemsCount={setSideCartItemsCount}
             />
         ));
 
@@ -64,6 +66,7 @@ const SimilarProducts = ({ token, itemType, itemId, creatorId }) => {
             <div className={styles['grid--container']}>
                 {similarProducts && getSimilarProducts()}
             </div>
+
         </section>
     )
 }

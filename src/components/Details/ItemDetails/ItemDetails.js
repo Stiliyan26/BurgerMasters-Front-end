@@ -212,6 +212,8 @@ const ItemDetails = () => {
                     itemType={item.itemType}
                     itemId={itemId}
                     creatorId={user.userId}
+                    handleShowSideCart={handleShowSideCart}
+                    setSideCartItemsCount={setSideCartItemsCount}
                 />}
 
             {isSideCartOpen

@@ -64,10 +64,14 @@ const ItemCard = ({ item, pageType, handleShowSideCart, setSideCartItemsCount })
             })
     }
 
+    function handleDetailsLinkClick() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
     return (
         <section id={styles['card']}>
             <div className={styles['img-container']}>
-                <Link to={detailsPageSource()} className={styles['link--img']}>
+                <Link to={detailsPageSource()} onClick={handleDetailsLinkClick} className={styles['link--img']}>
                     <img src={imageUrl} className={styles['img']} alt="item image" />
                 </Link>
             </div>

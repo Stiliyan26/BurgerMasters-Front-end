@@ -92,8 +92,8 @@
 }
 
 .order-info .order-price {
+    font-size: 2rem;
     animation: levitate 3s ease-in-out infinite;
-
 }
 
 .order-info .order-status {

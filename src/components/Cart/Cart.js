@@ -3,6 +3,8 @@ import styles from './Cart.module.css';
 import CartItemCard from './CartItemCard/CartItemCard';
 
 import * as customerService from '../../services/customerService';
+import * as orderService from '../../services/orderService';
+
 import { useAuthContext } from '../../contexts/AuthContext';
 
 import { useEffect, useState } from 'react';
@@ -27,7 +29,7 @@ const Cart = () => {
                 console.log(error);
             })
     }, []);
-    
+
     useEffect(() => {
         getOrderPrice();
     }, [cartItems]);
@@ -42,13 +44,13 @@ const Cart = () => {
     const handleUpdateQuantity = (itemId, newQuantity) => {
         const updatedCartItems = cartItems
             .map((item) =>
-                item.id === itemId 
-                ? { ...item, quantity: newQuantity } 
-                : item
-        );
-    
+                item.id === itemId
+                    ? { ...item, quantity: newQuantity }
+                    : item
+            );
+
         setCartItems(updatedCartItems);
-      };
+    };
 
     const getAllCartItems = () => {
         return cartItems.map(item => {
@@ -76,6 +78,22 @@ const Cart = () => {
             });
     }
 
+    function handleOrder() {
+        const orderDate = orderService.getOrderDateToString();
+        const orderPrice = Number(orderTotalPrice);
+
+        //console.log({ userId: user.userId, cartItems, orderPrice, orderDate })
+        orderService.sentOrder(token, orderDate, user.userId, cartItems, orderPrice)
+            .then(res => {
+                if (res.status === 200) {
+                    console.log("Order sent!");
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
     return (
         <div id={styles['cart-wrapper']}>
             <section id={styles['cart-container']}>
@@ -98,7 +116,7 @@ const Cart = () => {
                     <p className={styles['total-price']}>{orderTotalPrice} lv.</p>
                 </div>
 
-                <Link className={styles['order-btn']}>
+                <Link onClick={handleOrder} className={styles['order-btn']}>
                     Order
                 </Link>
             </section>

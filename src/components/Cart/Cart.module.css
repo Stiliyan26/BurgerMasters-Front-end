@@ -77,6 +77,8 @@
 #total-table .total-row {
     font-size: 2rem;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     flex-direction: row;
     animation: wiggle 3s linear infinite;
 }

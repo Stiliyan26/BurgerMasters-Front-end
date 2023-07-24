@@ -1,7 +1,9 @@
 import styles from './ItemCard.module.css';
 
-import { MYPOSTS_PAGE_NAME, MENU_PAGE_NAME } from '../../../Constants/globalConstants';
 import * as customerService from '../../../services/customerService';
+import { handleDetailsLinkClick } from '../../../services/navigationServices';
+
+import { MYPOSTS_PAGE_NAME, MENU_PAGE_NAME } from '../../../Constants/globalConstants';
 import { useAuthContext } from '../../../contexts/AuthContext';
 
 import { Link } from 'react-router-dom';
@@ -35,7 +37,7 @@ const ItemCard = ({ item, pageType, handleShowSideCart, setSideCartItemsCount })
     );
 
     const detailsBtn = (
-        <Link to={detailsPageSource()} className={styles['details--btn']}>
+        <Link to={detailsPageSource()} onClick={handleDetailsLinkClick} className={styles['details--btn']}>
             <p className={styles['btn--content']}>Details</p>
             <i className="fa-light fa-cart-shopping fa-fade"></i>
         </Link>
@@ -64,10 +66,6 @@ const ItemCard = ({ item, pageType, handleShowSideCart, setSideCartItemsCount })
             })
     }
 
-    function handleDetailsLinkClick() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
     return (
         <section id={styles['card']}>
             <div className={styles['img-container']}>
@@ -78,7 +76,7 @@ const ItemCard = ({ item, pageType, handleShowSideCart, setSideCartItemsCount })
 
             <div className={styles['item-info']}>
                 <div className={styles['wrap']}>
-                    <Link to={detailsPageSource()} className={styles['link--tag']}>
+                    <Link to={detailsPageSource()} onClick={handleDetailsLinkClick} className={styles['link--tag']}>
                         <h3 className={styles['item--title']}>{item.name}</h3>
                     </Link>
                     <p className={styles['item--portion-size']}>({item.portionSize}{portionMeasure})</p>

@@ -1,6 +1,7 @@
 import styles from './Sidebar.module.css';
 
 import { MENU_PAGE_NAME, MYPOSTS_PAGE_NAME } from '../../../Constants/globalConstants';
+import { handleDetailsLinkClick } from '../../../services/navigationServices';
 
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
@@ -30,7 +31,7 @@ const Sidebar = ({ pageType }) => {
             <Fragment key={option.name}>
                 <hr className={styles.divider} />
 
-                <Link to={getPageRoute(option)} className={styles['sidebar--wrapper--link']}>
+                <Link to={getPageRoute(option)} onClick={handleDetailsLinkClick} className={styles['sidebar--wrapper--link']}>
                     <img className={styles['sidebar--img']} src={`/images/menu/${option.image}`} alt={option.name} />
                     <p className={styles['sidebar--subtitle']}>{option.name}</p>
                 </Link>

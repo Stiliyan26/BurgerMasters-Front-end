@@ -18,7 +18,9 @@ const Menu = ({ itemType }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [query, setQuery] = useState("");
     const [sortQuery, setSortQuery] = useState("");
+
     const [isSideCartOpen, setIsSideCartOpen] = useState(false);
+    const [sideCartItemCount, setSideCartItemsCount] = useState(0);
 
     const { token } = useAuthContext();
 
@@ -51,6 +53,7 @@ const Menu = ({ itemType }) => {
                     item={item}
                     pageType={MENU_PAGE_NAME}
                     handleShowSideCart={handleShowSideCart}
+                    setSideCartItemsCount={setSideCartItemsCount}
                 />
             ));
         }
@@ -65,6 +68,7 @@ const Menu = ({ itemType }) => {
                         item={item}
                         pageType={MENU_PAGE_NAME}
                         handleShowSideCart={handleShowSideCart}
+                        setSideCartItemsCount={setSideCartItemsCount}
                     />
                 ));
         }
@@ -77,6 +81,8 @@ const Menu = ({ itemType }) => {
                     item={item}
                     pageType={MENU_PAGE_NAME}
                     handleShowSideCart={handleShowSideCart}
+                    setSideCartItemsCount={setSideCartItemsCount}
+
                 />
             ));
     }, [itemsCollection, query, sortQuery]);
@@ -102,10 +108,12 @@ const Menu = ({ itemType }) => {
                 </section>
             </div>
 
-            {isSideCartOpen 
-                && <SideCart 
+            {isSideCartOpen
+                && <SideCart
                         isSideCartOpen={isSideCartOpen}
                         handleShowSideCart={handleShowSideCart}
+                        sideCartItemCount={sideCartItemCount}
+                        setSideCartItemsCount={setSideCartItemsCount}
                     />}
         </Fragment>
     );

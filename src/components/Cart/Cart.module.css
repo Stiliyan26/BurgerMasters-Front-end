@@ -26,10 +26,14 @@
     box-shadow: 9px 10px 10px -1px rgba(0, 53, 84, 0.77);
     -webkit-box-shadow: 9px 10px 10px -1px rgba(0, 53, 84, 0.77);
     -moz-box-shadow: 9px 10px 10px -1px rgba(0, 53, 84, 0.77);
-    background-image: url('/public/images/card5.jpg');
+    background-image: url('/public/images/card.jpg');
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover
+    background-size: cover;
+}
+
+#cart-row .cart-column-name {
+    text-shadow: 1.5px 1.5px #9ca0a3;
 }
 
 #total-table {
@@ -52,12 +56,62 @@
 #total-table .total-title {
     font-size: 2.5rem;
     margin: 10px 0px 20px 0px;
+    animation: glowing 3s ease-in-out infinite;
+}
+
+
+@keyframes glowing {
+    0% {
+        filter: drop-shadow(0 0 5px #d5d9de);
+    }
+
+    50% {
+        filter: drop-shadow(0 0 10px #d5d9de);
+    }
+
+    100% {
+        filter: drop-shadow(0 0 5px #d5d9de);
+    }
 }
 
 #total-table .total-row {
     font-size: 2rem;
     display: flex;
     flex-direction: row;
+    animation: wiggle 3s linear infinite;
+}
+
+@keyframes wiggle {
+
+    0%,
+    7% {
+        transform: rotateZ(0);
+    }
+
+    15% {
+        transform: rotateZ(-15deg);
+    }
+
+    20% {
+        transform: rotateZ(10deg);
+    }
+
+    25% {
+        transform: rotateZ(-10deg);
+    }
+
+    30% {
+        transform: rotateZ(6deg);
+    }
+
+    35% {
+        transform: rotateZ(-4deg);
+    }
+
+    40%,
+    100% {
+        transform: rotateZ(0);
+    }
 }
 
 #total-table .total-price--title {

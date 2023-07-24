@@ -56,9 +56,10 @@ export const getUserInfo = (token) => {
     const userId = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
     const username = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
     const email = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'];
+    const address = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/streetaddress'];
     const birthdate = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/dateofbirth'];
     const role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
     const jwtExpireDate = decodedToken['exp'];
 
-    return { userId, username, email, birthdate, role, token, jwtExpireDate };
+    return { userId, username, email, address, birthdate, role, token, jwtExpireDate };
 }

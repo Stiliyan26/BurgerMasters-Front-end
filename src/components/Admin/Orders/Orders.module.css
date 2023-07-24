@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Chela+One&display=swap');
+
+#orders-container {
+    width: 80%;
+    font-family: 'Chela One', cursive;
+    margin-top: 60px;
+}
+
+#orders-container .order-info-row {
+    background-color: #003554;
+    color: #d5d9de;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    border-radius: 2rem;
+    font-size: 1.5rem;
+    text-align: center;
+    box-shadow: 9px 10px 10px -1px rgba(0, 53, 84, 0.77);
+    -webkit-box-shadow: 9px 10px 10px -1px rgba(0, 53, 84, 0.77);
+    -moz-box-shadow: 9px 10px 10px -1px rgba(0, 53, 84, 0.77);
+    background-image: url('/public/images/bluewall.jpg');
+    background-position: 50% 20%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 10px;
+    justify-items: center;
+    align-items: center;
+}
+
+#orders-container .order-info-row .order-column-name {
+    text-shadow: 1.5px 1.5px #9ca0a3;
+}
+
+.order-info {
+    display: grid;
+    color: #d5d9de;
+    border-radius: 2rem;
+    grid-template-columns: repeat(6, 1fr);
+    background-color: #003554;
+    box-shadow: 9px 10px 10px -1px rgba(0, 53, 84, 0.77);
+    -webkit-box-shadow: 9px 10px 10px -1px rgba(0, 53, 84, 0.77);
+    -moz-box-shadow: 9px 10px 10px -1px rgba(0, 53, 84, 0.77);
+    background-image: url('/public/images/bluewall.jpg');
+    background-position: 50% 35%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 30px 0px 30px 0px;
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 10px;
+    overflow: hidden;
+    justify-items: center;
+    align-items: center;
+    perspective: 400px;
+}
+
+.order-info .order-id {
+    animation: glowing 2s ease-in-out infinite;
+}
+
+@keyframes glowing {
+    0% {
+        text-shadow: 0 0 5px #d5d9de;
+    }
+
+    50% {
+        text-shadow: 0 0 10px #d5d9de;
+    }
+
+    100% {
+        text-shadow: 0 0 5px #d5d9de;
+    }
+}
+
+.order-info .order-username {
+    white-space: nowrap;
+    animation: levitate 3s ease-in-out infinite;
+
+}
+
+.order-info .order-date {
+    animation: levitate 3s ease-in-out infinite;
+}
+
+@keyframes levitate {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.order-info .order-price {
+    animation: levitate 3s ease-in-out infinite;
+
+}
+
+.order-info .order-status {
+    animation: wiggle 2s linear infinite;
+}
+
+
+@keyframes wiggle {
+
+    0%,
+    7% {
+        transform: rotateZ(0);
+    }
+
+    15% {
+        transform: rotateZ(-15deg);
+    }
+
+    20% {
+        transform: rotateZ(10deg);
+    }
+
+    25% {
+        transform: rotateZ(-10deg);
+    }
+
+    30% {
+        transform: rotateZ(6deg);
+    }
+
+    35% {
+        transform: rotateZ(-4deg);
+    }
+
+    40%,
+    100% {
+        transform: rotateZ(0);
+    }
+}
+
+.order-info .order-status {
+    background: #003554;
+    border: none;
+    color: #d5d9de;
+    font-size: 1.5rem;
+    padding: 10px 20px;
+    border-radius: 1rem;
+    cursor: pointer;
+}

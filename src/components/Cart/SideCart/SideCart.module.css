@@ -2,9 +2,9 @@
 
 .side-cart-container {
     position: fixed;
-    top: 0;
+    top: 100px;
+    bottom: 0;
     width: 350px;
-    height: 100%;
     background-color: #0a425e;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     transition: right 0.3s ease-in-out;
@@ -12,7 +12,17 @@
     overflow: auto;
     color: #d5d9de;
     font-family: 'Roboto Serif', serif;
+    background-image: url('/public/images/bluewall.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
+
+/* Add a class to set full height when scrolling */
+.side-cart-container.full-height {
+    top: 0;
+    height: 100vh 
+}
+
 
 .side-cart-content {
     padding: 20px;

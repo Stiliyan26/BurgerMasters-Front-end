@@ -11,10 +11,10 @@
     box-shadow: 9px 10px 10px -1px rgba(0, 53, 84, 0.77);
     -webkit-box-shadow: 9px 10px 10px -1px rgba(0, 53, 84, 0.77);
     -moz-box-shadow: 9px 10px 10px -1px rgba(0, 53, 84, 0.77);
-    background-image: url('/public/images/card5.jpg');
+    background-image: url('/public/images/card.jpg');
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover
+    background-size: cover;
 }
 
 #item-info .img-container {
@@ -52,6 +52,19 @@
     color: #d5d9de;
     align-self: center;
     font-size: 2rem;
+    animation: flicker 2s ease-in-out infinite;
+}
+
+@keyframes flicker {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
 }
 
 #item-info .total {
@@ -59,6 +72,40 @@
     color: #d5d9de;
     align-self: center;
     font-size: 2rem;
+    animation: wiggle 3s linear infinite;
+}
+
+@keyframes wiggle {
+
+    0%,
+    7% {
+        transform: rotateZ(0);
+    }
+
+    15% {
+        transform: rotateZ(-15deg);
+    }
+
+    20% {
+        transform: rotateZ(10deg);
+    }
+
+    25% {
+        transform: rotateZ(-10deg);
+    }
+
+    30% {
+        transform: rotateZ(6deg);
+    }
+
+    35% {
+        transform: rotateZ(-4deg);
+    }
+
+    40%,
+    100% {
+        transform: rotateZ(0);
+    }
 }
 
 #item-info .spinning-x {

@@ -36,24 +36,25 @@ const CartItemCard = ({ item, handleRemoveItem, updateQuantity }) => {
             })
     }
 
-    function onRemove(){
+    function onRemove() {
         handleRemoveItem(item.id);
     }
 
     return (
         <section id={styles['item-info']}>
             <div className={styles['img-container']}>
-                <img className={styles['item-img']}
-                    src={`/images/${item.itemType}Menu/${item.imageUrl}`}
-                />
+                <Link to={`/Details/${item.id}?source=Menu`}>
+                    <img className={styles['item-img']}
+                        src={`/images/${item.itemType}Menu/${item.imageUrl}`}
+                    />
+                </Link>
             </div>
-
 
             <h2 className={styles['item-name']}>
                 {item.name} ({item.portionSize} {portionMeasure()})
             </h2>
 
-            <p className={styles['item-price']}>{item.price} lv.</p>
+            <p className={styles['item-price']}>{item.price.toFixed(2)} lv.</p>
 
             <div className={styles['quantity-container']}>
                 <NumericInputControl

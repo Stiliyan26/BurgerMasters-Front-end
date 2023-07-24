@@ -23,7 +23,7 @@ const Header = () => {
     }
 
     const iconClassName = (iconNameAndStyle) =>
-        `${iconNameAndStyle} fa-beat-fade`;
+        `${iconNameAndStyle} fa-bounce`;
 
     const setIcon = (iconNameAndStyle, color) =>
         <i className={iconClassName(iconNameAndStyle)} style={{ color: color }}></i>
@@ -156,6 +156,12 @@ const Header = () => {
                 <ul className={styles['menu-dropdown']}>
                     {getAllItemsNav(MYPOSTS_PAGE_NAME)}
                 </ul>
+            </li>
+
+            <li className={styles['list-item']}>
+                <Link to='/Orders' className={styles['create']}>
+                    Orders <i className="fa-sharp fa-light fa-clipboard-list fa-bounce"></i>
+                </Link>
             </li>
 
             {userNav}

@@ -12,6 +12,7 @@ const Register = () => {
     const [inputValues, setInputValues] = useState({
         username: "",
         email: "",
+        address: "",
         birthdate: "",
         password: "",
         confirmPassword: ""
@@ -48,6 +49,15 @@ const Register = () => {
         },
         {
             id: 3,
+            name: 'address',
+            type: 'text',
+            placeholder: 'Address',
+            errorMessage: "Address is required!",
+            label: 'Address',
+            required: true
+        },
+        {
+            id: 4,
             name: 'birthdate',
             type: 'date',
             placeholder: 'Birthdate',
@@ -56,7 +66,7 @@ const Register = () => {
             required: true
         },
         {
-            id: 4,
+            id: 5,
             name: 'password',
             type: 'password',
             placeholder: 'Password',
@@ -66,7 +76,7 @@ const Register = () => {
             required: true
         },
         {
-            id: 5,
+            id: 6,
             name: 'confirmPassword',
             type: 'password',
             placeholder: 'Confirm Password',
@@ -89,7 +99,7 @@ const Register = () => {
                     const { token } = res;
                     //Gettig the information from the decoded jwt
                     const userInfo = authService.getUserInfo(token);
-
+                    
                     login(userInfo);
                     setResponseErrors([]);
                     navigate('/');

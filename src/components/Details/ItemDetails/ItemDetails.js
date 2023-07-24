@@ -29,7 +29,9 @@ const ItemDetails = () => {
     });
     const [quantity, setQuantity] = useState(1);
     const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+
     const [isSideCartOpen, setIsSideCartOpen] = useState(false);
+    const [sideCartItemCount, setSideCartItemsCount] = useState(0);
 
     const { token, user, isAdmin } = useAuthContext();
     const { itemId } = useParams();
@@ -138,6 +140,7 @@ const ItemDetails = () => {
                 if (res.status === 200) {
                     console.log("Item added to cart");
                     setIsSideCartOpen(true);
+                    setSideCartItemsCount(prev => prev + quantity);
                 } else if (res.status === 404) {
                     console.log("Item not found");
                 }
@@ -215,6 +218,8 @@ const ItemDetails = () => {
                 && <SideCart
                     isSideCartOpen={isSideCartOpen}
                     handleShowSideCart={handleShowSideCart}
+                    sideCartItemCount={sideCartItemCount}
+                    setSideCartItemsCount={setSideCartItemsCount}
                 />}
 
             {showConfirmDialog &&

@@ -26,7 +26,7 @@ export const AuthProvider = ({
 
         if (user) {
             const { token, jwtExpireDate, userId } = user;
-
+            
             if (token) {
                 const isTokenExpired = () => {
                     const currentTime = Date.now() / 1000;

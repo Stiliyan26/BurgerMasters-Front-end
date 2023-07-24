@@ -7,8 +7,9 @@ import { useAuthContext } from '../../../contexts/AuthContext';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-const SideCart = ({ isSideCartOpen, handleShowSideCart }) => {
+const SideCart = ({ isSideCartOpen, handleShowSideCart, sideCartItemCount, setSideCartItemsCount }) => {
     const [sideCartItems, setSideCartItems] = useState([]);
+    const [isFullHeight, setIsFullHeight] = useState(false);
 
     const { token, user } = useAuthContext();
 
@@ -22,7 +23,20 @@ const SideCart = ({ isSideCartOpen, handleShowSideCart }) => {
             .catch(error => {
                 console.log(error);
             })
-    }, [sideCartItems])
+
+        const handleScroll = () => {
+            setIsFullHeight(window.scrollY > 0);
+        };
+
+        handleScroll();
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [sideCartItemCount])
+
+
 
     const portionMeasure = (item) => {
         return item.itemType === 'Drink'
@@ -45,7 +59,7 @@ const SideCart = ({ isSideCartOpen, handleShowSideCart }) => {
                         <div className={styles['side-cart-item-quantity']}>x{item.quantity}</div>
                     </div>
 
-                    <Link onClick={() => handleRemoveItem(item.id)} className={styles["spinning-x"]}>
+                    <Link onClick={(e) => handleRemoveItem(item.id, e)} className={styles["spinning-x"]}>
                         <i id={styles['spinning-icon']} className="fa-regular fa-xmark"></i>
                     </Link>
                 </div>
@@ -59,12 +73,17 @@ const SideCart = ({ isSideCartOpen, handleShowSideCart }) => {
         return totalPrice.toFixed(2);
     }
 
-    const handleRemoveItem = (itemIdToDelete) => {
+    const handleRemoveItem = (itemIdToDelete, e) => {
+        e.preventDefault();
+
         customerService.removeCartItem(token, itemIdToDelete, user.userId)
             .then(res => {
                 if (res.status === 200) {
-                    sideCartItems(prevCartItems =>
-                        prevCartItems.filter(item => item.id !== itemIdToDelete));
+                    setSideCartItems(prevCartItems =>
+                        prevCartItems.filter(item => item.id !== itemIdToDelete)
+                    );
+
+                    setSideCartItemsCount(prevCount => prevCount - 1);
                 } else if (res.status === 404) {
                     console.log("Item not found");
                 }
@@ -74,13 +93,15 @@ const SideCart = ({ isSideCartOpen, handleShowSideCart }) => {
             });
     }
 
-    function onClose() {
+    function onClose(e) {
+        e.preventDefault();
+
         handleShowSideCart(false);
     }
 
     return (
         <div
-            className={`${styles['side-cart-container']} ${isSideCartOpen ? '' : styles['closed']}`}
+            className={`${styles['side-cart-container']} ${isFullHeight ? styles['full-height'] : ''} ${isSideCartOpen ? '' : styles['closed']}`}
             style={{ right: isSideCartOpen ? '0' : '-350px' }}
         >
             <Link onClick={onClose} className={styles["closing-side-cart"]}>

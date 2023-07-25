@@ -104,7 +104,16 @@
 }
 
 .order-info .order-status {
-    background: #003554;
+    background-color: #003554;
+}
+
+.order-info .order-details {
+    text-decoration: none;
+    background-color: #3f3f3f;
+}
+
+.order-info .order-status,
+.order-info .order-details {
     border: none;
     color: #d5d9de;
     font-size: 1.5rem;
@@ -112,3 +121,4 @@
     border-radius: 1rem;
     cursor: pointer;
 }
+

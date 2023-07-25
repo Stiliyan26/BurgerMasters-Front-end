@@ -1,11 +1,11 @@
 import styles from './Orders.module.css';
 
-import OrderCard from './OrderCart/OrderCard';
+import OrderCard from '../OrderCart/OrderCard';
 
-import * as orderService from '../../../services/orderService';
+import * as orderService from '../../../../services/orderService';
 
 import { useEffect, useState } from 'react';
-import { useAuthContext } from '../../../contexts/AuthContext';
+import { useAuthContext } from '../../../../contexts/AuthContext';
 
 const Orders = () => {
     const [pendingOrders, setPendingOrders] = useState(); 

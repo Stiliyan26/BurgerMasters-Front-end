@@ -11,7 +11,8 @@ import Register from './components/Authentication/Register/Register';
 // Admin
 import CreateMenuItem from './components/Admin/Create/CreateMenuItem';
 import EditMenuItem from './components/Admin/Edit/EditMenuItem'
-import Orders from './components/Admin/Orders/Orders';
+import Orders from './components/Admin/Orders/Orders/Orders';
+import OrderDetails from './components/Admin/Orders/OrderDetails/OrderDetails';
 //Admin posts
 import MyBurgerPosts from './components/Admin/MyPosts/MyBurgersPosts/MyBurgerPosts'
 import MyDrinkPosts from './components/Admin/MyPosts/MyDrinkPosts/MyDrinkPosts';
@@ -59,6 +60,7 @@ function App() {
 							<Route path='/CreateItem' element={<CreateMenuItem />} />
 							<Route path='/EditItem/:itemId' element={<EditMenuItem />} />
 							<Route path='/Orders' element={<Orders />} />
+							<Route path='/OrderDetails/:orderId' element={<OrderDetails />} />
 
 							<Route path='/MyPosts/Burgers' element={<MyBurgerPosts />} />
 							<Route path='/MyPosts/Drinks' element={<MyDrinkPosts />} />

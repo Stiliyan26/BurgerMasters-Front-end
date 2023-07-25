@@ -1,5 +1,7 @@
 import styles from './OrderCard.module.css';
 
+import { Link } from 'react-router-dom';
+
 const OrderCard = ({order}) => {
     return (
         <section className={styles['order-info']}>
@@ -9,7 +11,9 @@ const OrderCard = ({order}) => {
             <p className={styles['order-address']}>{order.address}</p>
             <p className={styles['order-price']}>{order.totalPrice} lv.</p>
             <button className={styles['order-status']}>Pending..</button>
-            <button className={styles['order-status']}>Details</button>
+            <Link to={`/OrderDetails/${order.orderId}`} className={styles['order-details']}>
+                Details
+            </Link>
         </section>
     )
 }

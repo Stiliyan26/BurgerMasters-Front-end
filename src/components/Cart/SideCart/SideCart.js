@@ -1,6 +1,6 @@
 import styles from './SideCart.module.css';
 
-import * as customerService from '../../../services/customerService';
+import * as cartService from '../../../services/cartService';
 import { handleSmoothRedirection } from '../../../services/navigationServices';
 
 import { useAuthContext } from '../../../contexts/AuthContext';
@@ -15,7 +15,7 @@ const SideCart = ({ isSideCartOpen, handleShowSideCart, sideCartItemCount, setSi
     const { token, user } = useAuthContext();
 
     useEffect(() => {
-        customerService.getAllCartItems(token, user.userId)
+        cartService.getAllCartItems(token, user.userId)
             .then(res => {
                 if (res.status === 200) {
                     setSideCartItems(res.cartItems);
@@ -77,7 +77,7 @@ const SideCart = ({ isSideCartOpen, handleShowSideCart, sideCartItemCount, setSi
     const handleRemoveItem = (itemIdToDelete, e) => {
         e.preventDefault();
 
-        customerService.removeCartItem(token, itemIdToDelete, user.userId)
+        cartService.removeCartItem(token, itemIdToDelete, user.userId)
             .then(res => {
                 if (res.status === 200) {
                     setSideCartItems(prevCartItems =>

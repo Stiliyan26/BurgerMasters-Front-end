@@ -8,6 +8,7 @@ export const sentOrder = (token, orderDate, userId, menuItems, orderPrice ) =>
 export const getAllPendingOrders = (token, adminId) => 
     requester(`${baseUrl}/AllPendingOrders?adminId=${adminId}`, 'GET', null, token);
 
+
 export const getOrderDateToString = () => {
     const now = new Date();
 

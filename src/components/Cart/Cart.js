@@ -2,7 +2,7 @@ import styles from './Cart.module.css';
 
 import CartItemCard from './CartItemCard/CartItemCard';
 
-import * as customerService from '../../services/customerService';
+import * as cartService from '../../services/cartService';
 import * as orderService from '../../services/orderService';
 
 import { useAuthContext } from '../../contexts/AuthContext';
@@ -19,7 +19,7 @@ const Cart = () => {
     useEffect(() => {
         document.title = 'Cart';
 
-        customerService.getAllCartItems(token, user.userId)
+        cartService.getAllCartItems(token, user.userId)
             .then(res => {
                 if (res.status === 200) {
                     setCartItems(res.cartItems);
@@ -64,7 +64,7 @@ const Cart = () => {
     }
 
     const handleRemoveItem = (itemIdToDelete) => {
-        customerService.removeCartItem(token, itemIdToDelete, user.userId)
+        cartService.removeCartItem(token, itemIdToDelete, user.userId)
             .then(res => {
                 if (res.status === 200) {
                     setCartItems(prevCartItems =>
@@ -83,15 +83,24 @@ const Cart = () => {
         const orderPrice = Number(orderTotalPrice);
         const menuItems = cartItems.map(ci => ({ menuItemId: ci.id, quantity: ci.quantity }))
 
-        orderService.sentOrder(token, orderDate, user.userId, menuItems, orderPrice)
-            .then(res => {
-                if (res.status === 200) {
+        const sentOrderPromise = orderService.sentOrder(token, orderDate, user.userId, menuItems, orderPrice);
+        const cleanUpCartPromise = cartService.cleanUpCart(token, user.userId);
+
+        Promise.all([sentOrderPromise, cleanUpCartPromise])
+            .then(([sentOrderRes, cleanUpCartPromise]) => {
+
+                if (sentOrderRes.status === 200) {
                     console.log("Order sent!");
+                }
+                
+                if (cleanUpCartPromise.status === 200) {
+                    console.log("All cart items removed");
+                    setCartItems([]);
                 }
             })
             .catch(error => {
                 console.log(error);
-            })
+            });
     }
 
     return (

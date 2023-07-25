@@ -1,6 +1,6 @@
 import styles from './ItemCard.module.css';
 
-import * as customerService from '../../../services/customerService';
+import * as cartService from '../../../services/cartService';
 import { handleSmoothRedirection } from '../../../services/navigationServices';
 
 import { MYPOSTS_PAGE_NAME, MENU_PAGE_NAME } from '../../../Constants/globalConstants';
@@ -51,7 +51,7 @@ const ItemCard = ({ item, pageType, handleShowSideCart, setSideCartItemsCount })
     function handleAddToCart(e) {
         e.preventDefault();
 
-        customerService.addToCart(token, item.id, user.userId, 1)
+        cartService.addToCart(token, item.id, user.userId, 1)
             .then(res => {
                 if (res.status === 200) {
                     console.log("Item added to cart");

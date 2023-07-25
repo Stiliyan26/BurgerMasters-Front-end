@@ -1,7 +1,7 @@
 import styles from './CartItemCard.module.css';
 
 import NumericInputControl from '../../Details/NumericInputControl/NumericInputControl';
-import * as customerService from '../../../services/customerService';
+import * as cartService from '../../../services/cartService';
 import { useAuthContext } from '../../../contexts/AuthContext';
 
 import { handleSmoothRedirection } from '../../../services/navigationServices';
@@ -25,7 +25,7 @@ const CartItemCard = ({ item, handleRemoveItem, updateQuantity }) => {
     }
 
     function handleAddQuantity(quantityToAddOrRemove) {
-        customerService.addToCart(token, item.id, user.userId, quantityToAddOrRemove)
+        cartService.addToCart(token, item.id, user.userId, quantityToAddOrRemove)
             .then(res => {
                 if (res.status === 200) {
                     updateQuantity(item.id, quantity + quantityToAddOrRemove)

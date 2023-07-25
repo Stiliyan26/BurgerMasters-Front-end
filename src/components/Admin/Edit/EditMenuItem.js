@@ -3,6 +3,7 @@ import styles from './EditMenuItem.module.css';
 import { useAuthContext } from '../../../contexts/AuthContext';
 
 import * as adminService from '../../../services/adminService';
+import { handleSmoothRedirection } from '../../../services/navigationServices';
 
 import { MYPOSTS_PAGE_NAME, MENU_PAGE_NAME } from '../../../Constants/globalConstants';
 
@@ -57,6 +58,7 @@ const EditMenuItem = () => {
         adminService.editMenuItem(token, editItem, itemId, user.userId)
             .then(res => {
                 if (res.status === 200){
+                    handleSmoothRedirection();
                     navigate(`/Details/${res.itemId}?source=${source}`);
                 }
             })

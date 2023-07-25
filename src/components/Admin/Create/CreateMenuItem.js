@@ -4,6 +4,7 @@ import { useAuthContext } from '../../../contexts/AuthContext';
 
 import * as menuItemService from '../../../services/menuItemService'
 import * as adminService from '../../../services/adminService';
+import { handleSmoothRedirection } from '../../../services/navigationServices';
 
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -32,6 +33,7 @@ const CreateMenuItem = () => {
         adminService.createMenuItem(token, menuItemInfo, user.userId)
             .then(res => {
                 if (res.status === 200){
+                    handleSmoothRedirection();
                     if (res.itemType === 'Burger'){
                         navigate('/Menu/Burgers');
                     } else if (res.itemType === 'Drink'){
@@ -189,7 +191,7 @@ const CreateMenuItem = () => {
                     </div>
 
                     <button
-                        type="submit" disabled={isSubmitting} className={styles['submit-btn']}>
+                        type="submit" onClick={handleSmoothRedirection} disabled={isSubmitting} className={styles['submit-btn']}>
                         Create
                     </button>
                 </form>

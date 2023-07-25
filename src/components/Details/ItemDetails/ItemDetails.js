@@ -7,7 +7,8 @@ import SideCart from '../../Cart/SideCart/SideCart';
 
 import * as adminService from '../../../services/adminService';
 import * as menuService from '../../../services/menuItemService';
-import * as customerService from '../../../services/customerService';
+import * as cartService from '../../../services/cartService';
+import { handleSmoothRedirection } from '../../../services/navigationServices';
 
 import { MENU_PAGE_NAME, MYPOSTS_PAGE_NAME } from '../../../Constants/globalConstants';
 
@@ -97,7 +98,7 @@ const ItemDetails = () => {
 
     const showDeleteConfirmationDialog = (e) => {
         e.preventDefault();
-
+        
         setShowConfirmDialog(true);
     }
 
@@ -111,6 +112,7 @@ const ItemDetails = () => {
         adminService.deleteMenuItem(token, itemId, user.userId)
             .then(res => {
                 if (res.status === 204) {
+                    handleSmoothRedirection();
                     if (item.itemType === 'Sandwich') {
                         return navigate(`/${source}/Sandwiches`);
                     } else if (item.itemType === 'Burger') {
@@ -135,7 +137,7 @@ const ItemDetails = () => {
     function handleAddToCart(e) {
         e.preventDefault();
 
-        customerService.addToCart(token, item.id, user.userId, quantity)
+        cartService.addToCart(token, item.id, user.userId, quantity)
             .then(res => {
                 if (res.status === 200) {
                     console.log("Item added to cart");

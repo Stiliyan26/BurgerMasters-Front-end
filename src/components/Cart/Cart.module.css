@@ -140,6 +140,7 @@
 }
 
 #total-table .order-btn {
+    font-family: 'Chela One', cursive;
     text-decoration: none;
     color: #c9ccd0;
     background-color: rgb(145, 0, 0);
@@ -147,6 +148,7 @@
     border-radius: 1rem;
     margin-bottom: 20px;
     font-size: 1.5rem;
+    border: none;
 }
 
 #total-table .order-btn:hover {
@@ -154,4 +156,15 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     color: #e3e7ec;
     background-color: rgb(168, 0, 0);
+}
+
+#total-table .cant-order {
+    font-family: 'Chela One', cursive;
+    text-decoration: none;
+    color: #c9ccd0;
+    background-color: rgb(112, 112, 112);
+    padding: 10px 20px;
+    border-radius: 1rem;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
 }

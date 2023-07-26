@@ -93,7 +93,7 @@ const Cart = () => {
                 if (sentOrderRes.status === 200) {
                     console.log("Order sent!");
                 }
-                
+
                 if (cleanUpCartPromise.status === 200) {
                     console.log("All cart items removed");
                     setCartItems([]);
@@ -102,6 +102,12 @@ const Cart = () => {
             .catch(error => {
                 console.log(error);
             });
+    }
+
+    const returnProperBtnClass = () => {
+        return cartItems.length === 0
+            ? `${styles['cant-order']}`
+            : `${styles['order-btn']}`
     }
 
     return (
@@ -126,9 +132,13 @@ const Cart = () => {
                     <p className={styles['total-price']}>{orderTotalPrice} lv.</p>
                 </div>
 
-                <Link onClick={handleOrder} className={styles['order-btn']}>
+                <button 
+                    onClick={handleOrder} 
+                    className={returnProperBtnClass()}
+                    disabled={cartItems.length === 0}
+                >
                     Order
-                </Link>
+                </button>
             </section>
         </div>
     )

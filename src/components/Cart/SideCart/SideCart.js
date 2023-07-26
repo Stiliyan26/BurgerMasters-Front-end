@@ -1,6 +1,7 @@
 import styles from './SideCart.module.css';
 
 import * as cartService from '../../../services/cartService';
+import { getPortionMeasure } from '../../../services/menuItemService';
 import { handleSmoothRedirection } from '../../../services/navigationServices';
 
 import { useAuthContext } from '../../../contexts/AuthContext';
@@ -37,14 +38,6 @@ const SideCart = ({ isSideCartOpen, handleShowSideCart, sideCartItemCount, setSi
         };
     }, [sideCartItemCount])
 
-
-
-    const portionMeasure = (item) => {
-        return item.itemType === 'Drink'
-            ? 'ml'
-            : 'g';
-    }
-
     const imgSrc = (item) => `/images/${item.itemType}Menu/${item.imageUrl}`;
 
     const sideCartItemsContent = () => {
@@ -55,7 +48,7 @@ const SideCart = ({ isSideCartOpen, handleShowSideCart, sideCartItemCount, setSi
 
                     <div className={styles['column-container']}>
                         <div className={styles['side-cart-item-name']}>
-                            {item.name} ({item.portionSize}{portionMeasure(item)})
+                            {item.name} ({item.portionSize}{getPortionMeasure(item.itemType)})
                         </div>
                         <div className={styles['side-cart-item-quantity']}>x{item.quantity}</div>
                     </div>

@@ -2,9 +2,12 @@ import styles from './OrderCard.module.css';
 
 import { Link } from 'react-router-dom';
 
-const OrderCard = ({order}) => {
+const OrderCard = ({order, index}) => {
     return (
-        <section className={styles['order-info']}>
+        <section 
+            style={{ animationDelay: `${index * 0.2}s`, backgroundPosition: `50% ${30 + index * 10}%`, }} 
+            className={styles['order-info']}
+        >
             <p className={styles['order-id']}>{order.orderId}</p>
             <p className={styles['order-username']}>{order.username}</p>
             <p className={styles['order-date']}>{order.orderDate}</p>

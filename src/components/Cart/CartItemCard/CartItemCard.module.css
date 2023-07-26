@@ -15,13 +15,26 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    opacity: 0;
+    animation: slideInLeft 1s ease-in-out forwards;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 #item-info .img-container {
     grid-area: image;
     display: inline-block;
     flex-shrink: 0;
-    width: 200px;
     margin-right: 10px;
     margin-left: 10px;
 }

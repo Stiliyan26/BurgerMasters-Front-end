@@ -17,7 +17,6 @@
     background-size: cover; */
 }
 
-/* Add a class to set full height when scrolling */
 .side-cart-container.full-height {
     top: 0;
     height: 100vh 

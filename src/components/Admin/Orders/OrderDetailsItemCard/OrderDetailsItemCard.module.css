@@ -1,0 +1,11 @@
+#menu-item-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+    justify-items: center;
+    overflow: hidden;
+}
+
+#menu-item-container .item-image {
+    width: 100%;
+}

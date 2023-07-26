@@ -1,6 +1,8 @@
 import styles from './ItemCard.module.css';
 
 import * as cartService from '../../../services/cartService';
+import { getPortionMeasure } from '../../../services/menuItemService';
+
 import { handleSmoothRedirection } from '../../../services/navigationServices';
 
 import { MYPOSTS_PAGE_NAME, MENU_PAGE_NAME } from '../../../Constants/globalConstants';
@@ -24,11 +26,6 @@ const ItemCard = ({ item, pageType, handleShowSideCart, setSideCartItemsCount })
         }
     }
 
-    const portionMeasure =
-        item.itemType === 'Drink'
-            ? 'ml'
-            : 'g'
-
     const addToCartBtn = (
         <Link to='#' onClick={handleAddToCart} className={styles['item--add-to-cart-btn']}>
             <p className={styles['btn--content']}>Add to cart</p>
@@ -37,7 +34,10 @@ const ItemCard = ({ item, pageType, handleShowSideCart, setSideCartItemsCount })
     );
 
     const detailsBtn = (
-        <Link to={detailsPageSource()} onClick={handleSmoothRedirection} className={styles['details--btn']}>
+        <Link to={detailsPageSource()}
+            onClick={handleSmoothRedirection}
+            className={styles['details--btn']}
+        >
             <p className={styles['btn--content']}>Details</p>
             <i className="fa-light fa-cart-shopping fa-fade"></i>
         </Link>
@@ -79,10 +79,12 @@ const ItemCard = ({ item, pageType, handleShowSideCart, setSideCartItemsCount })
                     <Link to={detailsPageSource()} onClick={handleSmoothRedirection} className={styles['link--tag']}>
                         <h3 className={styles['item--title']}>{item.name}</h3>
                     </Link>
-                    <p className={styles['item--portion-size']}>({item.portionSize}{portionMeasure})</p>
+                    <p className={styles['item--portion-size']}>
+                        ({item.portionSize}{getPortionMeasure(item.itemType)})
+                    </p>
                 </div>
 
-                <p className={styles['item--price']}>Price: {item.price.toFixed(2)} leva</p>
+                <p className={styles['item--price']}>Price: {item.price.toFixed(2)} lv.</p>
 
                 {getButtonByPageType()}
             </div>

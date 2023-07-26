@@ -14,5 +14,11 @@ export const getItemById = (token, itemId) =>
 export const getSimilarProducts = (token, itemType, itemId) => 
     requester(`${baseUrl}/SimilarProducts?itemType=${itemType}&itemId=${itemId}`, 'GET', null, token);
 
+export const getPortionMeasure = (itemType) => {
+    return itemType === 'Drink'
+            ? 'ml'
+            : 'g'
+}
+
 
 

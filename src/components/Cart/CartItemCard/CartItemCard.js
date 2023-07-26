@@ -1,24 +1,20 @@
 import styles from './CartItemCard.module.css';
 
 import NumericInputControl from '../../Details/NumericInputControl/NumericInputControl';
-import * as cartService from '../../../services/cartService';
-import { useAuthContext } from '../../../contexts/AuthContext';
 
+import * as cartService from '../../../services/cartService';
+import { getPortionMeasure } from '../../../services/menuItemService';
 import { handleSmoothRedirection } from '../../../services/navigationServices';
+
+import { useAuthContext } from '../../../contexts/AuthContext';
 
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
-const CartItemCard = ({ item, handleRemoveItem, updateQuantity }) => {
+const CartItemCard = ({ item, index, handleRemoveItem, updateQuantity }) => {
     const [quantity, setQuantity] = useState(item.quantity);
 
     const { token, user } = useAuthContext();
-
-    const portionMeasure = () => {
-        return item.itemType === 'Drink'
-            ? 'ml'
-            : 'g';
-    }
 
     const getQuantityPrice = () => {
         return (quantity * item.price).toFixed(2);
@@ -43,7 +39,7 @@ const CartItemCard = ({ item, handleRemoveItem, updateQuantity }) => {
     }
 
     return (
-        <section id={styles['item-info']}>
+        <section style={{ animationDelay: `${index * 0.2}s` }} id={styles['item-info']}>
             <div className={styles['img-container']}>
                 <Link to={`/Details/${item.id}?source=Menu`} onClick={handleSmoothRedirection}>
                     <img className={styles['item-img']}
@@ -53,7 +49,7 @@ const CartItemCard = ({ item, handleRemoveItem, updateQuantity }) => {
             </div>
 
             <h2 className={styles['item-name']}>
-                {item.name} ({item.portionSize} {portionMeasure()})
+                {item.name} ({item.portionSize} {getPortionMeasure(item.itemType)})
             </h2>
 
             <p className={styles['item-price']}>{item.price.toFixed(2)} lv.</p>

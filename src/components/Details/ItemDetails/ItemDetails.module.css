@@ -55,6 +55,7 @@
     transform: 100%;
     animation: slideIn 1s ease-in-out forwards;
 }
+
 /* Order Item */
 #details-container .order--item,
 #details-container .admin--btns {

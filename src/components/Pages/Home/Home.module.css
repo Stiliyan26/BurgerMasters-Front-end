@@ -8,23 +8,51 @@
     height: auto;
     border-radius: 20px;
 }
+
 .slider-frame .wrapper {
-   width: 100%;
-   height: 100%;
-   animation: slide 20s infinite;
-   display: flex;
-   flex-direction: row;
+    width: 100%;
+    height: 100%;
+    animation: slideInDown 1s ease-in-out forwards, slide 20s infinite;
+    display: flex;
+    flex-direction: row;
 }
 
-.slider-frame .wrapper img{
+.slider-frame .wrapper .burger-img {
     max-width: 100%;
     height: auto;
 }
 
 @keyframes slide {
-    20% {transform: translateX(0);}
-    40% {transform: translateX(-100%);}
-    60% {transform: translateX(-200%);}
-    80% {transform: translateX(-300%);}
-    100% {transform: translateX(-400%);}
+    15% {
+        transform: translateX(0);
+    }
+
+    40% {
+        transform: translateX(-100%);
+    }
+
+    60% {
+        transform: translateX(-200%);
+    }
+
+    80% {
+        transform: translateX(-300%);
+    }
+
+    100% {
+        transform: translateX(-400%);
+    }
 }
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+

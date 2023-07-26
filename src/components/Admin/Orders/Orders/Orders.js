@@ -6,16 +6,17 @@ import * as orderService from '../../../../services/orderService';
 
 import { useEffect, useState } from 'react';
 import { useAuthContext } from '../../../../contexts/AuthContext';
+import { Link } from 'react-router-dom';
 
 const Orders = () => {
-    const [pendingOrders, setPendingOrders] = useState(); 
+    const [pendingOrders, setPendingOrders] = useState();
 
     const { token, user } = useAuthContext();
 
     useEffect(() => {
         orderService.getAllPendingOrders(token, user.userId)
             .then(res => {
-                if (res.status === 200){
+                if (res.status === 200) {
                     setPendingOrders(res.orders);
                 }
             })
@@ -25,9 +26,15 @@ const Orders = () => {
     }, []);
 
     const allOrders = () => {
-        return pendingOrders.map(order => {
-            return <OrderCard key={order.orderId} order={order}/>
-        })
+        return pendingOrders.map((order, index) => {
+            return (
+                <OrderCard
+                    key={order.orderId}
+                    order={order}
+                    index={index}
+                />
+            );
+        });
     }
 
     return (
@@ -40,7 +47,7 @@ const Orders = () => {
                 <p className={styles['order-column-name']}>Total price</p>
                 <p className={styles['order-column-name']}>Status</p>
             </section>
-            
+
             {pendingOrders && allOrders()}
         </div>
     )

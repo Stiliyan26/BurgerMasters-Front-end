@@ -7,14 +7,29 @@ const Home = () => {
         document.title = 'Home';
     }, []);
 
+    const getAllImages = () => {
+        const allImages = [
+            "/images/burgers/AmericanCheeseBurger.png",
+            "/images/burgers/Rusty-Savage.png",
+            "/images/burgers/Juicy-Lucy.png",
+            "/images/burgers/PineApple.png",
+            "/images/burgers/Tripple-Cheese.png"
+        ];
+
+        return allImages.map((image, index) => (
+            <img
+                key={index}
+                className={styles['burger-img']}
+                src={`${image}`}
+                alt="Burger image"
+            />
+        ));
+    }
+
     return (
         <div className={styles['slider-frame']}>
             <div className={styles['wrapper']}>
-                <img src="/images/burgers/AmericanCheeseBurger.png"></img>
-                <img src="/images/burgers/Rusty-Savage.png"></img>
-                <img src="/images/burgers/Juicy-Lucy.png"></img>
-                <img src="/images/burgers/PineApple.png"></img>
-                <img src="/images/burgers/Tripple-Cheese.png"></img>
+                {getAllImages()}
             </div>
         </div>
     )

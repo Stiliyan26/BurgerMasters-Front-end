@@ -58,9 +58,10 @@ const ItemDetails = () => {
                 } else if (source === MENU_PAGE_NAME) {
                     response = await menuService.getItemById(token, itemId);
                 }
-
+                
                 if (response.status === 200) {
                     setItem(response.item);
+                    console.log(response.item)
                 } else if (response.status === 404) {
                     navigate('/Not-found');
                     return;
@@ -88,12 +89,6 @@ const ItemDetails = () => {
                     </li>
                 )
             });
-    }
-
-    const portionMeasure = () => {
-        return item.itemType === 'Drink'
-            ? 'ml'
-            : 'g';
     }
 
     const showDeleteConfirmationDialog = (e) => {
@@ -198,7 +193,9 @@ const ItemDetails = () => {
                 </section>
 
                 <section className={styles['item--info']}>
-                    <h2 className={styles['item--title']}>{item.name} ({item.portionSize} {portionMeasure()})</h2>
+                    <h2 className={styles['item--title']}>
+                        {item.name} ({item.portionSize}{menuService.getPortionMeasure(item.itemType)})
+                    </h2>
 
                     <ul className={styles['item--description']}>
                         {getDescription()}

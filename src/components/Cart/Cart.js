@@ -53,10 +53,11 @@ const Cart = () => {
     };
 
     const getAllCartItems = () => {
-        return cartItems.map(item => {
+        return cartItems.map((item, index) => {
             return <CartItemCard
                 key={item.id}
                 item={item}
+                index={index}
                 handleRemoveItem={handleRemoveItem}
                 updateQuantity={handleUpdateQuantity}
             />

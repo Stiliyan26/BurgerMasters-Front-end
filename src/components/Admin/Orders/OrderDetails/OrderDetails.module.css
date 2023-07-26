@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Cuprum:ital,wght@1,500&display=swap');
+
+#order-details-container {
+    margin-top: 60px;
+    margin-bottom: 200px;
+    background-color: #003554;
+    font-family: 'Cuprum', sans-serif;
+    color: #d5d9de;
+    width: 80%;
+    border-radius: 3rem;
+    padding: 20px;
+}
+
+#order-details-container .order-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+}
+
+#order-details-container .order--common {
+    border-right: 2px solid #d5d9de;
+    padding: 10px 30px;
+    opacity: 0;
+    animation: glowingText 2s ease-in-out infinite, slideInDown 1s ease-in-out forwards;
+    position: relative;
+    padding: 10px 30px;
+}
+
+@keyframes glowingText {
+    0%, 100% {
+        text-shadow: 0 0 5px #d5d9de;
+    }
+
+    50% {
+        text-shadow: 0 0 20px #d5d9de;
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-100);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#order-details-container .order--common:first-child {
+    border-left: 2px solid #d5d9de;
+}
+
+#order-details-container .order-menu-items {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(100px, 1fr));
+    gap: 20px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+
+
+
+

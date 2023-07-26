@@ -63,8 +63,9 @@ const OrderDetails = () => {
         return order?.menuItems
             .map((menuItem, index) => (
                 <OrderDetailsItemCard 
-                    key={index} 
+                    key={index}
                     menuItem={menuItem}
+                    index={index}
                 />
             ));
     }
@@ -74,6 +75,8 @@ const OrderDetails = () => {
             <section className={styles['order-header']}>
                 {order && getOrderHeaderTitles()}
             </section>
+            
+            <h1 className={styles['ordered-items-title']}>Ordered Items</h1>
 
             <section className={styles['order-menu-items']}>
                 {order && getAllOrderMenuItems()}

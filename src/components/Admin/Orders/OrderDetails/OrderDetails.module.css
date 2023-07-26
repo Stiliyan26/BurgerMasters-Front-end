@@ -8,7 +8,14 @@
     color: #d5d9de;
     width: 80%;
     border-radius: 3rem;
-    padding: 20px;
+    padding: 30px 20px;
+    box-shadow: 9px 10px 10px -1px rgba(84, 29, 0, 0.77);
+    -webkit-box-shadow: 9px 10px 10px -1px rgba(84, 29, 0, 0.77);
+    -moz-box-shadow: 9px 10px 10px -1px rgba(84, 29, 0, 0.77);
+    background-image: url('/public/images/home.jpg');
+    background-position: 50% 20%;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #order-details-container .order-header {
@@ -16,15 +23,16 @@
     flex-direction: row;
     justify-content: center;
     text-align: center;
+    font-size: 1.2rem;
 }
 
 #order-details-container .order--common {
     border-right: 2px solid #d5d9de;
     padding: 10px 30px;
     opacity: 0;
+    transform: translateY(-100%);
     animation: glowingText 2s ease-in-out infinite, slideInDown 1s ease-in-out forwards;
     position: relative;
-    padding: 10px 30px;
 }
 
 @keyframes glowingText {
@@ -40,13 +48,13 @@
 @keyframes slideInDown {
     from {
         opacity: 0;
-        transform: translateY(-100);
+        transform: translateY(-100%);
     }
     to {
         opacity: 1;
         transform: translateY(0);
     }
-}
+}   
 
 #order-details-container .order--common:first-child {
     border-left: 2px solid #d5d9de;
@@ -54,13 +62,28 @@
 
 #order-details-container .order-menu-items {
     display: grid;
-    grid-template-columns: repeat(1, minmax(100px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
+    gap: 50px;
     width: 100%;
-    margin-top: 20px;
 }
 
+#order-details-container .ordered-items-title {
+    opacity: 0;
+    transform: translateX(-100%);
+    animation: slideInRight 1.6s ease-in-out forwards, glowingText 2s ease-in-out infinite;
+    margin-top: 30px;
+    padding-left: 5%;
+}
 
-
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(-100);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
 
 

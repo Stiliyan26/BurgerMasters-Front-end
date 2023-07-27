@@ -8,6 +8,8 @@ export const CREATE_FORM_NAME = 'Create';
 
 export const ORDER_HISTORY_NAME = 'Order History';
 
+export const My_ORDERS_NAME = 'My Orders';
+
 export const PENDING_ORDERS_NAME = 'Pending Orders';
 
 export const ACCEPT_ACTION_NAME = 'accept';

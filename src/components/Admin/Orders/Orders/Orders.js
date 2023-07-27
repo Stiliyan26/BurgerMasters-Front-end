@@ -23,15 +23,28 @@ const Orders = ({ pageType }) => {
             ? true
             : false;
 
-        orderService.allOrdersByStatus(token, user.userId, isPending)
-            .then(res => {
-                if (res.status === 200) {
-                    setOrders(res.orders);
+        const fetchData = async () => {
+            try {
+                let response;
+
+                if (pageType === globalConstants.My_ORDERS_NAME) {
+                    response = await orderService.getAllOfMyOrders(token, user.userId);
+                } else {
+                    response = await orderService.allOrdersByStatus(token, user.userId, isPending);
                 }
-            })
-            .catch(error => {
-                console.log(error);
-            })
+
+                if (response.status === 200) {
+                    setOrders(response.orders);
+                } else {
+                    navigate('/Not-found');
+                    return;
+                }
+            } catch (error) {
+                console.log(error.message);
+            }
+        }
+
+        fetchData();
     }, []);
 
     const allOrders = () => {

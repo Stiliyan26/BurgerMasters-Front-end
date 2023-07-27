@@ -37,7 +37,7 @@ export const AuthProvider = ({
                 if (isTokenExpired() == true) {
                     authService.refreshToken(userId)
                         .then(res => {
-                            if (res?.status === 200) {
+                            if (res.status === 200) {
                                 console.log("Token has refreshed!");
                                 const decodedToken = jwtDecode(res.refreshToken);
 
@@ -67,7 +67,9 @@ export const AuthProvider = ({
     }
 
     return (
-        <AuthContext.Provider value={{ user, token: user.token, isAuthenticated: user.email, isAdmin: user.role, login, logout }}>
+        <AuthContext.Provider value={
+            { user, token: user.token, isAuthenticated: user.email, isAdmin: user.role, login, logout }}
+        >
             {children}
         </AuthContext.Provider>
     )

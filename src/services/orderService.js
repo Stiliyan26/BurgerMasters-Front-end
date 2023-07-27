@@ -17,8 +17,11 @@ export const acceptOrder = (token, adminId, orderId) =>
 export const unacceptOrder = (token, adminId, orderId) =>
     requester(`${baseUrl}/UnacceptOrder?adminId=${adminId}`, 'PATCH', orderId, token);
 
-export const declineOrder = (token, adminId, orderId) => 
+export const declineOrder = (token, adminId, orderId) =>
     requester(`${baseUrl}/DeclineOrder?adminId=${adminId}`, 'PATCH', orderId, token);
+
+export const getAllOfMyOrders = (token, userId) =>
+    requester(`${baseUrl}/AllOfMyOrders?userId=${userId}`, 'GET', null, token);
 
 export const getOrderDateToString = () => {
     const now = new Date();

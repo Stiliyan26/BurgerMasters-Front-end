@@ -14,6 +14,8 @@ import EditMenuItem from './components/Admin/Edit/EditMenuItem'
 import PendingOrders from './components/Admin/Orders/PendingOrders/PendingOrders';
 import OrderDetails from './components/Admin/Orders/OrderDetails/OrderDetails';
 import OrderHistory from './components/Admin/Orders/OrderHistory/OrderHistory';
+//User and Admin
+import MyOrders from './components/Admin/Orders/MyOrders/MyOrders';
 //Admin posts
 import MyBurgerPosts from './components/Admin/MyPosts/MyBurgersPosts/MyBurgerPosts'
 import MyDrinkPosts from './components/Admin/MyPosts/MyDrinkPosts/MyDrinkPosts';
@@ -63,6 +65,7 @@ function App() {
 							<Route path='/Orders' element={<PendingOrders />} />
 							<Route path='/OrderDetails/:orderId' element={<OrderDetails />} />
 							<Route path='/OrderHistory' element={<OrderHistory />} />
+							<Route path='/MyOrders' element={<MyOrders />} />
 
 							<Route path='/MyPosts/Burgers' element={<MyBurgerPosts />} />
 							<Route path='/MyPosts/Drinks' element={<MyDrinkPosts />} />

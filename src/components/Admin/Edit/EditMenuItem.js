@@ -47,6 +47,10 @@ const EditMenuItem = () => {
                 } else if (res.status === 404){
                     navigate('/Not-found')
                     return;
+                }else if (res.status === 409){
+                    setResponseErrorMsg(res.errorMessage);
+                } else if (res.status === 422){
+                    setResponseErrorMsg(res.errorMessage);
                 }
             })
             .catch(error => {

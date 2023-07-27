@@ -69,6 +69,8 @@ const ItemDetails = () => {
 
             } catch (error) {
                 console.log(error.message);
+                navigate('/Not-found');
+                return;
             }
         }
 

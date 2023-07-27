@@ -3,38 +3,60 @@ import styles from './Orders.module.css';
 import OrderCard from '../OrderCart/OrderCard';
 
 import * as orderService from '../../../../services/orderService';
+import { PENDING_ORDERS_NAME } from '../../../../Constants/globalConstants';
 
 import { useEffect, useState } from 'react';
 import { useAuthContext } from '../../../../contexts/AuthContext';
-import { Link } from 'react-router-dom';
 
-const Orders = () => {
-    const [pendingOrders, setPendingOrders] = useState();
+const Orders = ({ pageType }) => {
+    const [orders, setOrders] = useState();
 
     const { token, user } = useAuthContext();
 
     useEffect(() => {
-        orderService.getAllPendingOrders(token, user.userId)
+        document.title = pageType;
+
+        const isPending = pageType === PENDING_ORDERS_NAME
+            ? true
+            : false;
+
+        orderService.AllOrdersByStatus(token, user.userId, isPending)
             .then(res => {
                 if (res.status === 200) {
-                    setPendingOrders(res.orders);
+                    setOrders(res.orders);
                 }
             })
             .catch(error => {
-                console.log(error.message);
+                console.log(error);
             })
     }, []);
 
     const allOrders = () => {
-        return pendingOrders.map((order, index) => {
+        return orders.map((order, index) => {
             return (
                 <OrderCard
                     key={order.orderId}
                     order={order}
                     index={index}
+                    handleAcceptOrder={handleAcceptOrder}
+                    pageType={pageType}
                 />
             );
         });
+    }
+
+    function handleAcceptOrder(orderId) {
+        orderService.acceptOrder(token, user.userId, orderId)
+            .then(res => {
+                if (res.status === 200) {
+                    setOrders(prev =>
+                        prev.filter(order => order.orderId !== orderId)
+                    )
+                }
+            })
+            .catch(error => {
+                console.log(error.message);
+            });
     }
 
     return (
@@ -48,7 +70,7 @@ const Orders = () => {
                 <p className={styles['order-column-name']}>Status</p>
             </section>
 
-            {pendingOrders && allOrders()}
+            {orders && allOrders()}
         </div>
     )
 }

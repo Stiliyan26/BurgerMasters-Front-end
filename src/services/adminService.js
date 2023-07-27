@@ -22,6 +22,6 @@ export const editMenuItem = (token, editItem, itemId, creatorId) =>
     requester(`${baseUrl}/EditMenuItem?itemId=${itemId}&creatorId=${creatorId}`, 'PUT', editItem, token);
 
 export const deleteMenuItem = (token, itemId, creatorId) =>
-    requester(`${baseUrl}/DeleteItem?itemId=${itemId}&creatorId=${creatorId}`, 'DELETE', null, token)
+    requester(`${baseUrl}/DeleteItem?itemId=${itemId}&creatorId=${creatorId}`, 'PATCH', null, token)
 
     

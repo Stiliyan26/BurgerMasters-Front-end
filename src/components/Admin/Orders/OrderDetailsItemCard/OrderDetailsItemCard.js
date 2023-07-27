@@ -14,7 +14,7 @@ const OrderDetailsItemCard = ({ menuItem, index }) => {
             <h2 className={styles['item-title']}>
                 {menuItem.name} ( {menuItem.portionSize}{getPortionMeasure(menuItem.itemType)} )
             </h2>
-            <p className={styles['item-price']}>Price: {menuItem.price} lv.</p>
+            <p className={styles['item-price']}>Price: {menuItem.price.toFixed(2)} lv.</p>
             <p className={styles['item-quantity']}>Quantity: {menuItem.quantity}</p>
         </div>
     )

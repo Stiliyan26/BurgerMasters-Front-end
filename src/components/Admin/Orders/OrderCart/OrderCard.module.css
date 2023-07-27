@@ -78,7 +78,7 @@
     font-size: 2rem;
 }
 
-.order-info .order-status {
+.order-info .pending {
     animation: wiggle 2s linear infinite;
 }
 
@@ -116,8 +116,12 @@
     }
 }
 
-.order-info .order-status {
+.order-info .pending {
     background-color: #003554;
+}
+
+.order-info .accepted{
+    background-color: rgb(0, 91, 0);
 }
 
 .order-info .order-details {
@@ -125,7 +129,8 @@
     background-color: #3f3f3f;
 }
 
-.order-info .order-status,
+.order-info .pending,
+.order-info .accepted,
 .order-info .order-details {
     border: none;
     color: #d5d9de;

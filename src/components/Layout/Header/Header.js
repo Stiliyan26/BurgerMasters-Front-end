@@ -140,6 +140,18 @@ const Header = () => {
     const adminNav = (
         <Fragment>
             <li className={styles['list-item']}>
+                <Link to='/OrderHistory' className={styles['create']}>
+                    History <i className="fa-sharp fa-solid fa-clock-rotate-left"></i>
+                </Link>
+            </li>
+
+            <li className={styles['list-item']}>
+                <Link to='/Orders' className={styles['create']}>
+                    Orders <i className="fa-sharp fa-light fa-clipboard-list fa-bounce"></i>
+                </Link>
+            </li>
+
+            <li className={styles['list-item']}>
                 <Link to='/CreateItem' className={styles['create']}>
                     Create Item <i className="fa-solid fa-plus fa-beat-fade"></i>
                 </Link>
@@ -156,12 +168,6 @@ const Header = () => {
                 <ul className={styles['menu-dropdown']}>
                     {getAllItemsNav(MYPOSTS_PAGE_NAME)}
                 </ul>
-            </li>
-
-            <li className={styles['list-item']}>
-                <Link to='/Orders' className={styles['create']}>
-                    Orders <i className="fa-sharp fa-light fa-clipboard-list fa-bounce"></i>
-                </Link>
             </li>
 
             {userNav}

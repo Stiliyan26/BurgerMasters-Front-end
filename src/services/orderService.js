@@ -5,11 +5,14 @@ const baseUrl = 'https://localhost:7129/api/Order';
 export const sentOrder = (token, orderDate, userId, menuItems, orderPrice) =>
     requester(`${baseUrl}/SentOrder`, 'POST', { orderDate, userId, menuItems, orderPrice }, token);
 
-export const getAllPendingOrders = (token, adminId) =>
-    requester(`${baseUrl}/AllPendingOrders?adminId=${adminId}`, 'GET', null, token);
+export const AllOrdersByStatus = (token, adminId, isPending) =>
+    requester(`${baseUrl}/AllOrdersByStatus?adminId=${adminId}&isPending=${isPending}`, 'GET', null, token);
 
 export const getOrderById = (token, userId, orderId) =>
     requester(`${baseUrl}/OrderById?userId=${userId}&orderId=${orderId}`, 'GET', null, token);
+
+export const acceptOrder = (token, adminId, orderId) =>
+    requester(`${baseUrl}/AcceptOrder?adminId=${adminId}`, 'PATCH', orderId, token);
 
 export const getOrderDateToString = () => {
     const now = new Date();

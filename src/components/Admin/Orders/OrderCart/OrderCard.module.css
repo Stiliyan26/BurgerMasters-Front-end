@@ -78,10 +78,45 @@
     font-size: 2rem;
 }
 
-.order-info .pending {
+.order-info .accept {
     animation: wiggle 2s linear infinite;
 }
 
+.order-btns {
+    display: flex;
+    flex-direction: row;
+}
+
+.order-info .decline {
+    margin-left: 10px;
+    animation: wiggle 2s linear infinite;
+    background-color: #540600;
+}
+
+.order-info .accept {
+    background-color: #003554;
+}
+
+.order-info .unaccept {
+    background-color: #003554;
+}
+
+.order-info .order-details {
+    text-decoration: none;
+    background-color: #4a4a4a;
+}
+
+.order-info .accept,
+.order-info .unaccept,
+.order-info .decline,
+.order-info .order-details {
+    border: none;
+    color: #d5d9de;
+    font-size: 1.5rem;
+    padding: 10px 20px;
+    border-radius: 1rem;
+    cursor: pointer;
+}
 
 @keyframes wiggle {
 
@@ -114,29 +149,5 @@
     100% {
         transform: rotateZ(0);
     }
-}
-
-.order-info .pending {
-    background-color: #003554;
-}
-
-.order-info .accepted{
-    background-color: rgb(0, 91, 0);
-}
-
-.order-info .order-details {
-    text-decoration: none;
-    background-color: #3f3f3f;
-}
-
-.order-info .pending,
-.order-info .accepted,
-.order-info .order-details {
-    border: none;
-    color: #d5d9de;
-    font-size: 1.5rem;
-    padding: 10px 20px;
-    border-radius: 1rem;
-    cursor: pointer;
 }
 

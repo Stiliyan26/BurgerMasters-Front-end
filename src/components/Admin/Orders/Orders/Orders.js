@@ -3,24 +3,27 @@ import styles from './Orders.module.css';
 import OrderCard from '../OrderCart/OrderCard';
 
 import * as orderService from '../../../../services/orderService';
-import { PENDING_ORDERS_NAME } from '../../../../Constants/globalConstants';
+import * as globalConstants from '../../../../Constants/globalConstants';
 
 import { useEffect, useState } from 'react';
 import { useAuthContext } from '../../../../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Orders = ({ pageType }) => {
     const [orders, setOrders] = useState();
 
     const { token, user } = useAuthContext();
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         document.title = pageType;
 
-        const isPending = pageType === PENDING_ORDERS_NAME
+        const isPending = pageType === globalConstants.PENDING_ORDERS_NAME
             ? true
             : false;
 
-        orderService.AllOrdersByStatus(token, user.userId, isPending)
+        orderService.allOrdersByStatus(token, user.userId, isPending)
             .then(res => {
                 if (res.status === 200) {
                     setOrders(res.orders);
@@ -38,25 +41,40 @@ const Orders = ({ pageType }) => {
                     key={order.orderId}
                     order={order}
                     index={index}
-                    handleAcceptOrder={handleAcceptOrder}
+                    handleOrderByAction={handleOrderByAction}
                     pageType={pageType}
                 />
             );
         });
     }
 
-    function handleAcceptOrder(orderId) {
-        orderService.acceptOrder(token, user.userId, orderId)
-            .then(res => {
-                if (res.status === 200) {
-                    setOrders(prev =>
-                        prev.filter(order => order.orderId !== orderId)
-                    )
+    function handleOrderByAction(orderId, action) {
+        const fetchData = async () => {
+            try {
+                let response;
+
+                if (action === globalConstants.ACCEPT_ACTION_NAME) {
+                    response = await orderService.acceptOrder(token, user.userId, orderId);
+                } else if (action === globalConstants.UNACCEPT_ACTION_NAME) {
+                    response = await orderService.unacceptOrder(token, user.userId, orderId);
+                } else if (action === globalConstants.DECLINE_ACTION_NAME) {
+                    response = await orderService.declineOrder(token, user.userId, orderId);
                 }
-            })
-            .catch(error => {
+
+                if (response.status === 200) {
+                    setOrders(prev =>
+                        prev.filter(order => order.orderId !== orderId));
+                } else {
+                    navigate('/Not-found');
+                    return;
+                }
+
+            } catch (error) {
                 console.log(error.message);
-            });
+            }
+        }
+
+        fetchData();
     }
 
     return (

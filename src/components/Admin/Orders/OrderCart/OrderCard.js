@@ -1,20 +1,39 @@
 import styles from './OrderCard.module.css';
 
-import { PENDING_ORDERS_NAME } from '../../../../Constants/globalConstants';
+import * as globalConstants from '../../../../Constants/globalConstants';
 import { handleSmoothRedirection } from '../../../../services/navigationServices';
 
 import { Link } from 'react-router-dom';
 
-const OrderCard = ({ order, index, handleAcceptOrder, pageType }) => {
+const OrderCard = (
+    { order, index, handleOrderByAction, pageType }) => {
 
-    function handleStatus() {
-        handleAcceptOrder(order.orderId);
+    function handleStatus(action) {
+        handleOrderByAction(order.orderId, action);
     }
 
-    const statusButton = () => 
-        pageType === PENDING_ORDERS_NAME
-            ? <button onClick={handleStatus} className={styles['pending']}>Pending..</button>
-            : <button className={styles['accepted']}>Accepted</button>
+    const statusButton = () =>
+        pageType === globalConstants.PENDING_ORDERS_NAME
+            ? (
+                <div className={styles['order-btns']}>
+                    <button 
+                        onClick={() => handleStatus(globalConstants.ACCEPT_ACTION_NAME)} 
+                        className={styles['accept']}>
+                        Accept
+                    </button>
+
+                    <button 
+                        onClick={() => handleStatus(globalConstants.DECLINE_ACTION_NAME)} 
+                        className={styles['decline']}>
+                        Decline
+                    </button>
+                </div>
+            )
+            : <button 
+                onClick={() => handleStatus(globalConstants.UNACCEPT_ACTION_NAME)} 
+                className={styles['unaccept']}>
+                Unaccepted
+            </button>
 
     return (
         <section

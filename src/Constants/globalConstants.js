@@ -10,3 +10,10 @@ export const ORDER_HISTORY_NAME = 'Order History';
 
 export const PENDING_ORDERS_NAME = 'Pending Orders';
 
+export const ACCEPT_ACTION_NAME = 'accept';
+
+export const UNACCEPT_ACTION_NAME = 'unaccept';
+
+export const DECLINE_ACTION_NAME = 'decline';
+
+

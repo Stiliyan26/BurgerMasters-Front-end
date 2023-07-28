@@ -63,9 +63,7 @@ function App() {
 							<Route path='/CreateItem' element={<CreateMenuItem />} />
 							<Route path='/EditItem/:itemId' element={<EditMenuItem />} />
 							<Route path='/Orders' element={<PendingOrders />} />
-							<Route path='/OrderDetails/:orderId' element={<OrderDetails />} />
 							<Route path='/OrderHistory' element={<OrderHistory />} />
-							<Route path='/MyOrders' element={<MyOrders />} />
 
 							<Route path='/MyPosts/Burgers' element={<MyBurgerPosts />} />
 							<Route path='/MyPosts/Drinks' element={<MyDrinkPosts />} />
@@ -86,6 +84,9 @@ function App() {
 
 						<Route path='/Details/:itemId' element={<ItemDetails />} />
 						<Route path='/Cart' element={<Cart />} />
+
+						<Route path='/MyOrders' element={<MyOrders />} />
+						<Route path='/OrderDetails/:orderId' element={<OrderDetails />} />
 
 					</Route>
 					{/* Guest section */}

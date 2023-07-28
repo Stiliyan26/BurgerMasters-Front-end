@@ -34,7 +34,7 @@ export const AuthProvider = ({
                     return jwtExpireDate < currentTime;
                 }
 
-                if (isTokenExpired() == true) {
+                if (isTokenExpired() === true) {
                     authService.refreshToken(userId)
                         .then(res => {
                             if (res.status === 200) {

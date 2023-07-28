@@ -111,6 +111,12 @@ const Header = () => {
     const userNav = (
         <Fragment>
             <li className={styles['list-item']}>
+                <Link to='/MyOrders' className={styles['create']}>
+                    My Orders <i className="fa-sharp fa-solid fa-clock-rotate-left"></i>
+                </Link>
+            </li>
+
+            <li className={styles['list-item']}>
                 <Link>
                     <div className={styles.menu}>
                         <p className={styles['menu-title']}>Menu</p>
@@ -139,12 +145,6 @@ const Header = () => {
 
     const adminNav = (
         <Fragment>
-            <li className={styles['list-item']}>
-                <Link to='/MyOrders' className={styles['create']}>
-                    My Orders <i className="fa-sharp fa-solid fa-clock-rotate-left"></i>
-                </Link>
-            </li>
-
             <li className={styles['list-item']}>
                 <Link to='/OrderHistory' className={styles['create']}>
                     History <i className="fa-sharp fa-solid fa-clock-rotate-left"></i>

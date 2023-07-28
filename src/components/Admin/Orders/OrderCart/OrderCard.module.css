@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Chela+One&display=swap');
+
 .order-info {
     display: grid;
     color: #d5d9de;
@@ -99,6 +101,11 @@
 
 .order-info .unaccept {
     background-color: #003554;
+    animation: wiggle 2s linear infinite;
+}
+
+.order-info .ordered {
+    background-color: #4a4a4a;
 }
 
 .order-info .order-details {
@@ -109,6 +116,7 @@
 .order-info .accept,
 .order-info .unaccept,
 .order-info .decline,
+.order-info .ordered,
 .order-info .order-details {
     border: none;
     color: #d5d9de;
@@ -116,6 +124,7 @@
     padding: 10px 20px;
     border-radius: 1rem;
     cursor: pointer;
+    font-family: 'Chela One', cursive;  
 }
 
 @keyframes wiggle {

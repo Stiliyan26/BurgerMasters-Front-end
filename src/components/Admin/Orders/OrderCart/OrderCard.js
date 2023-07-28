@@ -12,28 +12,47 @@ const OrderCard = (
         handleOrderByAction(order.orderId, action);
     }
 
-    const statusButton = () =>
-        pageType === globalConstants.PENDING_ORDERS_NAME
-            ? (
-                <div className={styles['order-btns']}>
-                    <button 
-                        onClick={() => handleStatus(globalConstants.ACCEPT_ACTION_NAME)} 
-                        className={styles['accept']}>
-                        Accept
-                    </button>
-
-                    <button 
-                        onClick={() => handleStatus(globalConstants.DECLINE_ACTION_NAME)} 
-                        className={styles['decline']}>
-                        Decline
-                    </button>
-                </div>
-            )
-            : <button 
-                onClick={() => handleStatus(globalConstants.UNACCEPT_ACTION_NAME)} 
-                className={styles['unaccept']}>
-                Unaccepted
+    const pendingOrderBtns = (
+        <div className={styles['order-btns']}>
+            <button
+                onClick={() => handleStatus(globalConstants.ACCEPT_ACTION_NAME)}
+                className={styles['accept']}>
+                Accept
             </button>
+
+            <button
+                onClick={() => handleStatus(globalConstants.DECLINE_ACTION_NAME)}
+                className={styles['decline']}>
+                Decline
+            </button>
+        </div>
+    )
+
+    const acceptedOrderBtn = (
+        <button
+            onClick={() => handleStatus(globalConstants.UNACCEPT_ACTION_NAME)}
+            className={styles['unaccept']}>
+            Unaccepted
+        </button>
+    )
+
+    const myOrderBtn = (
+        <button
+            className={styles['ordered']}>
+            Ordered
+        </button>
+    )
+
+    const statusButton = () => {
+        switch (pageType) {
+            case globalConstants.PENDING_ORDERS_NAME:
+                return pendingOrderBtns;
+            case globalConstants.ORDER_HISTORY_NAME:
+                return acceptedOrderBtn;
+            case globalConstants.My_ORDERS_NAME:
+                return myOrderBtn;
+        }
+    }
 
     return (
         <section

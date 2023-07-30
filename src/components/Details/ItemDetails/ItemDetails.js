@@ -61,7 +61,6 @@ const ItemDetails = () => {
                 
                 if (response.status === 200) {
                     setItem(response.item);
-                    console.log(response.item)
                 } else if (response.status === 404) {
                     navigate('/Not-found');
                     return;

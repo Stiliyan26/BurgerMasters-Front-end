@@ -1,0 +1,28 @@
+#message-withAnim {
+  background-color: #f9f9f9;  
+  border-radius: 1rem;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  opacity: 0;
+  animation: slideIn 1s ease-in-out forwards;
+}
+
+#message-withoutAnim {
+  background-color: #f9f9f9;  
+  border-radius: 1rem;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+}
+
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

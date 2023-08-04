@@ -21,7 +21,12 @@ const CreateMenuItem = () => {
 
         menuItemService.getAllItemTypes()
             .then(res => {
-                setItemTypes(res);
+                if (res.status === 200){
+                    setItemTypes(res.allItemTypes);
+                }
+            })
+            .catch(error => {
+                console.log(error.message);
             });
     }, []);
 
@@ -40,13 +45,13 @@ const CreateMenuItem = () => {
                         navigate('/Menu/Drinks');
                     }  else if (res.itemType === 'Fries'){
                         navigate('/Menu/Fries');
-                    } else if (res.itemType == 'Hotdog'){
+                    } else if (res.itemType === 'Hotdog'){
                         navigate('/Menu/Hotdogs');
-                    } else if (res.itemType == 'Grill'){
+                    } else if (res.itemType === 'Grill'){
                         navigate('/Menu/Grills');
-                    } else if (res.itemType == 'Salad'){
+                    } else if (res.itemType === 'Salad'){
                         navigate('/Menu/Salads');
-                    } else if (res.itemType == 'Sandwich'){
+                    } else if (res.itemType === 'Sandwich'){
                         navigate('/Menu/Sandwiches');
                     }
                 } else if (res.status === 409){

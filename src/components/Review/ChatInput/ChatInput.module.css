@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Chela+One&display=swap');
+
+.chat-inp-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat-inp-form .chat-inp {
+    border: none;
+    border-radius: 1rem;
+    font-size: 1rem;
+    padding: 10px 20px;
+    font-family: 'Chela One', cursive;
+    flex-basis: 90%;
+    margin-right: 10px;
+}
+
+.chat-inp-form .submit {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #d5d9de;
+    background-color: #003554;
+    font-family: 'Chela One', cursive;
+    flex-basis: 10%;
+}

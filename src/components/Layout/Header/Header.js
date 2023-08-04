@@ -111,7 +111,12 @@ const Header = () => {
     const userNav = (
         <Fragment>
             <li className={styles['list-item']}>
-                <Link to='/MyOrders' className={styles['create']}>
+                <Link to='/Review' className={styles['review']}>
+                    Review <i className="fa-duotone fa-fork-knife"></i>
+                </Link>
+            </li>
+            <li className={styles['list-item']}>
+                <Link to='/MyOrders' className={styles['myorders']}>
                     My Orders <i className="fa-sharp fa-solid fa-clock-rotate-left"></i>
                 </Link>
             </li>

@@ -12,6 +12,7 @@ import { useAuthContext } from '../../contexts/AuthContext';
 import * as menuItemService from '../../services/menuItemService';
 
 import { Fragment, useEffect, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Menu = ({ itemType }) => {
     const [itemsCollection, setItemsCollection] = useState([]);
@@ -23,14 +24,20 @@ const Menu = ({ itemType }) => {
     const [sideCartItemCount, setSideCartItemsCount] = useState(0);
 
     const { token } = useAuthContext();
+    const navigate = useNavigate();
 
     useEffect(() => {
         document.title = `${itemType} Menu`;
 
         menuItemService.getAllItemsByType(token, itemType)
             .then(res => {
-                setItemsCollection(res);
-                setTimeout(() => setIsLoading(false), 500);
+                if (res.status === 200){
+                    setItemsCollection(res.menuItems);
+                    setTimeout(() => setIsLoading(false), 500);
+                } else {
+                    navigate('/Not-found');
+                    return;
+                }
             })
             .catch(err => {
                 console.log(err.message);

@@ -41,6 +41,8 @@ import GuestRoute from './GuardedRoutes/GuestRoute';
 import UserRoute from './GuardedRoutes/UserRoute';
 import AdminRoute from './GuardedRoutes/AdminRoute';
 
+import Review from './components/Review/Review/Review';
+
 import { Route, Routes } from "react-router-dom";
 import { AuthProvider } from './contexts/AuthContext';
 
@@ -88,6 +90,7 @@ function App() {
 						<Route path='/MyOrders' element={<MyOrders />} />
 						<Route path='/OrderDetails/:orderId' element={<OrderDetails />} />
 
+						<Route path='/Review' element={<Review />} />
 					</Route>
 					{/* Guest section */}
 					<Route element={<GuestRoute />}>

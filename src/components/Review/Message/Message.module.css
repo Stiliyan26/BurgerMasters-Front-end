@@ -1,28 +1,69 @@
 #message-withAnim {
-  background-color: #f9f9f9;  
+  color: #f9f9f9;  
+  background-color: #003e5a;
   border-radius: 1rem;
   padding: 5px 10px;
   margin-bottom: 10px;
   opacity: 0;
   animation: slideIn 1s ease-in-out forwards;
+  box-shadow: 9px 10px 10px -1px rgba(0, 53, 84, 0.77);
+  background-image: url('/public/images/darkenComment.webp');
+  background-repeat: repeat;
+  background-size: cover;
+}
+
+@keyframes slideIn {
+  from {
+      opacity: 0;
+      transform: translateX(100%);
+  }
+
+  to {
+      opacity: 1;
+      transform: translateX(0);
+  }
 }
 
 #message-withoutAnim {
-  background-color: #f9f9f9;  
+  background-color: #003e5a;
+  color: #f9f9f9;  
   border-radius: 1rem;
   padding: 5px 10px;
   margin-bottom: 10px;
+  box-shadow: 3px 5px 5px -1px rgba(0, 53, 84, 0.77);
+    -webkit-box-shadow: 3px 5px 5p -1px rgba(0, 53, 84, 0.77);
+    -moz-box-shadow: 3px 5px 5px -1px rgba(0, 53, 84, 0.77);
+  background-image: url('/public/images/darkenComment.webp');
+  background-repeat: repeat;
+  background-size: cover;
 }
 
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateX(100%);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+.username {
+  animation: glowing 2s ease-in-out infinite;
+  margin-bottom: 0px;
 }
+
+.message, .sentDate {
+  text-indent: 1rem;
+}
+
+.sentDate {
+  font-size: 0.8rem;
+  margin: 0px;
+  color: #a3a3a3;
+}
+
+@keyframes glowing {
+  0% {
+      text-shadow: 0 0 5px #d5d9de;
+  }
+
+  50% {
+      text-shadow: 0 0 20px #d5d9de;
+  }
+
+  100% {
+      text-shadow: 0 0 5px #d5d9de;
+  }
+}
+

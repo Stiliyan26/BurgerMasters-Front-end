@@ -29,6 +29,18 @@ const Review = () => {
             .build();
 
         setConnection(newConnection);
+
+        return () => {
+            if (newConnection.state !== 'Disconnected') {
+                newConnection.stop()
+                    .then(() => {
+                        console.log('Connection closed successfully.');
+                    })
+                    .catch((error) => {
+                        console.log('Error closing connection: ', error);
+                    });
+            }
+        };
     }, []);
 
     useEffect(() => {

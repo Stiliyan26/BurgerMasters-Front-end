@@ -39,7 +39,7 @@ const ChatInput = ({sendMessage}) => {
                 id="message"
                 name="message"
                 value={message}
-                placeholder='Message...'
+                placeholder='Share an opinion...'
                 onChange={onMessageUpdate} />
             <button className={styles['submit']}>Submit</button>
         </form>

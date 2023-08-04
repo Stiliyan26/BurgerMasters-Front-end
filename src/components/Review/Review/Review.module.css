@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Chela+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Angkor&display=swap');
 
 #review {
-    width: 80%;
-    font-family: 'Chela One', cursive;
+    width: 60%;
+    font-family: 'Angkor', cursive;
     margin-top: 60px;
     margin-bottom: 200px;
 }
+

@@ -5,6 +5,7 @@ import Footer from './components/Layout/Footer/Footer';
 // Common 
 import Home from './components/Pages/Home/Home';
 import ErrorPage from './components/Pages/ErrorPage/ErrorPage';
+import InternalServerError from './components/Pages/InternalServerErrorPage.js/InternalServerErrorPage';
 // Auth
 import Login from './components/Authentication/Login/Login';
 import Register from './components/Authentication/Register/Register';
@@ -57,6 +58,8 @@ function App() {
 					<Route path='/' element={<Home />} />
 					<Route path="/*" element={<ErrorPage />} />
 					<Route path="/Not-found" element={<ErrorPage />} />
+
+					<Route path="/Internal-server-error" element={<InternalServerError />} />
 
 					{/* User section */}
 					<Route element={<UserRoute />}>

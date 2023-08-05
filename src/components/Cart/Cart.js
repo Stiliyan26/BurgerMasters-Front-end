@@ -8,13 +8,14 @@ import * as orderService from '../../services/orderService';
 import { useAuthContext } from '../../contexts/AuthContext';
 
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
     const [cartItems, setCartItems] = useState([]);
     const [orderTotalPrice, setOrderTotalPrice] = useState('');
 
     const { token, user } = useAuthContext();
+    const navigate = useNavigate();
     //Load data
     useEffect(() => {
         document.title = 'Cart';
@@ -72,10 +73,12 @@ const Cart = () => {
                         prevCartItems.filter(item => item.id !== itemIdToDelete));
                 } else if (res.status === 404) {
                     console.log("Item not found");
+                    navigate('Not-found');
                 }
             })
             .catch(error => {
                 console.log(error.message);
+                navigate('/Not-found');
             });
     }
 

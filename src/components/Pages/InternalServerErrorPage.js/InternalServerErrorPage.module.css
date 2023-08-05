@@ -1,4 +1,4 @@
-#error-container {
+#server-error-container {
     height: 80%;
     display: flex;
     flex-direction: column;
@@ -8,38 +8,46 @@
     margin-bottom: 200px;
 }
 
-#error-container .sub-title {
+#server-error-container .sub-title {
     font-size: 2.5rem;
     color: #bc4749;
     margin-bottom: 0px;
 }
 
-#error-container .title {
+#server-error-container .title {
     font-size: 18rem;
     color: #bc4749;
     margin-top: 0px;
     margin-bottom: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#error-container #icon-question {
+#server-error-container .five {
+    font-size: 19rem;
+    padding-right: 2rem;
+}
+
+#server-error-container #icon-question {
     font-size: 14rem;
     padding: 0 2rem 0 2rem;
 }
 
-#error-container .msg {
+#server-error-container .msg {
     font-size: 2rem;
     color: #bc4749;
 }
 
-#error-container .sub-title,
-#error-container .title,
-#error-container .msg {
+#server-error-container .sub-title,
+#server-error-container .title,
+#server-error-container .msg {
     filter: drop-shadow(0 0 10px rgb(207, 0, 0));
     text-shadow: 3px 2px black;
     animation: red-glow-animation 1s infinite alternate;
 }
 
-#error-container .go-back {
+#server-error-container .go-back {
     text-decoration: none;
     color: #d5d9de;
     font-size: 1.5rem;
@@ -48,14 +56,14 @@
     border-radius: 20px;
 }
 
-#error-container .go-back:hover {
+#server-error-container .go-back:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     color: #e3e7ec;
     background-color: rgb(100, 0, 0);
 }
 
-#error-container .go-back:active {
+#server-error-container .go-back:active {
     transform: translateY(0);
     box-shadow: none;
 }

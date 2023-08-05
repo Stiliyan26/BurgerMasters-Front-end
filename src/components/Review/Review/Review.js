@@ -9,6 +9,7 @@ import { useAuthContext } from '../../../contexts/AuthContext';
 import { useState, useEffect, useRef } from 'react';
 
 import { HubConnectionBuilder } from '@microsoft/signalr';
+import { useNavigate } from 'react-router-dom';
 
 const Review = () => {
     const [connection, setConnection] = useState(null);
@@ -18,8 +19,10 @@ const Review = () => {
 
     const { token } = useAuthContext();
 
-    latestChat.current = chat;
+    const navigate = useNavigate();
 
+    //latestChat.current = chat;
+    
     useEffect(() => {
         document.title = 'Review';
 
@@ -29,6 +32,7 @@ const Review = () => {
             .build();
 
         setConnection(newConnection);
+        setIsFirstRender(false);
 
         return () => {
             if (newConnection.state !== 'Disconnected') {
@@ -59,12 +63,13 @@ const Review = () => {
                 .then(() => {
                     console.log('Connected!');
     
-                    connection.on('ReceiveMessage', message => {
-                        const updatedChat = [...latestChat.current];
-                        updatedChat.push(message);
-                    
-                        setChat(updatedChat);
-                        setIsFirstRender(false);
+                    connection.on('ReceiveMessage', newMessage => {
+                        // const updatedChat = [...latestChat.current];
+                        // updatedChat.push(message);
+                        
+                        setChat(prevMessages => 
+                            [...prevMessages, newMessage]
+                        );
                     });
                 })
                 .catch(e => console.log('Connection failed: ', e));
@@ -82,7 +87,9 @@ const Review = () => {
         try {
             reviewService.sentMessage(token, chatMessage)
                 .then(res => {
-                    console.log(res);
+                    if (res.status === 200) {
+                        console.log("message sent!");
+                    }
                 })
                 .catch(error => {
                     console.log(error.message);
@@ -93,12 +100,32 @@ const Review = () => {
         }
     }
 
+    const handleRemoveMessage = (messageId) => {
+        reviewService.removeMessage(token, messageId)
+            .then(res => {
+                if (res.status === 200) {
+                    setChat(prevMessages => 
+                        prevMessages.filter(m => m.id !== messageId)
+                    );
+                } else if (res.status === 500) {
+                    navigate('/Internal-server-error');
+                }
+            })
+            .catch(error => {
+                console.log(error.message);
+                navigate('/Internal-server-error');
+            });
+    }
 
     return (
         <div id={styles['review']}>
             <ChatInput sendMessage={sendMessage} />
             <hr />
-            <ChatWindow chat={chat} isFirstRender={isFirstRender}/>
+            <ChatWindow 
+                chat={chat} 
+                isFirstRender={isFirstRender}
+                handleRemoveMessage={handleRemoveMessage}
+            />
         </div>
     );
 }

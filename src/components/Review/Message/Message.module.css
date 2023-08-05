@@ -1,15 +1,21 @@
 #message-withAnim {
+  animation: slideIn 1s ease-in-out forwards;
+  opacity: 0;
+}
+
+.common-message {
   color: #f9f9f9;  
   background-color: #003e5a;
   border-radius: 1rem;
   padding: 5px 10px;
   margin-bottom: 10px;
-  opacity: 0;
-  animation: slideIn 1s ease-in-out forwards;
   box-shadow: 9px 10px 10px -1px rgba(0, 53, 84, 0.77);
   background-image: url('/public/images/darkenComment.webp');
   background-repeat: repeat;
   background-size: cover;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 @keyframes slideIn {
@@ -25,30 +31,25 @@
 }
 
 #message-withoutAnim {
-  background-color: #003e5a;
-  color: #f9f9f9;  
-  border-radius: 1rem;
-  padding: 5px 10px;
-  margin-bottom: 10px;
-  box-shadow: 3px 5px 5px -1px rgba(0, 53, 84, 0.77);
-    -webkit-box-shadow: 3px 5px 5p -1px rgba(0, 53, 84, 0.77);
-    -moz-box-shadow: 3px 5px 5px -1px rgba(0, 53, 84, 0.77);
-  background-image: url('/public/images/darkenComment.webp');
-  background-repeat: repeat;
-  background-size: cover;
+  opacity: 1;
 }
 
 .username {
   animation: glowing 2s ease-in-out infinite;
   margin-bottom: 0px;
+  font-size: 1.2rem;
 }
 
 .message, .sentDate {
   text-indent: 1rem;
 }
 
+.message {
+  font-size: 1.2rem;
+}
+
 .sentDate {
-  font-size: 0.8rem;
+  font-size: 1rem;
   margin: 0px;
   color: #a3a3a3;
 }
@@ -67,3 +68,33 @@
   }
 }
 
+.common-message .spinning-x {
+    font-family: 'Chela One', cursive;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    height: 200px;
+    text-decoration: none;
+    color: rgb(207, 0, 0);
+    font-size: 2rem;
+    height: 20px;
+    margin-right: 40px;
+}
+
+.common-message #spinning-icon {
+  transition: transform 0.3s ease;
+}
+
+.common-message #spinning-icon:hover {
+  transform: rotate(180deg);
+}
+
+.common-message #spinning-icon:not(:hover) {
+  transition: transform 0.3s ease;
+}
+
+.common-message #spinning-icon:not(:hover):hover {
+  transform: rotate(-180deg);
+}

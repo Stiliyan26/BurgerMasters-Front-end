@@ -8,8 +8,8 @@ export const sentMessage = (token, message) =>
 export const getAllMessages = (token) => 
     requester(`${baseUrl}/AllMessages`, 'GET', null, token);
 
-export const removeMessage = (token, messageId) => 
-    requester(`${baseUrl}/RemoveMessage`, 'PATCH', messageId, token);
+export const removeMessage = (token, messageId, isAdmin, userId) => 
+    requester(`${baseUrl}/RemoveMessage?isAdmin=${isAdmin}&userId=${userId}`, 'PATCH', messageId, token);
 
 export const getMessageSentDateToString = () => {
     const now = new Date();

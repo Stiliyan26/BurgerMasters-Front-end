@@ -1,11 +1,11 @@
 import styles from './Cart.module.css';
 
-import CartItemCard from './CartItemCard/CartItemCard';
+import CartItemCard from '../CartItemCard/CartItemCard';
 
-import * as cartService from '../../services/cartService';
-import * as orderService from '../../services/orderService';
+import * as cartService from '../../../services/cartService';
+import * as orderService from '../../../services/orderService';
 
-import { useAuthContext } from '../../contexts/AuthContext';
+import { useAuthContext } from '../../../contexts/AuthContext';
 
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';

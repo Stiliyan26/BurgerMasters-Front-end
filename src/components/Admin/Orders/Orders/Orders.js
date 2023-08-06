@@ -1,6 +1,6 @@
 import styles from './Orders.module.css';
 
-import OrderCard from '../OrderCart/OrderCard';
+import OrderCard from '../OrderCard/OrderCard';
 
 import * as orderService from '../../../../services/orderService';
 import * as globalConstants from '../../../../Constants/globalConstants';

@@ -1,6 +1,7 @@
 import styles from './ChatWindow.module.css'
 
 import Message from "../Message/Message";
+import { useEffect } from 'react';
 
 const ChatWindow = ({ chat, isFirstRender, handleRemoveMessage }) => {
     

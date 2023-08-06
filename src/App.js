@@ -36,7 +36,7 @@ import SaladMenu from './components/Menu/SaladMenu/SaladMenu';
 //Details
 import ItemDetails from './components/Details/ItemDetails/ItemDetails';
 //Cart
-import Cart from './components/Cart/Cart';
+import Cart from './components/Cart/Cart/Cart';
 // Guarded routes
 import GuestRoute from './GuardedRoutes/GuestRoute';
 import UserRoute from './GuardedRoutes/UserRoute';

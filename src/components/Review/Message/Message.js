@@ -6,7 +6,7 @@ import { useAuthContext } from '../../../contexts/AuthContext';
 
 const Message = ({messageInfo, index, isFirstRender, handleRemoveMessage}) => {
     const { isAdmin, user } = useAuthContext();
-    
+
     const getClassNameByFirstRender = () => {
         return isFirstRender 
             ? 'message-withAnim'

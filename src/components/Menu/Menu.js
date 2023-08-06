@@ -105,6 +105,8 @@ const Menu = ({ itemType }) => {
 
     const menuData = () => (
         <Fragment>
+            {isLoading && <Loader itemType={itemType} />}
+            
             <FilterSearchBar handleSearch={handleSearch} query={query} setSortQuery={setSortQuery} />
 
             <div id={styles['grid-container']}>
@@ -121,13 +123,12 @@ const Menu = ({ itemType }) => {
                         handleShowSideCart={handleShowSideCart}
                         sideCartItemCount={sideCartItemCount}
                         setSideCartItemsCount={setSideCartItemsCount}
-                    />}
+                    />
+            }
         </Fragment>
     );
 
-    return isLoading
-        ? <Loader itemType={itemType} />
-        : menuData();
+    return menuData();
 };
 
 export default Menu;

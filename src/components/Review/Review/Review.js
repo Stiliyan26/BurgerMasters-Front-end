@@ -29,7 +29,6 @@ const Review = () => {
             .withAutomaticReconnect()
             .build();
         setConnection(newConnection);
-        setIsFirstRender(false);
 
         return () => {
             if (newConnection.state !== 'Disconnected') {
@@ -91,6 +90,7 @@ const Review = () => {
                 .then(res => {
                     if (res.status === 200) {
                         console.log("message sent!");
+                        setIsFirstRender(false);
                     } else if (res.status === 500){
                         navigate('/Internal-server-error');
                     }
@@ -109,6 +109,7 @@ const Review = () => {
             .then(res => {
                 if (res.status === 200) {
                     console.log("message removed!");
+                    setIsFirstRender(false);
                 } else if (res.status === 500) {
                     navigate('/Internal-server-error');
                 }

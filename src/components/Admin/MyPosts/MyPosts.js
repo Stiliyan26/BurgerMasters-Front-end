@@ -84,6 +84,8 @@ const MyPosts = ({ itemType }) => {
 
     const myPostsData = () => (
         <Fragment>
+            {isLoading && <Loader itemType={itemType} />}   
+
             <section id={styles.filters}>
                 <section id={styles.search}>
                     <input
@@ -122,9 +124,7 @@ const MyPosts = ({ itemType }) => {
         </Fragment>
     );
 
-    return isLoading
-        ? <Loader itemType={itemType} />
-        : myPostsData();
+    return myPostsData();
 };
 
 export default MyPosts;

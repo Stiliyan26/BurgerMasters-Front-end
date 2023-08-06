@@ -67,6 +67,12 @@ const Review = () => {
                             [...prevMessages, newMessage]
                         );
                     });
+
+                    connection.on('RemoveMessage', messageId => {
+                        setChat(prevMessages => 
+                            prevMessages.filter(m => m.id !== messageId)
+                        );
+                    });
                 })
                 .catch(e => console.log('Connection failed: ', e));
         }
@@ -102,9 +108,7 @@ const Review = () => {
         reviewService.removeMessage(token, messageId, isAdmin, userId)
             .then(res => {
                 if (res.status === 200) {
-                    setChat(prevMessages => 
-                        prevMessages.filter(m => m.id !== messageId)
-                    );
+                    console.log("message removed!");
                 } else if (res.status === 500) {
                     navigate('/Internal-server-error');
                 }

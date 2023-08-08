@@ -22,8 +22,6 @@ export const AuthProvider = ({
     const [user, setUser] = useLocalStorage('user', initialValue);
 
     useEffect(() => {
-        const user = JSON.parse(localStorage.getItem('user'));
-
         if (user) {
             const { token, jwtExpireDate, userId } = user;
             

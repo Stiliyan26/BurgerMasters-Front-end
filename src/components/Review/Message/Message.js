@@ -36,7 +36,9 @@ const Message = ({messageInfo, index, isFirstRender, handleRemoveMessage}) => {
         >
             <div className={styles['msg-container']}>
                 <p className={styles['username']}>{messageInfo.username} says:</p>
-                <p className={styles['sentDate']}>{reviewService.getBeforeHowMuchTime(messageInfo.sentDate)}</p>
+                <p className={styles['sentDate']}>
+                    {reviewService.getBeforeHowMuchTime(messageInfo.sentDate)} ago
+                </p>
                 <p className={styles['message']}>- {messageInfo.message}</p>
             </div>
             

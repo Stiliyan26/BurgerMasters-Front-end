@@ -52,3 +52,9 @@ export const editMenuItemSchema = yup.object().shape({
         .max(30, 'Price should be less than 30 leva!')
         .required("Price is required!")
 });
+
+export const reviewMessageItemSchema = yup.object().shape({
+    message: yup.string()
+        .min(5, 'Review message should be at least 5 characters long!')
+        .max(150, 'Review message should be at less than 150 characters long!')
+});

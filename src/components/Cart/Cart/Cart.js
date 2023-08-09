@@ -6,6 +6,8 @@ import * as cartService from '../../../services/cartService';
 import * as orderService from '../../../services/orderService';
 
 import { useAuthContext } from '../../../contexts/AuthContext';
+import { useCartContext } from '../../../contexts/CartContext';
+
 
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -15,6 +17,8 @@ const Cart = () => {
     const [orderTotalPrice, setOrderTotalPrice] = useState('');
 
     const { token, user } = useAuthContext();
+    const { setCartItemsCount } = useCartContext();
+
     const navigate = useNavigate();
     //Load data
     useEffect(() => {
@@ -100,6 +104,7 @@ const Cart = () => {
                 if (cleanUpCartPromise.status === 200) {
                     console.log("All cart items removed");
                     setCartItems([]);
+                    setCartItemsCount(0);
                 }
             })
             .catch(error => {

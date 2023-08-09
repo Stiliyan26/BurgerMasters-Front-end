@@ -1,14 +1,17 @@
 import styles from './Header.module.css';
 
-import { useAuthContext } from '../../../contexts/AuthContext';
 import * as authService from '../../../services/authService';
+import { useAuthContext } from '../../../contexts/AuthContext';
+
 import { MENU_PAGE_NAME, MYPOSTS_PAGE_NAME } from '../../../Constants/globalConstants';
 
 import { Link, useNavigate } from "react-router-dom";
 import { Fragment } from 'react';
+import { useCartContext } from '../../../contexts/CartContext';
 
 const Header = () => {
     const { isAuthenticated, isAdmin, user, token, logout } = useAuthContext();
+    const { cartItemsCount } = useCartContext();
 
     const navigate = useNavigate();
 
@@ -135,7 +138,10 @@ const Header = () => {
             </li>
 
             <li className={styles['list-item']}>
-                <Link to="/Cart">Cart <i className="fa-solid fa-cart-shopping" style={{ color: "#d5d9de", }}></i></Link>
+                <Link className={styles['cart-container']} to="/Cart">
+                        Cart <i className="fa-solid fa-cart-shopping" style={{ color: "#d5d9de", }}></i>
+                    <span className={styles['items-count']}>{cartItemsCount}</span>
+                </Link>
             </li>
 
             <li className={styles['list-item']}>

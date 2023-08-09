@@ -8,8 +8,9 @@ import SideCart from '../Cart/SideCart/SideCart';
 
 import { MENU_PAGE_NAME } from '../../Constants/globalConstants';
 
-import { useAuthContext } from '../../contexts/AuthContext';
 import * as menuItemService from '../../services/menuItemService';
+
+import { useAuthContext } from '../../contexts/AuthContext';
 
 import { Fragment, useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -21,9 +22,9 @@ const Menu = ({ itemType }) => {
     const [sortQuery, setSortQuery] = useState("");
 
     const [isSideCartOpen, setIsSideCartOpen] = useState(false);
-    const [sideCartItemCount, setSideCartItemsCount] = useState(0);
 
     const { token } = useAuthContext();
+    
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -31,7 +32,7 @@ const Menu = ({ itemType }) => {
 
         menuItemService.getAllItemsByType(token, itemType)
             .then(res => {
-                if (res.status === 200){
+                if (res.status === 200) {
                     setItemsCollection(res.menuItems);
                     setTimeout(() => setIsLoading(false), 500);
                 } else {
@@ -60,7 +61,6 @@ const Menu = ({ itemType }) => {
                     item={item}
                     pageType={MENU_PAGE_NAME}
                     handleShowSideCart={handleShowSideCart}
-                    setSideCartItemsCount={setSideCartItemsCount}
                 />
             ));
         }
@@ -75,7 +75,6 @@ const Menu = ({ itemType }) => {
                         item={item}
                         pageType={MENU_PAGE_NAME}
                         handleShowSideCart={handleShowSideCart}
-                        setSideCartItemsCount={setSideCartItemsCount}
                     />
                 ));
         }
@@ -88,8 +87,6 @@ const Menu = ({ itemType }) => {
                     item={item}
                     pageType={MENU_PAGE_NAME}
                     handleShowSideCart={handleShowSideCart}
-                    setSideCartItemsCount={setSideCartItemsCount}
-
                 />
             ));
     }, [itemsCollection, query, sortQuery]);
@@ -106,7 +103,7 @@ const Menu = ({ itemType }) => {
     const menuData = () => (
         <Fragment>
             {isLoading && <Loader itemType={itemType} />}
-            
+
             <FilterSearchBar handleSearch={handleSearch} query={query} setSortQuery={setSortQuery} />
 
             <div id={styles['grid-container']}>
@@ -119,11 +116,9 @@ const Menu = ({ itemType }) => {
 
             {isSideCartOpen
                 && <SideCart
-                        isSideCartOpen={isSideCartOpen}
-                        handleShowSideCart={handleShowSideCart}
-                        sideCartItemCount={sideCartItemCount}
-                        setSideCartItemsCount={setSideCartItemsCount}
-                    />
+                    isSideCartOpen={isSideCartOpen}
+                    handleShowSideCart={handleShowSideCart}
+                />
             }
         </Fragment>
     );

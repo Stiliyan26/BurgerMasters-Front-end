@@ -7,6 +7,7 @@ import { getPortionMeasure } from '../../../services/menuItemService';
 import { handleSmoothRedirection } from '../../../services/navigationServices';
 
 import { useAuthContext } from '../../../contexts/AuthContext';
+import { useCartContext } from '../../../contexts/CartContext';
 
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
@@ -15,6 +16,7 @@ const CartItemCard = ({ item, index, handleRemoveItem, updateQuantity }) => {
     const [quantity, setQuantity] = useState(item.quantity);
 
     const { token, user } = useAuthContext();
+    const { setCartItemsCount } = useCartContext();
 
     const getQuantityPrice = () => {
         return (quantity * item.price).toFixed(2);
@@ -25,6 +27,7 @@ const CartItemCard = ({ item, index, handleRemoveItem, updateQuantity }) => {
             .then(res => {
                 if (res.status === 200) {
                     updateQuantity(item.id, quantity + quantityToAddOrRemove)
+                    setCartItemsCount(prevCount => prevCount + quantityToAddOrRemove);
                 } else if (res.status === 404) {
                     console.log("Item not found");
                 }
@@ -36,6 +39,7 @@ const CartItemCard = ({ item, index, handleRemoveItem, updateQuantity }) => {
 
     function onRemove() {
         handleRemoveItem(item.id);
+        setCartItemsCount(prevCount => prevCount - item.quantity);
     }
 
     return (

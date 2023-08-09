@@ -46,65 +46,68 @@ import Review from './components/Review/Review/Review';
 
 import { Route, Routes } from "react-router-dom";
 import { AuthProvider } from './contexts/AuthContext';
+import { CartProvider } from './contexts/CartContext';
 
 function App() {
 	return (
 		<AuthProvider>
-			<Header />
+			<CartProvider>
+				<Header />
 
-			<div className='container'>
-				<Routes>
-					{/* Common */}
-					<Route path='/' element={<Home />} />
-					<Route path="/*" element={<ErrorPage />} />
-					<Route path="/Not-found" element={<ErrorPage />} />
+				<div className='container'>
+					<Routes>
+						{/* Common */}
+						<Route path='/' element={<Home />} />
+						<Route path="/*" element={<ErrorPage />} />
+						<Route path="/Not-found" element={<ErrorPage />} />
 
-					<Route path="/Internal-server-error" element={<InternalServerError />} />
+						<Route path="/Internal-server-error" element={<InternalServerError />} />
 
-					{/* User section */}
-					<Route element={<UserRoute />}>
-						{/* Admin section */}
-						<Route element={<AdminRoute />}>
-							<Route path='/CreateItem' element={<CreateMenuItem />} />
-							<Route path='/EditItem/:itemId' element={<EditMenuItem />} />
-							<Route path='/Orders' element={<PendingOrders />} />
-							<Route path='/OrderHistory' element={<OrderHistory />} />
+						{/* User section */}
+						<Route element={<UserRoute />}>
+							{/* Admin section */}
+							<Route element={<AdminRoute />}>
+								<Route path='/CreateItem' element={<CreateMenuItem />} />
+								<Route path='/EditItem/:itemId' element={<EditMenuItem />} />
+								<Route path='/Orders' element={<PendingOrders />} />
+								<Route path='/OrderHistory' element={<OrderHistory />} />
 
-							<Route path='/MyPosts/Burgers' element={<MyBurgerPosts />} />
-							<Route path='/MyPosts/Drinks' element={<MyDrinkPosts />} />
-							<Route path='/MyPosts/Fries' element={<MyFriesPosts />} />
-							<Route path='/MyPosts/Hotdogs' element={<MyHotdogPosts />} />
-							<Route path='/MyPosts/Grills' element={<MyGrillPosts />} />
-							<Route path='/MyPosts/Salads' element={<MySaladPosts />} />
-							<Route path='/MyPosts/Sandwiches' element={<MySandwichPosts />} />
+								<Route path='/MyPosts/Burgers' element={<MyBurgerPosts />} />
+								<Route path='/MyPosts/Drinks' element={<MyDrinkPosts />} />
+								<Route path='/MyPosts/Fries' element={<MyFriesPosts />} />
+								<Route path='/MyPosts/Hotdogs' element={<MyHotdogPosts />} />
+								<Route path='/MyPosts/Grills' element={<MyGrillPosts />} />
+								<Route path='/MyPosts/Salads' element={<MySaladPosts />} />
+								<Route path='/MyPosts/Sandwiches' element={<MySandwichPosts />} />
+							</Route>
+
+							<Route path='/Menu/Burgers' element={<BurgerMenu />} />
+							<Route path='/Menu/Drinks' element={<DrinkMenu />} />
+							<Route path='/Menu/Fries' element={<FriesMenu />} />
+							<Route path='/Menu/Hotdogs' element={<HotdogMenu />} />
+							<Route path='/Menu/Grills' element={<GrillMenu />} />
+							<Route path='/Menu/Salads' element={<SaladMenu />} />
+							<Route path='/Menu/Sandwiches' element={<SandwichMenu />} />
+
+							<Route path='/Details/:itemId' element={<ItemDetails />} />
+							<Route path='/Cart' element={<Cart />} />
+
+							<Route path='/MyOrders' element={<MyOrders />} />
+							<Route path='/OrderDetails/:orderId' element={<OrderDetails />} />
+
+							<Route path='/Review' element={<Review />} />
+						</Route>
+						{/* Guest section */}
+						<Route element={<GuestRoute />}>
+							<Route path='/Login' element={<Login />} />
+							<Route path='/Register' element={<Register />} />
 						</Route>
 
-						<Route path='/Menu/Burgers' element={<BurgerMenu />} />
-						<Route path='/Menu/Drinks' element={<DrinkMenu />} />
-						<Route path='/Menu/Fries' element={<FriesMenu />} />
-						<Route path='/Menu/Hotdogs' element={<HotdogMenu />} />
-						<Route path='/Menu/Grills' element={<GrillMenu />} />
-						<Route path='/Menu/Salads' element={<SaladMenu />} />
-						<Route path='/Menu/Sandwiches' element={<SandwichMenu />} />
+					</Routes>
+				</div>
 
-						<Route path='/Details/:itemId' element={<ItemDetails />} />
-						<Route path='/Cart' element={<Cart />} />
-
-						<Route path='/MyOrders' element={<MyOrders />} />
-						<Route path='/OrderDetails/:orderId' element={<OrderDetails />} />
-
-						<Route path='/Review' element={<Review />} />
-					</Route>
-					{/* Guest section */}
-					<Route element={<GuestRoute />}>
-						<Route path='/Login' element={<Login />} />
-						<Route path='/Register' element={<Register />} />
-					</Route>
-
-				</Routes>
-			</div>
-
-			<Footer />
+				<Footer />
+			</CartProvider>
 		</AuthProvider>
 	);
 }

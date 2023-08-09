@@ -5,15 +5,17 @@ import { getPortionMeasure } from '../../../services/menuItemService';
 import { handleSmoothRedirection } from '../../../services/navigationServices';
 
 import { useAuthContext } from '../../../contexts/AuthContext';
+import { useCartContext } from '../../../contexts/CartContext';
 
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-const SideCart = ({ isSideCartOpen, handleShowSideCart, sideCartItemCount, setSideCartItemsCount }) => {
+const SideCart = ({ isSideCartOpen, handleShowSideCart }) => {
     const [sideCartItems, setSideCartItems] = useState([]);
     const [isFullHeight, setIsFullHeight] = useState(false);
 
     const { token, user } = useAuthContext();
+    const { cartItemsCount, setCartItemsCount } = useCartContext();
 
     useEffect(() => {
         cartService.getAllCartItems(token, user.userId)
@@ -36,7 +38,7 @@ const SideCart = ({ isSideCartOpen, handleShowSideCart, sideCartItemCount, setSi
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [sideCartItemCount])
+    }, [cartItemsCount])
 
     const imgSrc = (item) => `/images/${item.itemType}Menu/${item.imageUrl}`;
 
@@ -53,7 +55,7 @@ const SideCart = ({ isSideCartOpen, handleShowSideCart, sideCartItemCount, setSi
                         <div className={styles['side-cart-item-quantity']}>x{item.quantity}</div>
                     </div>
 
-                    <Link onClick={(e) => handleRemoveItem(item.id, e)} className={styles["spinning-x"]}>
+                    <Link onClick={(e) => handleRemoveItem(item.id, item.quantity, e)} className={styles["spinning-x"]}>
                         <i id={styles['spinning-icon']} className="fa-regular fa-xmark"></i>
                     </Link>
                 </div>
@@ -67,7 +69,7 @@ const SideCart = ({ isSideCartOpen, handleShowSideCart, sideCartItemCount, setSi
         return totalPrice.toFixed(2);
     }
 
-    const handleRemoveItem = (itemIdToDelete, e) => {
+    const handleRemoveItem = (itemIdToDelete, itemQuantity, e) => {
         e.preventDefault();
 
         cartService.removeCartItem(token, itemIdToDelete, user.userId)
@@ -77,7 +79,7 @@ const SideCart = ({ isSideCartOpen, handleShowSideCart, sideCartItemCount, setSi
                         prevCartItems.filter(item => item.id !== itemIdToDelete)
                     );
 
-                    setSideCartItemsCount(prevCount => prevCount - 1);
+                    setCartItemsCount(prevCount => prevCount - itemQuantity);
                 } else if (res.status === 404) {
                     console.log("Item not found");
                 }

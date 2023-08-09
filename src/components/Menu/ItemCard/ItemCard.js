@@ -7,11 +7,14 @@ import { handleSmoothRedirection } from '../../../services/navigationServices';
 
 import { MYPOSTS_PAGE_NAME, MENU_PAGE_NAME } from '../../../Constants/globalConstants';
 import { useAuthContext } from '../../../contexts/AuthContext';
+import { useCartContext } from '../../../contexts/CartContext';
+
 
 import { Link } from 'react-router-dom';
 
-const ItemCard = ({ item, pageType, handleShowSideCart, setSideCartItemsCount }) => {
+const ItemCard = ({ item, pageType, handleShowSideCart }) => {
     const { token, user } = useAuthContext();
+    const { setCartItemsCount } = useCartContext();
 
     const imageUrl = `/images/${item.itemType}Menu/${item.imageUrl}`;
 
@@ -56,7 +59,7 @@ const ItemCard = ({ item, pageType, handleShowSideCart, setSideCartItemsCount })
                 if (res.status === 200) {
                     console.log("Item added to cart");
                     handleShowSideCart(true);
-                    setSideCartItemsCount(prev => prev + 1);
+                    setCartItemsCount(prev => prev + 1);
                 } else if (res.status === 404) {
                     console.log("Item not found");
                 }

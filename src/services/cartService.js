@@ -13,3 +13,7 @@ export const removeCartItem = (token, itemId, userId) =>
 
 export const cleanUpCart = (token, userId) => 
     requester(`${baseUrl}/CleanUpCart?userId=${userId}`, 'DELETE', null, token);
+
+export const cartItemCount = (token, userId) => 
+    requester(`${baseUrl}/CartItemsCount?userId=${userId}`, 'GET', null, token);
+

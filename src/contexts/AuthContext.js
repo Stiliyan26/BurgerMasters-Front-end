@@ -1,8 +1,9 @@
-import { createContext, useContext, useEffect } from "react";
-import * as authService from '../services/authService'
+import * as authService from '../services/authService';
 import useLocalStorage from "../hooks/useLocalStorage";
 
 import jwtDecode from 'jwt-decode';
+
+import { createContext, useContext, useEffect } from "react";
 
 export const AuthContext = createContext();
 
@@ -24,7 +25,7 @@ export const AuthProvider = ({
     useEffect(() => {
         if (user) {
             const { token, jwtExpireDate, userId } = user;
-            
+
             if (token) {
                 const isTokenExpired = () => {
                     const currentTime = Date.now() / 1000;
@@ -66,13 +67,14 @@ export const AuthProvider = ({
 
     return (
         <AuthContext.Provider value={
-            { 
+            {
                 user,
-                token: user.token, 
-                isAuthenticated: user.email, 
-                isAdmin: user.role === "Admin", 
-                login, 
-                logout }}
+                token: user.token,
+                isAuthenticated: user.email,
+                isAdmin: user.role === "Admin",
+                login,
+                logout
+            }}
         >
             {children}
         </AuthContext.Provider>

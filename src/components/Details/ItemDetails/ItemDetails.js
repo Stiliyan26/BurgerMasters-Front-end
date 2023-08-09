@@ -16,6 +16,7 @@ import { useAuthContext } from "../../../contexts/AuthContext";
 
 import { Link, useNavigate, useParams, useLocation } from "react-router-dom"
 import { Fragment, useEffect, useState } from 'react';
+import { useCartContext } from '../../../contexts/CartContext';
 
 const ItemDetails = () => {
     const [item, setItem] = useState({
@@ -35,6 +36,8 @@ const ItemDetails = () => {
     const [sideCartItemCount, setSideCartItemsCount] = useState(0);
 
     const { token, user, isAdmin } = useAuthContext();
+    const { setCartItemsCount } = useCartContext();
+
     const { itemId } = useParams();
 
     const navigate = useNavigate();
@@ -138,7 +141,7 @@ const ItemDetails = () => {
                 if (res.status === 200) {
                     console.log("Item added to cart");
                     setIsSideCartOpen(true);
-                    setSideCartItemsCount(prev => prev + quantity);
+                    setCartItemsCount(prev => prev + quantity);
                 } else if (res.status === 404) {
                     console.log("Item not found");
                 }

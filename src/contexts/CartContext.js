@@ -17,7 +17,8 @@ export const CartProvider = ({
     const navigate = useNavigate();
 
     useEffect(() => {
-        cartService.cartItemCount(token, user.userId)
+        if (user && token) {
+            cartService.cartItemCount(token, user.userId)
             .then(res => {
                 if (res.status === 200) {
                     console.log(res.cartItemsCount);
@@ -28,6 +29,7 @@ export const CartProvider = ({
                 console.log(error.message);
                 navigate('/Internal-server-error');
             })
+        }
     }, [user]);
 
 

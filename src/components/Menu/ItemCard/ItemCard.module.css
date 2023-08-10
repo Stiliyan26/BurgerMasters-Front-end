@@ -164,13 +164,3 @@
         filter: drop-shadow(0 0 2px #d5d9de);
     }
 }
-
-@media screen and (max-height: 1024px) {
-    #card .btn--content,
-    #card i {
-        display: inline-block;
-        padding-right: 10px;
-        margin: 0px;
-        font-size: 1rem;
-    }
-}

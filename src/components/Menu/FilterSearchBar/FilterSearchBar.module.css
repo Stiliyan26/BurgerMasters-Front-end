@@ -94,7 +94,7 @@
     transform: rotate(-135deg);
 }
 
-.dropdown .items {
+.dropdown .categories {
     position: absolute;
     top: 0;
     left: 0;
@@ -104,11 +104,11 @@
     display: none;
 }
 
-.dropdown.active .items{
+.dropdown.active .categories{
     display: block;
 }
 
-.dropdown .items a {
+.dropdown .categories a {
     position: relative;
     display: flex;
     font-size: 20px;
@@ -124,15 +124,15 @@
     transition: .5s;
 }
 
-.dropdown.active .items a {
+.dropdown.active .categories a {
     left: 0px;
 }
 
-.dropdown .items a:hover {
+.dropdown .categories a:hover {
     color: #fff;
 }
 
-.dropdown .items a span {
+.dropdown .categories a span {
      position: absolute;
      top: 0;
      left: 0;
@@ -146,6 +146,6 @@
      transition: .5s;
 }
 
-.dropdown .items a:hover span {
+.dropdown .categories a:hover span {
     transform: rotate(0deg);
 }

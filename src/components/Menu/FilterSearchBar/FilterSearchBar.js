@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
-const SearchBar = ({ handleSearch, query, setSortQuery }) => {
+const FilterSearchBar = ({ handleSearch, query, setSortQuery }) => {
     const [isActive, setIsActive] = useState(false);
 
     const toggleDropdown = () => {
@@ -35,7 +35,7 @@ const SearchBar = ({ handleSearch, query, setSortQuery }) => {
                     Sort by
                     <span className={styles['left-icon']}></span>
                     <span className={styles['right-icon']}></span>
-                    <div className={styles.items}>
+                    <div className={styles['categories']}>
                         <Link onClick={() => setSortQuery('price ascending')}><span></span>Price Ascending</Link>
                         <Link onClick={() => setSortQuery('price descending')}><span></span>Price Descending</Link>
                         <Link onClick={() => setSortQuery('portionSize')}><span></span>Portion size</Link>
@@ -48,4 +48,4 @@ const SearchBar = ({ handleSearch, query, setSortQuery }) => {
     );
 };
 
-export default SearchBar;
+export default FilterSearchBar;

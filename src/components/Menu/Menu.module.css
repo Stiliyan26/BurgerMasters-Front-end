@@ -2,7 +2,6 @@
 
 
 #menu.grid {
-    position: relative;
     width: 60%;
     padding-bottom: 200px;
     margin: 0 auto;
@@ -10,7 +9,6 @@
     grid-template-columns: repeat(3, minmax(200px, 1fr));
     gap: 20px;
     justify-items: center;
-    z-index: 1;
 }
 
 #grid-container {

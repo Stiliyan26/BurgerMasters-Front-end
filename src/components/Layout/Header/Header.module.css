@@ -80,6 +80,7 @@
     display: block;
     border-radius: 10px;
     padding-top: 20px;
+    z-index: 2;
 }
 
 .nav .list-item:hover .menu-dropdown .menu-item,

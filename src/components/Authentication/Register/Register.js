@@ -102,7 +102,7 @@ const Register = () => {
                     
                     login(userInfo);
                     setResponseErrors([]);
-                    navigate('/');
+                    navigate('/Menu/Burgers');
                 } else if (res.status === 409) {
                     //Conflict
                     setResponseErrors(res.errors);

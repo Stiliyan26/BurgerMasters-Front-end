@@ -60,7 +60,7 @@ const Login = () => {
 
                     login(userInfo);
                     setResponseErrorMsg('');
-                    navigate('/');
+                    navigate('/Menu/Burgers');
                 } else if (res.status === 401) {
                     //Unauthorized
                     setResponseErrorMsg(res.errorMessage);

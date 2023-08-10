@@ -98,7 +98,6 @@ const Header = () => {
             })
     };
 
-
     const guestNav = (
         <Fragment>
             <li className={styles['list-item']}>
@@ -140,12 +139,16 @@ const Header = () => {
             <li className={styles['list-item']}>
                 <Link className={styles['cart-container']} to="/Cart">
                         Cart <i className="fa-solid fa-cart-shopping" style={{ color: "#d5d9de", }}></i>
-                    <span className={styles['items-count']}>{cartItemsCount}</span>
+                    {cartItemsCount != 0 
+                        ? <span className={styles['items-count']}>{cartItemsCount}</span>
+                        : null}
                 </Link>
             </li>
 
             <li className={styles['list-item']}>
-                <Link onClick={handleLogout}>Logout <i className="fa-solid fa-right-from-bracket"></i></Link>
+                <Link onClick={handleLogout}>
+                    Logout <i className="fa-solid fa-right-from-bracket"></i>
+                </Link>
             </li>
 
             <li className={styles['list-item']}>

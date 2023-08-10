@@ -44,3 +44,11 @@
         transform: translateY(-10px);
     }
 }
+
+@media screen and (max-width: 1800px){
+    #sidebar .sidebar--subtitle {
+        font-size: 2rem;
+        animation: glowing 2s ease-in-out infinite;
+        padding-left: 5px;
+    }
+}

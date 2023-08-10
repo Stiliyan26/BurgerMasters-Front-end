@@ -1,5 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Cuprum:ital,wght@1,500&display=swap');
 
+#my-posts.grid {
+    width: 60%;
+    padding-bottom: 200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+    gap: 20px;
+    justify-items: center;
+}
+
+#grid-container {
+    display: flex;
+    padding-top: 50px;
+    font-family: 'Cuprum', sans-serif;
+}
+
 #filters {
     margin-top: 3%;
     width: 100%;
@@ -152,18 +168,4 @@
     color: #a3a7aa;
 }
 
-#menu.grid {
-    width: 60%;
-    padding-bottom: 200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(300px, 1fr));
-    gap: 20px;
-    justify-items: center;
-}
 
-#grid-container {
-    display: flex;
-    padding-top: 50px;
-    font-family: 'Cuprum', sans-serif;
-}

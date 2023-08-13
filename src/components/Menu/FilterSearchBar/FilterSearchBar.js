@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
-const FilterSearchBar = ({ handleSearch, query, setSortQuery }) => {
+const FilterSearchBar = ({ query, handleSearch, handleSort }) => {
     const [isActive, setIsActive] = useState(false);
 
     const toggleDropdown = () => {
@@ -12,9 +12,17 @@ const FilterSearchBar = ({ handleSearch, query, setSortQuery }) => {
     };
 
     const getDropDownClass = () => {
-        return isActive 
-            ? `${styles.dropdown} ${styles.active}` 
+        return isActive
+            ? `${styles.dropdown} ${styles.active}`
             : styles.dropdown;
+    };
+
+    const sortMappings = {
+        'Price Ascending': 'PriceAscending',
+        'Price Descending': 'PriceDescending',
+        'Portion size': 'PortionSizeDescending',
+        'Name': 'Name',
+        'Default': 'Default'
     };
 
     return (
@@ -36,11 +44,11 @@ const FilterSearchBar = ({ handleSearch, query, setSortQuery }) => {
                     <span className={styles['left-icon']}></span>
                     <span className={styles['right-icon']}></span>
                     <div className={styles['categories']}>
-                        <Link onClick={() => setSortQuery('price ascending')}><span></span>Price Ascending</Link>
-                        <Link onClick={() => setSortQuery('price descending')}><span></span>Price Descending</Link>
-                        <Link onClick={() => setSortQuery('portionSize')}><span></span>Portion size</Link>
-                        <Link onClick={() => setSortQuery('name')}><span></span>Name</Link>
-                        <Link onClick={() => setSortQuery('')}><span></span>Reset</Link>
+                        {Object.keys(sortMappings).map((label, index) => (
+                            <Link key={index} onClick={() => handleSort(sortMappings[label])}>
+                                <span></span>{label}
+                            </Link>
+                        ))}
                     </div>
                 </div>
             </div>

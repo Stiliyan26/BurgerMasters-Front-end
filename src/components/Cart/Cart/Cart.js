@@ -99,6 +99,7 @@ const Cart = () => {
 
                 if (sentOrderRes.status === 200) {
                     console.log("Order sent!");
+                    navigate('/MyOrders')
                 }
 
                 if (cleanUpCartPromise.status === 200) {

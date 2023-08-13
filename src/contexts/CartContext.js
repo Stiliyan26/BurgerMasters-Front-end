@@ -21,7 +21,6 @@ export const CartProvider = ({
             cartService.cartItemCount(token, user.userId)
             .then(res => {
                 if (res.status === 200) {
-                    console.log(res.cartItemsCount);
                     setCartItemsCount(res.cartItemsCount)
                 }
             })

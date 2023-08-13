@@ -9,31 +9,41 @@ import SideCart from '../Cart/SideCart/SideCart';
 import { MENU_PAGE_NAME } from '../../Constants/globalConstants';
 
 import * as menuItemService from '../../services/menuItemService';
+import { handleSmoothRedirection } from '../../services/navigationServices';
 
 import { useAuthContext } from '../../contexts/AuthContext';
 
-import { Fragment, useEffect, useMemo, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Menu = ({ itemType }) => {
-    const [itemsCollection, setItemsCollection] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [query, setQuery] = useState("");
-    const [sortQuery, setSortQuery] = useState("");
 
+    const [queryModel, setQueryModel] = useState({
+        itemType: itemType,
+        searchTerm: '',
+        sorting: 'Default',
+        currentPage: 1,
+        totalMenuItemsCount: 0,
+        menuItems: [],
+    });
+
+    const [itemsCollection, setItemsCollection] = useState([]);
+    const [totalMenuItemsCount, setTotalMenuItemsCount] = useState(0);
+
+    const [isLoading, setIsLoading] = useState(true);
     const [isSideCartOpen, setIsSideCartOpen] = useState(false);
 
     const { token } = useAuthContext();
-    
     const navigate = useNavigate();
 
     useEffect(() => {
         document.title = `${itemType} Menu`;
 
-        menuItemService.getAllItemsByType(token, itemType)
+        menuItemService.getFilteredAndSortedItems(token, queryModel)
             .then(res => {
                 if (res.status === 200) {
-                    setItemsCollection(res.menuItems);
+                    setItemsCollection(res.queryModel.menuItems);
+                    setTotalMenuItemsCount(res.queryModel.totalMenuItemsCount);
                     setTimeout(() => setIsLoading(false), 500);
                 } else {
                     navigate('/Not-found');
@@ -44,73 +54,81 @@ const Menu = ({ itemType }) => {
                 console.log(err.message);
                 setIsLoading(false);
             });
-    }, [itemType]);
+    }, [itemType, queryModel.currentPage, queryModel.searchTerm, queryModel.sorting]);
 
-    const sortQueries = {
-        'price ascending': (a, b) => a.price - b.price,
-        'price descending': (a, b) => b.price - a.price,
-        portionSize: (a, b) => b.portionSize - a.portionSize,
-        name: (a, b) => a.name.localeCompare(b.name),
-    };
-
-    const getFilteredItems = useMemo(() => {
-        if (!query && !sortQuery) {
-            return itemsCollection.map(item => (
-                <ItemCard
-                    key={item.id}
-                    item={item}
-                    pageType={MENU_PAGE_NAME}
-                    handleShowSideCart={handleShowSideCart}
-                />
-            ));
-        }
-
-        if (sortQuery && sortQueries.hasOwnProperty(sortQuery)) {
-            return itemsCollection
-                .slice()
-                .sort(sortQueries[sortQuery])
-                .map(item => (
-                    <ItemCard
-                        key={item.id}
-                        item={item}
-                        pageType={MENU_PAGE_NAME}
-                        handleShowSideCart={handleShowSideCart}
-                    />
-                ));
-        }
-
-        return itemsCollection
-            .filter(item => item.name.toLowerCase().includes(query.toLowerCase()))
-            .map(item => (
-                <ItemCard
-                    key={item.id}
-                    item={item}
-                    pageType={MENU_PAGE_NAME}
-                    handleShowSideCart={handleShowSideCart}
-                />
-            ));
-    }, [itemsCollection, query, sortQuery]);
 
     function handleSearch(e) {
-        setQuery(e.target.value);
-        setSortQuery('');
+        const searchTerm = e.target.value;
+
+        setQueryModel({
+            ...queryModel,
+            searchTerm: searchTerm,
+        })
+    }
+
+    function handleSort(sorting) {
+        setQueryModel({
+            ...queryModel,
+            sorting: sorting,
+        });
+    }
+
+    function handlePageChange(pageNumber) {
+        handleSmoothRedirection();
+
+        setQueryModel({
+            ...queryModel,
+            currentPage: pageNumber
+        });
     }
 
     function handleShowSideCart(isOpened) {
         setIsSideCartOpen(isOpened);
     }
 
+    const getAllMenuItems = () => {
+        return itemsCollection.map(item => (
+            <ItemCard
+                key={item.id}
+                item={item}
+                pageType={MENU_PAGE_NAME}
+                handleShowSideCart={handleShowSideCart}
+            />
+        ));
+    };
+
+    const getPaginationButtons = () => {
+        const totalPages = Math.ceil(totalMenuItemsCount / 6);
+
+        return (<div className={styles['pagination']}>
+            {Array.from({ length: totalPages }, (_, index) => (
+                <button
+                    key={index}
+                    onClick={() => handlePageChange(index + 1)}
+                    className={queryModel.currentPage === index + 1 ? styles.active : ''}
+                >
+                    {index + 1}
+                </button>
+            ))}
+        </div>)
+    }
+
+
     const menuData = () => (
         <Fragment>
             {isLoading && <Loader itemType={itemType} />}
 
-            <FilterSearchBar handleSearch={handleSearch} query={query} setSortQuery={setSortQuery} />
+            <FilterSearchBar
+                query={queryModel.searchTerm}
+                handleSearch={handleSearch}
+                handleSort={handleSort}
+            />
 
             <div id={styles['grid-container']}>
                 <Sidebar pageType={MENU_PAGE_NAME} />
 
                 <section id={styles.menu} className={styles.grid}>
-                    {itemsCollection && getFilteredItems}
+                    {itemsCollection && getAllMenuItems()}
                 </section>
             </div>
 
@@ -120,6 +138,10 @@ const Menu = ({ itemType }) => {
                     handleShowSideCart={handleShowSideCart}
                 />
             }
+
+
+            {getPaginationButtons()}
+
         </Fragment>
     );
 

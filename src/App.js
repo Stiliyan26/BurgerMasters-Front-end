@@ -96,6 +96,7 @@ function App() {
 							<Route path='/OrderDetails/:orderId' element={<OrderDetails />} />
 
 							<Route path='/Review' element={<Review />} />
+
 						</Route>
 						{/* Guest section */}
 						<Route element={<GuestRoute />}>

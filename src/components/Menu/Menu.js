@@ -63,6 +63,7 @@ const Menu = ({ itemType }) => {
         setQueryModel({
             ...queryModel,
             searchTerm: searchTerm,
+            currentPage: 1
         })
     }
 

@@ -9,7 +9,7 @@ import { useAuthContext } from '../../../contexts/AuthContext';
 import { useCartContext } from '../../../contexts/CartContext';
 
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
@@ -35,16 +35,16 @@ const Cart = () => {
             })
     }, []);
 
-    useEffect(() => {
-        getOrderPrice();
+    const getOrderPrice = useMemo(() => {
+        return cartItems
+            .reduce((totalPrice, item) =>
+                totalPrice + (item.price * item.quantity), 0)
+            .toFixed(2);
     }, [cartItems]);
 
-    const getOrderPrice = () => {
-        const totalOrderPrice = cartItems.reduce(
-            (totalPrice, item) => totalPrice + (item.price * item.quantity), 0);
-
-        setOrderTotalPrice(totalOrderPrice.toFixed(2));
-    }
+    useEffect(() => {
+        setOrderTotalPrice(getOrderPrice);
+    }, [cartItems]);
 
     const handleUpdateQuantity = (itemId, newQuantity) => {
         const updatedCartItems = cartItems

@@ -21,6 +21,7 @@ const SideCart = ({ isSideCartOpen, handleShowSideCart }) => {
         cartService.getAllCartItems(token, user.userId)
             .then(res => {
                 if (res.status === 200) {
+                    console.log("changed");
                     setSideCartItems(res.cartItems);
                 }
             })

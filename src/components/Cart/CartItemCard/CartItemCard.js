@@ -9,7 +9,7 @@ import { handleSmoothRedirection } from '../../../services/navigationServices';
 import { useAuthContext } from '../../../contexts/AuthContext';
 import { useCartContext } from '../../../contexts/CartContext';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 const CartItemCard = ({ item, index, handleRemoveItem, updateQuantity }) => {
@@ -17,6 +17,8 @@ const CartItemCard = ({ item, index, handleRemoveItem, updateQuantity }) => {
 
     const { token, user } = useAuthContext();
     const { setCartItemsCount } = useCartContext();
+
+    const navigate = useNavigate();
 
     const getQuantityPrice = () => {
         return (quantity * item.price).toFixed(2);
@@ -30,6 +32,7 @@ const CartItemCard = ({ item, index, handleRemoveItem, updateQuantity }) => {
                     setCartItemsCount(prevCount => prevCount + quantityToAddOrRemove);
                 } else if (res.status === 404) {
                     console.log("Item not found");
+                    navigate('/Not-found');
                 }
             })
             .catch(error => {

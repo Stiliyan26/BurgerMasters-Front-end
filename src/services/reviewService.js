@@ -1,6 +1,6 @@
 import { requester } from "./requester";
 
-const baseUrl = 'https://localhost:7129/api/Review';
+const baseUrl = `${process.env.REACT_APP_API}/api/Review`;
 
 export const sentMessage = (token, message) => 
     requester(`${baseUrl}/SentMessage`, 'POST', message, token);

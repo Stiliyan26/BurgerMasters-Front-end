@@ -9,8 +9,8 @@ import * as authService from '../../../services/authService'
 
 const Login = () => {
     const [inputValues, setInputValues] = useState({
-        email: "",
-        password: "",
+        email: "bogdan@gmail.com",
+        password: "User#123",
     });
 
     const [responeseErrorMsg, setResponseErrorMsg] = useState('');

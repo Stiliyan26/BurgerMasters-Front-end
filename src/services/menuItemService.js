@@ -1,7 +1,6 @@
 import { requester } from "./requester";
 
-const baseUrl = 'https://localhost:7129/api/Menu';
-
+const baseUrl = `${process.env.REACT_APP_API}/api/Menu`;
 export const getAllItemTypes = () => 
     requester(`${baseUrl}/AllItemTypes`, 'GET');
 

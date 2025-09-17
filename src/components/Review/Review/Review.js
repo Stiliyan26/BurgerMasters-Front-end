@@ -25,7 +25,7 @@ const Review = () => {
         document.title = 'Review';
 
         const newConnection = new HubConnectionBuilder()
-            .withUrl('https://localhost:7129/hubs/review')
+            .withUrl(`${process.env.REACT_APP_API}/hubs/review`)
             .withAutomaticReconnect()
             .build();
         setConnection(newConnection);

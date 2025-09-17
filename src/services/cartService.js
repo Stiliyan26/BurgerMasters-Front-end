@@ -1,6 +1,6 @@
 import { requester } from "./requester";
 
-const baseUrl = 'https://localhost:7129/api/Cart';
+const baseUrl = `${process.env.REACT_APP_API}/api/Cart`;
 
 export const addToCart = (token, itemId, userId, quantity) =>
     requester(`${baseUrl}/AddItemToCart`, 'POST', { itemId, userId, quantity}, token);

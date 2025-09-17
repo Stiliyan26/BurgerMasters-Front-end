@@ -84,7 +84,7 @@ const MyPosts = ({ itemType }) => {
 
     const myPostsData = () => (
         <Fragment>
-            {isLoading && <Loader itemType={itemType} />}   
+            {isLoading && <Loader itemType={itemType} />}
 
             <section id={styles.filters}>
                 <section id={styles.search}>
@@ -117,7 +117,7 @@ const MyPosts = ({ itemType }) => {
             <div id={styles['grid-container']}>
                 <Sidebar pageType={MYPOSTS_PAGE_NAME} />
 
-            <section id={styles['my-posts']} className={styles['grid']}>
+                <section id={styles['my-posts']} className={styles['grid']}>
                     {itemsCollection && getFilteredItems}
                 </section>
             </div>

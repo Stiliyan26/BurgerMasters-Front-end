@@ -43,6 +43,7 @@ const FilterSearchBar = ({ query, handleSearch, handleSort }) => {
                     Sort by
                     <span className={styles['left-icon']}></span>
                     <span className={styles['right-icon']}></span>
+                    
                     <div className={styles['categories']}>
                         {Object.keys(sortMappings).map((label, index) => (
                             <Link key={index} onClick={() => handleSort(sortMappings[label])}>

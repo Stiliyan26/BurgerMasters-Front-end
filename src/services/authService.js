@@ -1,6 +1,6 @@
 import jwtDecode from 'jwt-decode';
 
-const baseUrl = 'https://localhost:7129/api/Account';
+const baseUrl = `${process.env.REACT_APP_API}/api/Account`;
 
 export const register = async (data) => {
     return fetch(`${baseUrl}/Register`, {

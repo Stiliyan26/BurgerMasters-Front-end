@@ -24,7 +24,7 @@ const CartItemCard = ({ item, index, handleRemoveItem, updateQuantity }) => {
         return (quantity * item.price).toFixed(2);
     }
 
-    function handleAddQuantity(quantityToAddOrRemove) {
+    function handleQuantity(quantityToAddOrRemove) {
         cartService.addToCart(token, item.id, user.userId, quantityToAddOrRemove)
             .then(res => {
                 if (res.status === 200) {
@@ -65,7 +65,7 @@ const CartItemCard = ({ item, index, handleRemoveItem, updateQuantity }) => {
                 <NumericInputControl
                     quantity={quantity}
                     setQuantity={setQuantity}
-                    handleAddToCart={handleAddQuantity}
+                    handleAddToCart={handleQuantity}
                     page={'Cart'}
                 />
             </div>

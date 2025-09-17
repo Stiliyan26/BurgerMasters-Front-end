@@ -1,6 +1,6 @@
 import { requester } from "./requester";
 
-const baseUrl = 'https://localhost:7129/api/Admin';
+const baseUrl = `${process.env.REACT_APP_API}/api/Admin`;
 
 export const createMenuItem = (token, menuItem, userId) =>
     requester(`${baseUrl}/CreateMenuItem?userId=${userId}`, 'POST', menuItem, token);

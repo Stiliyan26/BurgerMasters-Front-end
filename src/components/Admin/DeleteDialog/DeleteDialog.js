@@ -1,6 +1,6 @@
 import styles from './DeleteDialog.module.css';
 
-const DeleteDialog = ({hideDialog, handleDelete, itemName}) => {
+const DeleteDialog = ({ hideDialog, handleDelete, itemName }) => {
     return (
         <div onClick={hideDialog} className={styles['overlay']}>
             <div id={styles['delete-confirmation-dialog']}>

@@ -1,5 +1,5 @@
 
-https://github.com/user-attachments/assets/8b9ab804-3f50-4d03-958e-e36598d5aa57
+
 ## BurgerMasters Front-end: `src/` Documentation
 
 

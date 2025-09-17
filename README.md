@@ -1,4 +1,10 @@
+
+https://github.com/user-attachments/assets/8b9ab804-3f50-4d03-958e-e36598d5aa57
 ## BurgerMasters Front-end: `src/` Documentation
+
+
+https://github.com/user-attachments/assets/d8dd266f-1d49-48aa-a432-474c06ae0fd4
+
 
 This document describes the application architecture, modules, data flow, and conventions for the React front‑end located in the `src/` directory. It’s intended for contributors who want to understand how the app is structured and how to extend it safely.
 

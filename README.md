@@ -1,221 +1,229 @@
-# Demo
-https://burger-masteres-app.azurewebsites.net
-# BurgerMasters Documentation 
-<pre>
-  The BurgerMasters App is a dynamic online store catering to clients seeking effortless food delivery.
-  This store empowers customers to curate their ideal orders by seamlessly adding or removing items to/from their carts
-  Additionally, clients enjoy the convenience of revisiting their previous orders.
+## BurgerMasters Front-end: `src/` Documentation
 
- For administrators, the BurgerMasters App grants comprehensive control. Admins possess the authority to create, edit, and delete products.
- A dedicated page is reserved for showcasing products exclusively crafted by the admin. 
- In addition, administrators are equipped with the ability to manage orders seamlessly. They can effortlessly accept, reject, or revoke order acceptances.
- </pre>
+This document describes the application architecture, modules, data flow, and conventions for the React front‑end located in the `src/` directory. It’s intended for contributors who want to understand how the app is structured and how to extend it safely.
 
-# Product Documentation
-### Application Flow
-    When the user starts the app he's redirected to the home page.
-<p>
-    <img height="300em" src="https://imageupload.io/ib/fiWYPWckVmp1nTk_1691675530.jpg" alt="homePage.jpg"/>
-    <img height="300em" src="https://imageupload.io/ib/gJRaMLFSjRgXF2U_1691675754.jpg" alt="footer.jpg"/>
-</p>
+### Tech Stack
+- React 18 with `react-router-dom` for routing
+- Context API for auth and cart state
+- CSS Modules for component‑scoped styles
+- Form validation with `yup`
+- Fetch/request wrapper in `services/requester.js`
 
-<pre>
-    The three buttons on the right side of the navbar are:
-    1. The home button leads the user to the home page if not logged.
-    2. The login button leads to the login page.
-    3. The register button leads to the register page.
-</pre>
-<p>
-     <img src="https://imageupload.io/ib/gX3BItETYOjZRGo_1691676772.jpg" alt="guestButtons.jpg"/>
-</p>
+---
 
-<pre>
-    The login form asks for the user's email and password. 
-    Validation for the input fields is implemented.
-</pre
+## Directory Structure
 
-<p>
-     <img height="300em" src="https://imageupload.io/ib/4BMbRHM9wiB3TbS_1691677022.jpg" alt="registrationForm.jpg"/>
-     
-     <img height="300em"  src="https://imageupload.io/ib/YJCLqPmbA0NSvi4_1691677434.jpg" alt="loginForm.jpg"/><
-</p>
+```
+src/
+  App.js                # Top-level routes and layout composition
+  index.js              # React bootstrap and router mounting
+  App.css               # Global app CSS (minimal; most styles are modules)
+  logo.svg
+  reportWebVitals.js
+  setupTests.js
 
- <pre>
-    The register form asks for 
-        - Username
-        - Email
-        - Address
-        - Birthdate,
-        - Password
-        - Confirm password.
-    It also has validations.
- </pre>
- 
- <pre>
-    Upon entering an incorrect password, the login form for registered users 
-    displays an error validation message.
- </pre>
- 
- <p>
-    <img height="300em" src="https://imageupload.io/ib/575UmhiEutjqHVU_1691677935.jpg" alt="loginFormError.jpg"/>
- </p>
- 
-  <pre>
-    Upon successful login user is redirected to the menu page 
-    with updated navigation bar. 
-  </pre
-  <p>
-    <img src="https://imageupload.io/ib/42DTg5uZoE39fND_1691681227.jpg" alt="userNav.jpg"/>
-  </p>
- 
- <pre>
-    The menu has 
-        - Burgers
-        - Sandwiches
-        - Fries
-        - Drinks
-        - Hot-dogs
-        - Grills
-        - Salads
-    Every menu page has search and sort by price ascending/descending order,
-    portion size, name.
- </pre>
- 
- <p>
-    <img height="300em"  src="https://imageupload.io/ib/JI4etjVfFk4tVX5_1692131061.jpg" alt="menu.jpg"/>
- </p>
- 
- <pre>
-     When a user adds an item to their cart from the menu page, a side cart popup appears.
- </pre>
- <p>
-    <img height="300em" src="https://imageupload.io/ib/9HunVq2WajEw034_1692131293.jpg" alt="sideCart.jpg"/>
- </p>
- 
- 
-<pre>
-    Clicking on "Cart" in the navigation bar or using the side cart
-    checkout button opens a cart page for the product, where you can
-    view information about each product and the total order price.
-</pre>
- 
-<p>
-    <img height="300em" src="https://imageupload.io/ib/1rxZbl9gjYJFuns_1692132147.jpg" alt="cart.jpg"/>
-</p>
- 
- 
-<pre>
-    After placing an order, the cart is emptied, and you are redirected to the 
-    "My Orders" page, where you can view information about your previous orders.
-</pre>
- 
-<p>
-    <img height="300em" src="https://imageupload.io/ib/1q1pXyHAMrNfpg5_1692132398.jpg" alt="myorders.jpg"/>
-    <img height="300em" src="https://imageupload.io/ib/NhEm2aMPbcInywO_1692132634.jpg" alt="orderDetails.jpg"/>
-</p>
+  Components/           # UI components grouped by domain/feature
+  contexts/             # React Context providers (Auth, Cart)
+  GuardedRoutes/        # Route guards for guest/user/admin
+  hooks/                # Reusable hooks (e.g., localStorage)
+  services/             # HTTP services and domain APIs
+  Constants/            # Shared constants (page titles, action names)
+  schemas/              # Yup validation schemas
+```
 
-<pre>
-    Clicking on "Review" opens a page where you can share your opinion about the restaurant. 
-    If you are the creator of the comment or an administrator, you have the ability to delete it. 
-    Review comments utilize SignalR for two-way communication.
-</pre>
- 
-<p>
-    <img src="https://imageupload.io/ib/Yjz7ZPFcz7lU7kf_1692133154.jpg" alt="review.jpg"/>
-</p>
- 
- 
-<pre>
-    When the admin logs in, their navigation bar appears as follows. 
-    For testing purposes, the admin has the same permissions as a normal user.
-</pre>
- 
-<p>
-    <img src="https://imageupload.io/ib/JvWnGRBWaxelHpP_1692133254.jpg" alt="adminNav.jpg"/>
-</p>
+### Components Overview
+- `components/Layout/*`: `Header`, `Footer` rendered on every page.
+- `components/Pages/*`: Top-level pages like `Home`, `ErrorPage`, `InternalServerErrorPage`.
+- `components/Menu/*`: Menu listing screens by category (`BurgerMenu`, `FriesMenu`, etc.), `Menu`, filtering and list item UI.
+- `components/Details/*`: Product details (`ItemDetails`), numeric input control, and similar products section.
+- `components/Cart/*`: Cart page, side cart panel, and cart item card.
+- `components/Authentication/*`: Login and Register forms with `FormInput`.
+- `components/Admin/*`: Admin features for creating/editing items, managing posts by category, and order management (pending, history, details).
+- `components/Review/*`: Simple chat/review UI (`Review`, `ChatWindow`, `ChatInput`, `Message`).
 
-<pre>
-    The admin has the ability to create new products.
-</pre>
+Each visual component typically has a `*.js` and matching `*.module.css` file.
 
-<p>
-  <img height="300em" src="https://imageupload.io/ib/nyG0CsdX8WJdp1g_1692134656.jpg" alt="create.jpg"/>
-</p>
+---
 
-<pre>
-    The admin has a page called "MyPosts", which is identical to 
-    the menu page, but it is exclusively meant for editing and deleting products.
-</pre>
- 
-<p>
-    <img height="300em" src="https://imageupload.io/ib/t31qCf1KMHKnXUP_1692133773.jpg" alt="myPosts.jpg"/>
-    <img height="300em" src="https://imageupload.io/ib/QyVo5OtqNiUUzJy_1692133820.jpg" alt="myPostsDetails.jpg"/>
-    <img height="300em" src="https://imageupload.io/ib/T7X7GLfckxI47Fd_1692134005.png" alt="edit.png"/>
-    <img height="300em" src="https://imageupload.io/ib/R2SpKb9QPAj0q47_1692134093.jpg" alt="delete.jpg"/>
-</p>
+## Application Entry and Routing
 
-<pre>
-    The admin has the capability to accept or decline orders from clients.
-</pre>
- 
-<p>
-    <img height="300em" src="https://imageupload.io/ib/QLOV90PDYxGRJpQ_1692134343.jpg" alt="orders.jpg"/>
-</p>
+### Entry
+- `index.js` mounts the app under `BrowserRouter`:
+  - StrictMode → Router → `App`
+- Web vitals are reported via `reportWebVitals` (no configuration required).
 
-<pre>
-    If an order is mistakenly accepted, the admin can undo the acceptance, 
-    which will return the order to the order page. 
-</pre>
- 
-<p>
-    <img  src="https://imageupload.io/ib/wpRBGcOqwB3fkQ9_1692134556.jpg" alt="history.jpg"/>
-</p>
+### Routes (`App.js`)
+- Layout: `Header` and `Footer` wrap all routes.
+- Primary content lives inside a `.container` div with `<Routes>`.
 
-## Database Design
+Key paths:
+- Common
+  - `/` → `Home`
+  - `/*`, `/Not-found` → `ErrorPage`
+  - `/Internal-server-error` → `InternalServerError`
 
-<p>
-    <img  src="https://imageupload.io/ib/iHbfgWLMSLKY4nb_1692135313.jpg" alt="database (2).jpg"/>
-</p>
+- Guarded: `UserRoute` wraps all authenticated sections.
+  - Admin-only within `UserRoute` via `AdminRoute`:
+    - `/CreateItem` → `CreateMenuItem`
+    - `/EditItem/:itemId` → `EditMenuItem`
+    - `/Orders` → `PendingOrders`
+    - `/OrderHistory` → `OrderHistory`
+    - `/MyPosts/{Burgers|Drinks|Fries|Hotdogs|Grills|Salads|Sandwiches}` → respective lists
+  - Authenticated user routes:
+    - `/Menu/{Burgers|Drinks|Fries|Hotdogs|Grills|Salads|Sandwiches}`
+    - `/Details/:itemId`
+    - `/Cart`
+    - `/MyOrders`
+    - `/OrderDetails/:orderId`
+    - `/Review`
 
-## Tech Stack:
+- Guest-only via `GuestRoute`:
+  - `/Login`, `/Register`
 
-### API
-<p></p>
-<ul>
-  <li>ASP.Net Core 6.0</li>
-  <li>EntityFramework Core 6.0.1</li>
-  <li>AutoMapper 12.0</li>
-  <li>Swashbuckle.AspNetCore.Swagger 6.4</li>
-  <li>Microsoft.AspNetCore.Identity 6.0.1</li>
-  <li>Microsoft.AspNetCore.Authentication.JwtBearer 6.0.9</li>
-</ul>
+---
 
-### Front-End
-<p></p>
-<ul>
-  <li>React</li>
-  <li>HTML</li>
-  <li>CSS</li>
-</ul>
+## State Management
 
-### Database
-<p></p>
-<ul>
-  <li>MSSQL Server</li>
-</ul>
+### Contexts
+- `contexts/AuthContext.js`
+  - Holds authenticated user session and auth actions.
+  - Consumed by guarded routes to check roles (User/Admin) and by auth UI.
 
-### Tests
-<p></p>
-<ul>
-  <li>NUnit 3.13.3</li>
-  <li>NUnit3TestAdapter 4.3.1</li>
-  <li>Moq 4.18.2</li>
-  <li>Microsoft.EntityFrameworkCore.InMemory 6.0.11</li>
-</ul>
+- `contexts/CartContext.js`
+  - Maintains cart items, quantities, and related actions.
+  - Consumed by `Cart` pages, `Header` (cart indicator), and `ItemDetails` (add to cart).
 
-### Git tools
-<p></p>
-<ul>
-  <li>GitHub</li>
-  <li>GitHub Desktop</li>
-</ul>
+Both providers are composed at the top level in `App.js` so they are available throughout routed content.
+
+### Hooks
+- `hooks/useLocalStorage.js`: Persist and hydrate state keys to/from `localStorage` with a React‑friendly API.
+
+---
+
+## Navigation & Guarded Routes
+
+- `GuardedRoutes/GuestRoute.js`: Ensures only unauthenticated users can access guest routes like `Login` and `Register`.
+- `GuardedRoutes/UserRoute.js`: Requires a logged-in user for protected areas.
+- `GuardedRoutes/AdminRoute.js`: Requires the current user to have admin privileges.
+
+Route components typically use context (Auth) to decide whether to render an `<Outlet />` or redirect.
+
+---
+
+## Forms and Validation
+
+`schemas/index.js` defines Yup schemas:
+- `createMenuItemSchema`, `editMenuItemSchema`: Validates item fields (`name`, `imageUrl`, `itemType`/`portionSize`, `description`, `price`).
+- `reviewMessageItemSchema`: Length and content validation for review messages.
+
+Use these schemas with your form library or manual validation before service calls.
+
+---
+
+## Constants
+
+`Constants/globalConstants.js` holds shared labels and action names used across admin and orders UIs, e.g., `MENU_PAGE_NAME`, `PENDING_ORDERS_NAME`, and action tokens like `accept`/`decline`.
+
+---
+
+## Services Layer
+
+Location: `services/`
+
+Common patterns:
+- `requester.js`: Centralized HTTP client (fetch wrapper). Other services should call this to standardize headers, auth token handling, and error normalization.
+- Feature services (examples):
+  - `authService.js`: login, register, logout, profile.
+  - `menuItemService.js`: CRUD for menu items and listing by type.
+  - `orderService.js`: create orders, fetch pending/history, update status, details by id.
+  - `cartService.js`: helpers for server‑synced carts if applicable.
+  - `reviewService.js`: sending/fetching review chat messages.
+  - `adminService.js`: admin‑specific orchestration calls.
+  - `navigationServices.js`: utilities supporting navigation flows.
+
+Example usage pattern:
+```js
+import { createMenuItem } from '../services/menuItemService';
+
+async function onCreate(values) {
+  try {
+    await createMenuItem(values);
+    // navigate to list or show success
+  } catch (err) {
+    // surface err.message to UI
+  }
+}
+```
+
+---
+
+## Styling
+
+- Prefer CSS Modules (`*.module.css`) for component styles to avoid collisions.
+- Keep styles colocated with the component.
+- Use global `App.css` sparingly for application‑wide resets or layout helpers.
+
+---
+
+## Data Flow Summary
+1. UI components dispatch user intents (e.g., submit create form, add to cart).
+2. Validation via Yup schemas prevents invalid payloads.
+3. Services issue HTTP requests via `requester.js` with auth context applied when needed.
+4. Responses update Context state (`AuthContext`, `CartContext`) or local component state.
+5. Guarded routes reflect auth changes immediately.
+
+---
+
+## Adding a New Feature (Checklist)
+
+1. Create UI under the relevant domain folder in `components/` with `*.module.css`.
+2. If data‑backed, add/extend a service in `services/` and export clear functions.
+3. Add validation rules in `schemas/index.js` if your form collects inputs.
+4. Add constants to `Constants/globalConstants.js` if you need shared labels.
+5. Wire a route in `App.js`. If protected, place it under `UserRoute`; if admin‑only, nest under `AdminRoute`.
+6. Consume or extend contexts as needed (`AuthContext`, `CartContext`).
+7. Handle errors gracefully and provide user feedback.
+
+---
+
+## Error Handling
+
+- Surface user‑friendly messages on failures (validation, network, or server errors).
+- Consider redirecting to `/Internal-server-error` when encountering unrecoverable conditions.
+- Log to console in development; avoid noisy logs in production builds.
+
+---
+
+## Testing
+
+- `setupTests.js` is available for configuring Jest/RTL as needed.
+- Co‑locate simple component tests next to components or create a `__tests__` folder per feature.
+
+---
+
+## Conventions & Tips
+
+- Keep component files focused and readable; split UI from data concerns where reasonable.
+- Name exports by intent: verbs for functions, nouns for values.
+- Avoid deep prop drilling; prefer Context or local composition.
+- Reuse `FilterSearchBar`, `ItemCard`, and `Loader` patterns across menu pages for consistency.
+
+---
+
+## Troubleshooting
+
+- Routes not rendering? Ensure the component is placed under the correct guard (`GuestRoute`, `UserRoute`, `AdminRoute`).
+- Auth/cart state missing? Confirm `AuthProvider` / `CartProvider` wrap your routes in `App.js`.
+- Styles not applied? Verify the CSS module import path and className usage.
+- API calls failing? Check `requester.js` base URL, headers, and auth token wiring.
+
+---
+
+## Useful References
+
+- `App.js`: authoritative map of all routes and providers.
+- `services/*`: source of truth for server interaction.
+- `schemas/index.js`: single place to update form validation.
+- `Constants/globalConstants.js`: shared labels/actions.
+
+

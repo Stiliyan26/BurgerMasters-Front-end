@@ -1,6 +1,3 @@
-
-https://github.com/user-attachments/assets/d8dd266f-1d49-48aa-a432-474c06ae0fd4
-
 Live: https://burgermasters.vercel.app
 
 ## BurgerMasters Front-end: `src/` Documentation

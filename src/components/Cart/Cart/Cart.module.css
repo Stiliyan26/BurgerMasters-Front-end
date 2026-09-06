@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Chela+One&display=swap');
+
+#cart-wrapper {
+    margin-top: 60px;
+    margin-bottom: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+}
+
+#cart-container {
+    flex-basis: 80%;
+    grid-template-columns: repeat(1, minmax(300px, 1fr));
+    font-family: 'Chela One', cursive;
+    text-align: center;
+}
+
+#cart-row {
+    display: grid;
+    grid-template-columns: 200px 1fr 1fr 1fr 1fr 1fr;
+    background-color: #003554;
+    border-radius: 2rem;
+    font-size: 1.5rem;
+    color: #d5d9de;
+    box-shadow: 9px 10px 10px -1px rgba(0, 53, 84, 0.77);
+    -webkit-box-shadow: 9px 10px 10px -1px rgba(0, 53, 84, 0.77);
+    -moz-box-shadow: 9px 10px 10px -1px rgba(0, 53, 84, 0.77);
+    background-image: url('/public/images/card.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#cart-row .cart-column-name {
+    text-shadow: 1.5px 1.5px #9ca0a3;
+}
+
+#total-table {
+    flex-basis: 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 2rem;
+    font-family: 'Chela One', cursive;
+    color: #d5d9de;
+    height: 100%;
+    border-radius: 1rem;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 1px solid black;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    opacity: 0;
+    animation: slideInDown 1s ease-in-out forwards
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#total-table .total-title {
+    font-size: 2.5rem;
+    margin: 10px 0px 20px 0px;
+    animation: glowing 3s ease-in-out infinite;
+}
+
+
+@keyframes glowing {
+    0% {
+        filter: drop-shadow(0 0 5px #d5d9de);
+    }
+
+    50% {
+        filter: drop-shadow(0 0 10px #d5d9de);
+    }
+
+    100% {
+        filter: drop-shadow(0 0 5px #d5d9de);
+    }
+}
+
+#total-table .total-row {
+    font-size: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: row;
+    animation: wiggle 3s linear infinite;
+}
+
+@keyframes wiggle {
+
+    0%,
+    7% {
+        transform: rotateZ(0);
+    }
+
+    15% {
+        transform: rotateZ(-15deg);
+    }
+
+    20% {
+        transform: rotateZ(10deg);
+    }
+
+    25% {
+        transform: rotateZ(-10deg);
+    }
+
+    30% {
+        transform: rotateZ(6deg);
+    }
+
+    35% {
+        transform: rotateZ(-4deg);
+    }
+
+    40%,
+    100% {
+        transform: rotateZ(0);
+    }
+}
+
+#total-table .total-price--title {
+    margin: 0px;
+    padding-right: 15px;
+}
+
+#total-table .total-price {
+    margin-top: 0px;
+}
+
+#total-table .order-btn {
+    font-family: 'Chela One', cursive;
+    text-decoration: none;
+    color: #c9ccd0;
+    background-color: rgb(145, 0, 0);
+    padding: 10px 20px;
+    border-radius: 1rem;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    border: none;
+    cursor: pointer;
+}
+
+#total-table .order-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #e3e7ec;
+    background-color: rgb(168, 0, 0);
+}
+
+#total-table .cant-order {
+    font-family: 'Chela One', cursive;
+    text-decoration: none;
+    color: #c9ccd0;
+    background-color: rgb(112, 112, 112);
+    padding: 10px 20px;
+    border-radius: 1rem;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}

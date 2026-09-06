@@ -1,0 +1,29 @@
+Name: Regular Fries
+Image Url: RegularFries.webp
+Portion size: 170
+Description: Homemade potatoes, Vegetable Oil, Salt
+Price: 4.99
+
+Name: Spicy Fries
+Image Url: SpicyFries.webp
+Portion size: 240
+Description: Homemade potatoes, Vegetable Oil, Salt, Homemade hot sauce
+Price: 6.99
+
+Name: Cheddar Fries
+ImageUrl: CheddarFries.webp
+Portion size: 300
+Description: Homemade potatoes, Vegetable Oil, Salt, Pepper, House fried sauce and jalapenos
+Price: 7.99
+
+Name: Breaded onion rings
+Image Url: OnionRings.webp
+Portion size: 250
+Description: Onions, Flour, Bread crumbs, Salt and pepper
+Price: 6.99
+
+Name: Mozzarella sticks
+Image Url: MozzarellaSticks.webp
+Portion size: 170
+Description: Mozzarella cheese, Blueberry jam, All purpose flour
+Price: 9.99

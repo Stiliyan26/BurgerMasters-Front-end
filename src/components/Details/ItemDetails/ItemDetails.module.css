@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Chela+One&display=swap');
+
+#details-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 80%;
+    padding-bottom: 300px;
+    font-family: 'Chela One', cursive;
+    margin-top: 100px;
+}
+
+#details-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    color: #d5d9de;
+}
+
+#details-container .img--container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-basis: 50%;
+}
+
+#details-container .img {
+    width: 65%;
+    filter: drop-shadow(0 0 10px #d5d9de);
+    animation: slideInImg 1s ease-in-out forwards, levitateGlowingImg 2s ease-in-out infinite;
+    opacity: 0;
+    transform: -100%;
+}
+
+#details-container .item--info {
+    flex-basis: 50%;
+    font-size: 2.5rem;
+    width: 100%;
+}
+
+#details-container .description-item {
+    opacity: 0;
+    animation-name: fade-in;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+#details-container .item--title {
+    opacity: 0;
+    transform: 100%;
+    animation: slideIn 1s ease-in-out forwards;
+}
+
+/* Order Item */
+#details-container .order--item,
+#details-container .admin--btns {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 50px;
+    opacity: 0;
+    padding-left: 3rem;
+    transform: 100%;
+    animation: slideIn 1s ease-in-out forwards;
+}
+
+#details-container .item--add-to-cart-btn,
+#details-container .edit-btn,
+#details-container .delete-btn {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 1.5rem;
+    overflow: hidden;
+    height: 100%;
+    color: #d5d9de;
+    border-radius: 20px;
+    margin-left: 20px;
+}
+
+#details-container .item--add-to-cart-btn {
+    background-color: #013e5a;
+}
+
+#details-container .item--add-to-cart-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #e3e7ec;
+    background-color: #013e5a;
+}
+
+#details-container .admin--btns {
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    padding-top: 30px;
+    padding-left: 2rem;
+}
+
+#details-container .edit-btn {
+    background-color: #676e00;
+}
+
+#details-container .edit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #e3e7ec;
+    background-color: #717900;
+}
+
+#details-container .delete-btn {
+    background-color: #640101;
+}
+
+#details-container .delete-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #e3e7ec;
+    background-color: #6d0000;
+}
+
+#details-container .btn--content {
+    padding-right: 10px;
+}
+
+@keyframes levitateGlowingImg {
+    0% {
+        transform: translateY(0);
+        filter: drop-shadow(0 0 5px #d5d9de);
+    }
+
+    50% {
+        transform: translateY(-10px);
+        filter: drop-shadow(0 0 15px #d5d9de);
+    }
+
+    100% {
+        transform: translateY(0);
+        filter: drop-shadow(0 0 5px #d5d9de);
+    }
+}
+
+@keyframes slideInImg {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+

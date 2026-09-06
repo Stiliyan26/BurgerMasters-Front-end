@@ -1,0 +1,17 @@
+Name: Black Angus Grill
+Image Url: BlackAngus.webp
+Portion size: 460
+Description: 160 g of Black Angus ground beef, Spicy beans with bacon, molasses and spices, Coleslaw
+Price: 18.90
+
+Name: Smoked pork sausage menu
+Image Url: PorkSausage.webp
+Portion size: 400
+Description: 2 smoked pork sausages, Spicy beans with bacon, molasses and spices, Coleslaw
+Price: 19.10
+
+Name: Double Black Angus Gril
+Image Url: BlackAngus2.webp
+Portion size: 640
+Description: 2 patties of 160g each. from Black Angus ground beef, Spicy beans with bacon, molasses and spices, Coleslaw
+Price: 23.90

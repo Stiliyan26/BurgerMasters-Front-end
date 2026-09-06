@@ -1,0 +1,29 @@
+Name: Fried Pork Priviledge Sandwich
+Image Url: FiredPork.webp
+Portion size: 390
+Description: Homemade American bread toasted with butter, Breaded sirloin (pork), Mustard, White onion, Colsloe, Tomato
+Price: 13.90
+
+Name: Sloppy Joe
+Image url: SloppyJoe.webp
+Portion size: 320
+Description: Homemade Brioche Bread, American potato salad with mustard and bacon, Ground beef with Sloppy Joe sauce
+Price: 11.49
+
+Name: Rusty Bacon
+Image Url: RustyBacon.webp
+Portion size: 380
+Description: Homemade Brioche Bread, Coleslaw, Crispy bacon, BBQ sauce with bourbon, Caramelized onions
+Price: 9.99
+
+Name: Scrambled Eggs and Bacon, Scrambled eggs with bacon
+Image Url: ScrambledEggs.webp
+Portion size: 270
+Description: Toast slices with smoked mayonnaise, pan-fried, Lettuce, Tomato
+Price: 10.99
+
+Name: American Grill and Cheese
+ImageUrl: GrillnCheese.webp
+Portion size: 200
+Description: Toast slices with smoked mayonnaise, pan-fried, Cheddar, Mozzarella
+Price: 10.09

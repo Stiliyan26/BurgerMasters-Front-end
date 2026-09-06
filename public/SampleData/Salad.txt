@@ -1,0 +1,11 @@
+Name: Salad Coleslaw
+Image Url: Coleslaw.png
+Portion size: 250
+Description: Red cabbage,White Cabbage,Carrot,Mayonnaise dressing
+Price: 5.99
+
+Name: Salad Cobb
+Image Url: Cobb.png
+Description: Lettuce,Tomato,Blue cheese,Avocado,Chicken fillet,Bacon,Quail eggs,Red onion,Dressing
+Portion size: 400
+Price: 14.90

@@ -1,0 +1,59 @@
+Name: Coca-Cola no sugar
+Image Url: CocaColaNoSugar.webp
+Portion size: 330
+Description: Carbonated Water, Phosphoric Acid, Sweeteners (Aspartame, Acesulfame Potassium), Natural Flavors (including Caffeine)	
+Price: 2.50
+
+Name: Coca-Cola Original
+Image Url: Classic.webp
+Portion size: 330
+Description: Carbonated Water, High Fructose Corn Syrup, Caramel Color, Phosphoric Acid, Natural Flavors 
+Price: 2.50
+
+Name: Coca-cola cherry
+Image Url: CherryVanilla.webp
+Portion size: 355
+Description: Carbonated Water, High Fructose Corn Syrup, Caramel Color, Phosphoric Acid, Potassium Benzoate
+Price: 4.90
+
+Name: Coca-cola orange vanilla
+Image Url: OrangeVanilla.webp
+Portion size: 355
+Description: Carbonated Water, High Fructose Corn Syrup, Caramel Color, Phosphoric Acid, Caffeine, Sodium Benzoat
+Price: 4.90
+
+Name: Coca-cola vanila
+Image Url: Vanilla.webp
+Portion size: 355
+Description: Carbonated Water, High Fructose Corn Syrup, Caramel Color, Phosphoric Acid, Natural Flavors (including Vanilla), Caffeine
+Price: 4.90
+
+Name: Fanta strawberry
+Image Url: FantaStrawberry.webp
+Portion size: 355
+Description: Carbonated Water, High Fructose Corn Syrup, Natural and Artificial Flavors, Citric Acid, Sodium Citrate, Red 40 (Color) 
+Price: 4.90
+
+Name: Fanta berry
+Image Url: FantaBerry.webp
+Portion size: 355
+Description: Carbonated Water, High Fructose Corn Syrup, Citric Acid, Natural and Artificial Flavors, Red 40 (Color), Blue 1 (Color)
+Price: 4.90
+
+Name: Fanta Grape
+Image Url: FantaGrape.webp
+Portion size: 355
+Description: Carbonated Water, High Fructose Corn Syrup, Natural and Artificial Flavors, Citric Acid, Sodium Benzoate, Red 40 (Color), Blue 1 (Color)
+Price: 4.90
+
+Name: Fanta Peach
+Image Url: FantaPeach.webp
+Description: Carbonated Water, High Fructose Corn Syrup, Natural Flavors, Natural Flavors, Sodium Benzoate, Yellow 6 (Color), Red 40 (Color)
+Portion size: 355
+Price: 4.90
+
+Name: Fanta Pineapple
+Image Url: FantaPineapple.webp
+Portion size: 355
+Description: Carbonated Water, High Fructose Corn Syrup, Natural Flavors, Sodium Benzoat, Potassium Sorbate, Yellow 5 (Color), Yellow 5 (Color)	
+Price: 4.90

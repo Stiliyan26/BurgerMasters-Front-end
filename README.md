@@ -222,6 +222,21 @@ async function onCreate(values) {
 
 ---
 
+## Deploy (Vercel)
+
+Production is the original Create React App. Vercel project should be linked to this repo’s `main` branch (`push` = new deploy).
+
+Set **`REACT_APP_API`** in Vercel → Project Settings → Environment Variables (Production + Preview) to the deployed ASP.NET base URL, with **no trailing slash**. Example: `https://burgermasters-api.onrender.com`.
+
+Do not put the API URL in committed source. `.env` is for local (`https://localhost:7129`).
+
+```bash
+npm install
+npm start
+```
+
+---
+
 ## Useful References
 
 - `App.js`: authoritative map of all routes and providers.
